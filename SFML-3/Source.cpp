@@ -26,15 +26,15 @@ int main()
     background.setTexture(&space);
 
     sf::Texture playtexture;
-    playtexture.loadFromFile("run_stay.png");
-    Player player(&playtexture, sf::Vector2u(6, 2), 0.2f, 150.0f, 200.0f);
+    playtexture.loadFromFile("RL.png");
+    Player player(&playtexture, sf::Vector2u(6, 4), 0.2f, 150.0f, 200.0f);
 
     sf::Texture BULLET;
-    BULLET.loadFromFile("gun.png");
-    Bullet bullet1(&BULLET, sf::Vector2u(4, 1), 0.15f, 600.0f, player.getPosition());
+    BULLET.loadFromFile("gun-1.png");
+    Bullet bullet1(&BULLET, sf::Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());
 
       sf::Texture Floor;
-      Floor.loadFromFile("F.png");
+      Floor.loadFromFile("bg.png");
 
     std::vector<Platform>platforms;
 

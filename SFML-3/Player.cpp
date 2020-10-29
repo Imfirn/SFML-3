@@ -1,4 +1,5 @@
 #include "Player.h"
+#include<iostream>
 Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHigh) :
 	animation(texture, imageCount, switchTime)
 {
@@ -6,7 +7,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	this->jumpHigh = jumpHigh;
 
 	row = 0;
-	faceRight = true;
+	face = 1;
 	bullet = false;
 	body.setSize(sf::Vector2f(100.0f, 100.0f));
 	body.setOrigin(body.getSize() / 2.0f);
@@ -28,9 +29,13 @@ void Player::Update(float deltaTime) {
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		velocity.x -= speed;
+		face = -1;
+		std::cout << face;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		velocity.x += speed;
+		face = 1;
+		std::cout << face;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canJump)
 	{
@@ -40,25 +45,38 @@ void Player::Update(float deltaTime) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
 	{
 		bullet = true;
+
 	}
 
 	velocity.y += 981.0f * deltaTime;
-
+	row = 0;
 	if (velocity.x == 0.0f) {
-
+		if (face == -1) {
+			row = 2;
+		}
+	}
+	else
+	{
+		if (velocity.x > 0.0f) {
+			row = 1;
+		}
+		else row = 3;
+	}
+	/*if (velocity.x == 0.0f) {
 		row = 0;
 	}
 
 	else {
-
-		row = 1;
-		if (velocity.x > 0.0f)
-			faceRight = true;
-
-		else
-			faceRight = false;
+		row = 2;
+		if (velocity.x > 0.0f){
+			row = 3;
+			face = 1;
 	}
-	animation.Update(row, deltaTime, faceRight);
+		else
+			face = -1;
+			row = 1;
+	}*/
+	animation.Update(row, deltaTime);
 	body.setTextureRect(animation.uvRect);
 	body.move(velocity * deltaTime);
 }

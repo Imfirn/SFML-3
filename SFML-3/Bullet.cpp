@@ -6,6 +6,7 @@ Bullet::Bullet(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 {
     this->speed = speed;
     row = 0;
+    LR ;
     body.setSize(sf::Vector2f(50.0f, 50.0f));
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(pos);
@@ -16,13 +17,30 @@ Bullet::~Bullet()
 }
 void Bullet::Update(float deltaTime)
 {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        velocity.x -= speed;
+        LR = 0;
+        std::cout << LR;
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        velocity.x += speed;
+        LR = 1;
+
     if (body.getPosition().x != NULL - 100 && body.getPosition().y != NULL - 100) {
         velocity.y = 0;
         velocity.x = speed;
-
-        body.move(velocity * deltaTime);
-
-        animation.updateBu(row, deltaTime);
+        if (LR==0) {
+            row = 1;
+            body.move(velocity * deltaTime);
+            animation.updateBu(row, deltaTime);
+        }
+        else if(LR == 1)
+        {
+            row = 0;
+            body.move(-velocity * deltaTime);
+            animation.updateBu(row, deltaTime);
+        }
+        //animation.updateBu(row, deltaTime,faceRight);
         body.setTextureRect(animation.uvRect);
     }
     /* if (body.getPosition().x > 1920) {
