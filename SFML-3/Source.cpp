@@ -26,7 +26,7 @@ int main()
     background.setTexture(&space);
 
     sf::Texture playtexture;
-    playtexture.loadFromFile("RL.png");
+    playtexture.loadFromFile("LR3.png");
     Player player(&playtexture, sf::Vector2u(6, 4), 0.2f, 150.0f, 200.0f);
 
     sf::Texture BULLET;

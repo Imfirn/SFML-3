@@ -20,7 +20,7 @@ void Bullet::Update(float deltaTime)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         velocity.x -= speed;
         LR = 0;
-        std::cout << LR;
+        //std::cout << LR;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         velocity.x += speed;
