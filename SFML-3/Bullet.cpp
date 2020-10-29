@@ -30,6 +30,7 @@ void Bullet::Update(float deltaTime)
         velocity.y = 0;
         velocity.x = speed;
         if (LR==true) {
+
             row = 0;
             body.move(velocity * deltaTime);
             animation.updateBu(row, deltaTime);
