@@ -30,12 +30,12 @@ void Player::Update(float deltaTime) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		velocity.x -= speed;
 		face = -1;
-		std::cout << face;
+		//std::cout << face;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		velocity.x += speed;
 		face = 1;
-		std::cout << face;
+		//std::cout << face;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canJump)
 	{

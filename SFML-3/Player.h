@@ -25,7 +25,7 @@ private:
 	bool canJump;
 	float jumpHigh;
 	int l = 0;
-
+	
 
 };
 

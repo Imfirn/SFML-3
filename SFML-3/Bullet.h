@@ -32,7 +32,7 @@ private:
     Animation animation;
     float speed;
     sf::RectangleShape body;
-    bool LR;
+    bool LR=true;
     unsigned int row;
     sf::Vector2f velocity;
     bool isAva = true;

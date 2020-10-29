@@ -19,24 +19,24 @@ void Bullet::Update(float deltaTime)
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         velocity.x -= speed;
-        LR = 0;
+        LR = true;
         //std::cout << LR;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         velocity.x += speed;
-        LR = 1;
+        LR = false;
 
     if (body.getPosition().x != NULL - 100 && body.getPosition().y != NULL - 100) {
         velocity.y = 0;
         velocity.x = speed;
-        if (LR==0) {
-            row = 1;
+        if (LR==true) {
+            row = 0;
             body.move(velocity * deltaTime);
             animation.updateBu(row, deltaTime);
         }
-        else if(LR == 1)
+        else if(LR == false)
         {
-            row = 0;
+            row = 1;
             body.move(-velocity * deltaTime);
             animation.updateBu(row, deltaTime);
         }
