@@ -18,27 +18,27 @@ Bullet::~Bullet()
 void Bullet::Update(float deltaTime)
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        velocity.x -= speed;
-        LR = true;
+        //velocity.x -= 30;
+        LR = 1;
         //std::cout << LR;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        velocity.x += speed;
-        LR = false;
+        //velocity.x += 30;
+        LR = -1;
 
     if (body.getPosition().x != NULL - 100 && body.getPosition().y != NULL - 100) {
         velocity.y = 0;
         velocity.x = speed;
-        if (LR==true) {
+        if (face(LR)==1) {
 
-            row = 0;
-            body.move(velocity * deltaTime);
-            animation.updateBu(row, deltaTime);
-        }
-        else if(LR == false)
-        {
             row = 1;
             body.move(-velocity * deltaTime);
+            animation.updateBu(row, deltaTime);
+        }
+        else 
+        {
+            row = 0;
+            body.move(velocity * deltaTime);
             animation.updateBu(row, deltaTime);
         }
         //animation.updateBu(row, deltaTime,faceRight);
@@ -50,7 +50,13 @@ void Bullet::Update(float deltaTime)
 }
 
 void Bullet::attack(sf::Vector2f pos) {
-    body.setPosition(pos.x + 53.0f, pos.y + 10.0f);
+    if (face(LR) == 1) {
+        body.setPosition(pos.x - 53.0f, pos.y + 10.0f);
+    }
+    else {
+        body.setPosition(pos.x + 53.0f, pos.y + 10.0f);
+    }
+
     isAva = false;
 }
 

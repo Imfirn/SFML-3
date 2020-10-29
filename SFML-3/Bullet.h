@@ -16,8 +16,12 @@ public:
     void attack(sf::Vector2f pos);
     void del();
     
-   /* int face(bool x) {
-        if ()
+    int face(int x) {
+        if (x>0)return 1;
+        else return 2;
+    }
+   /*int face(bool x) {
+        if (body.getPosition().x)
         {
             x = false;
             return 1;
@@ -32,7 +36,8 @@ private:
     Animation animation;
     float speed;
     sf::RectangleShape body;
-    bool LR=true;
+    int LR;
+    //bool LR=true;
     unsigned int row;
     sf::Vector2f velocity;
     bool isAva = true;

@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+
 class Animation
 {
 public:
@@ -7,7 +8,7 @@ public:
 	~Animation();
 	void Update(int row, float deltaTime);
 	void updateBu(int row, float deltaTime);
-
+	void updateMonster(int row, float deltaTime);
 
 public:
 	sf::IntRect uvRect;

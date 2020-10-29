@@ -5,7 +5,7 @@
 #include "Player.h"
 #include"Platform.h"
 #include "Bullet.h"
-
+#include"monster.h"
 
 static const float VIEW_HIGHT = 1080.0f;
 
@@ -33,8 +33,13 @@ int main()
     BULLET.loadFromFile("gun-1.png");
     Bullet bullet1(&BULLET, sf::Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());
 
-      sf::Texture Floor;
-      Floor.loadFromFile("bg.png");
+    sf::Texture Floor;
+    Floor.loadFromFile("bg.png");
+
+    sf::Texture MONSTER;
+    MONSTER.loadFromFile("Pink_M.png");
+    std::vector<monster>monsterVector;
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(4, 1), 0.08f, 320.0f, 545.0f));
 
     std::vector<Platform>platforms;
 
@@ -76,9 +81,22 @@ int main()
         }
 
 
+
         player.Update(deltatime);
 
+        for (int i = 0; i < monsterVector.size(); i++) {
 
+            monsterVector[i].update1(deltatime, bullet1);
+
+
+        }
+
+        for (int i = 0; i < monsterVector.size(); i++) {
+
+            monsterVector[i].draw(window);
+
+
+        }
         sf::Vector2f direction;
         Collider playerCollision = player.GetCollider();
 
@@ -99,12 +117,12 @@ int main()
             float d = deltatime;
             bullet1.Update(d);
             bullet1.Draw(window);
-            /* for (i = 0; i < 2; i++) {
-                 if (alienVector[i].hit() == 1)
+             for (int i = 0; i < 2; i++) {
+                 if (monsterVector[i].hit() == 1)
                  {
                      bullet1.del();
                  }
-             }*/
+             }
         }
         if (player.getPosition().x - bullet1.GetPosition().x <= -1000.0f)
         {
@@ -117,7 +135,7 @@ int main()
 
         window.clear();
         window.setView(view);
-        window.draw(background);
+        //window.draw(background);
         player.Draw(window);
         bullet1.Draw(window);
         for (Platform& platform : platforms)
