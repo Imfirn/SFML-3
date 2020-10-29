@@ -6,7 +6,7 @@ Bullet::Bullet(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 {
     this->speed = speed;
     row = 0;
-    LR ;
+    LR;
     body.setSize(sf::Vector2f(50.0f, 50.0f));
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(pos);
