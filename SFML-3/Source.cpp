@@ -1,6 +1,13 @@
 #include <SFML/Graphics.hpp>
-#include<iostream>
-#include<vector>
+#include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
+#include <iostream>
+#include "stdlib.h"
+#include <string>
+#include <sstream>
+#include <math.h>
+#include <vector>
+#include <fstream>
 #include"Animation.h"
 #include "Player.h"
 #include"Platform.h"
@@ -41,7 +48,7 @@ int main()
    std::vector<monster> monsterVector;
     monsterVector.push_back (monster (&MONSTER, sf::Vector2u(8, 1), 0.2f, 200.0f, 545.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(8, 1), 0.2f, 500.0f, 545.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(8, 1), 0.2f, 100.0f, 545.0f));
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(8, 1), 0.2f, 100.0f, 400.0f));
 
     std::vector<Platform>platforms;
 
@@ -49,11 +56,21 @@ int main()
     //   platforms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
 
 
-    platforms.push_back(Platform(&Floor, sf::Vector2f(2000.0f, 250.0f), sf::Vector2f(500.0f, 720.0f)));
+    platforms.push_back(Platform(&Floor, sf::Vector2f(2000.0f,400.0f), sf::Vector2f(500.0f, 800.0f)));
    // platforms.push_back(Platform(nullptr, sf::Vector2f(1080.0f, 100.0f), sf::Vector2f(500.0f, -50.0f)));
     //  platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(150.0f, 400.0f)));
    //   platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(900.0f, 100.0f)));
 
+    int scoreup = 0;
+
+    sf::Font font;
+    font.loadFromFile("ABCD.ttf");
+    std::ostringstream point;
+    sf::Text Score;
+    Score.setCharacterSize(50);
+    Score.setString(point.str());
+    Score.setFont(font);
+    Score.setFillColor(sf::Color::Red);
 
     int Bul = 0;
     float deltatime = 0.0f;
@@ -85,6 +102,13 @@ int main()
 
 
         player.Update(deltatime);
+        Score.setPosition({ player.getPosition().x-100 ,250 });
+        if (pos.x > 5000) {
+            Score.setPosition(player.getPosition().x - 110, 50);
+        }
+        point.str(" ");
+        point << "SCORE: " << scoreup;
+        Score.setString(point.str());
        
         //monsterVector[i].updatemon(deltatime, bullet1);
        for (int i = 0; i < monsterVector.size(); i++) {
@@ -116,9 +140,10 @@ int main()
             float d = deltatime;
             bullet1.Update(d);
             bullet1.Draw(window);
-           for (int i = 0; i < 2; i++) {
+           for (int i = 0; i < 3; i++) {
                  if (monsterVector[i].hit() == 1)
                  {
+                     scoreup += 100;
                      bullet1.del();
                  }
              }
@@ -134,9 +159,10 @@ int main()
 
         window.clear();
         window.setView(view);
-        window.draw(background);
+       // window.draw(background);
         player.Draw(window);
         bullet1.Draw(window);
+        window.draw(Score);
         //MONSTER1.Draw(window);
         for (int i = 0; i < monsterVector.size(); i++) {
 

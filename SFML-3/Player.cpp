@@ -49,9 +49,11 @@ void Player::Update(float deltaTime) {
 	}
 
 	velocity.y += 981.0f * deltaTime;
-	row = 0;
-	if (velocity.x == 0.0f) {
+	row =0;
+	if (velocity.x== 0.0f) {
+		
 		if (face == -1) {
+
 			row = 2;
 		}
 	}
@@ -60,7 +62,8 @@ void Player::Update(float deltaTime) {
 		if (velocity.x > 0.0f) {
 			row = 1;
 		}
-		else row = 3;
+		else if(velocity.x < 0.0f)
+			row = 3;
 	}
 	/*if (velocity.x == 0.0f) {
 		row = 0;

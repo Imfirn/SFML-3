@@ -7,7 +7,7 @@ monster::monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime
 {
     this->speed = speed;
     row = 0;
-    body.setSize(sf::Vector2f(90.0f, 108.0f));
+    body.setSize(sf::Vector2f(250.0f, 90.0f));
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(x, y);
     body.setTexture(texture);
