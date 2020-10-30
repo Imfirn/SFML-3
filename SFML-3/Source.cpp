@@ -44,11 +44,12 @@ int main()
     Floor.loadFromFile("bg.png");
 
     sf::Texture MONSTER;
-    MONSTER.loadFromFile("M.png");
+    MONSTER.loadFromFile("P-1.png");
    std::vector<monster> monsterVector;
-    monsterVector.push_back (monster (&MONSTER, sf::Vector2u(8, 1), 0.2f, 200.0f, 545.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(8, 1), 0.2f, 500.0f, 545.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(8, 1), 0.2f, 100.0f, 400.0f));
+    monsterVector.push_back (monster (&MONSTER, sf::Vector2u(6, 2), 0.2f, 200.0f, 545.0f));
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 300.0f, 545.0f));
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 100.0f, 545.0f));
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 800.0f, 545.0f));
 
     std::vector<Platform>platforms;
 
@@ -114,18 +115,13 @@ int main()
        for (int i = 0; i < monsterVector.size(); i++) {
 
             monsterVector[i].updatemon(deltatime, bullet1);
-
+            monsterVector[i].updatemon2(deltatime, player);
 
         }
-
         
-
-        sf::Vector2f direction;
+       sf::Vector2f direction;
         Collider playerCollision = player.GetCollider();
-
         for (Platform& platform : platforms)
-
-
             if (platform.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
                 player.OnCollision(direction);
 
@@ -140,13 +136,18 @@ int main()
             float d = deltatime;
             bullet1.Update(d);
             bullet1.Draw(window);
-           for (int i = 0; i < 3; i++) {
+           for (int i = 0; i < 4; i++) {
                  if (monsterVector[i].hit() == 1)
                  {
                      scoreup += 100;
                      bullet1.del();
                  }
              }
+
+
+
+
+
         }
         if (player.getPosition().x - bullet1.GetPosition().x <= -1000.0f)
         {

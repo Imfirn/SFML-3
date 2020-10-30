@@ -9,6 +9,7 @@ public:
 	void Update(int row, float deltaTime);
 	void updateBu(int row, float deltaTime);
 	void updatemon(int row, float deltaTime);
+	void Updatefacemon(int row, float deltaTime,bool faceR);
 
 public:
 	sf::IntRect uvRect;
@@ -16,6 +17,7 @@ private:
 	sf::Vector2u imageCount;
 	sf::Vector2u currentImage;
 	int face = 1;
+	bool faceR;
 	float totalTime;
 	float switchTime;
 };

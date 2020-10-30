@@ -12,7 +12,7 @@ public:
     monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y);
     ~monster();
     void updatemon(float deltaTime, Bullet bullet1);
-   // void update2(float deltaTime, Player player);
+    void updatemon2(float deltaTime, Player player);
     void Draw(sf::RenderWindow& window);
     Collider GetCollider() { return Collider(body); }
 
@@ -26,6 +26,7 @@ public:
 private:
     int row;
     int count = 0;
+    bool faceR;
     float speed;
     sf::RectangleShape body;
     Animation animation;

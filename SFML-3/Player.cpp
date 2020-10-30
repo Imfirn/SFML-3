@@ -9,7 +9,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	row = 0;
 	face = 1;
 	bullet = false;
-	body.setSize(sf::Vector2f(100.0f, 100.0f));
+	body.setSize(sf::Vector2f(90.0f, 100.0f));
 	body.setOrigin(body.getSize() / 2.0f);
 	body.setPosition(540.0f, 360.0f);
 	body.setTexture(texture);
@@ -48,7 +48,7 @@ void Player::Update(float deltaTime) {
 
 	}
 
-	velocity.y += 981.0f * deltaTime;
+	velocity.y += 681.0f * deltaTime;
 	row =0;
 	if (velocity.x== 0.0f) {
 		
