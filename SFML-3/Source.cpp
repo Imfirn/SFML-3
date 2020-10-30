@@ -37,9 +37,11 @@ int main()
     Floor.loadFromFile("bg.png");
 
     sf::Texture MONSTER;
-    MONSTER.loadFromFile("P.png");
-    std::vector<monster>monsterVector;
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 1), 0.08f, 0.0f, 0.0f));
+    MONSTER.loadFromFile("M.png");
+   std::vector<monster> monsterVector;
+    monsterVector.push_back (monster (&MONSTER, sf::Vector2u(8, 1), 0.2f, 200.0f, 545.0f));
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(8, 1), 0.2f, 500.0f, 545.0f));
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(8, 1), 0.2f, 100.0f, 545.0f));
 
     std::vector<Platform>platforms;
 
@@ -83,20 +85,16 @@ int main()
 
 
         player.Update(deltatime);
-
-        for (int i = 0; i < monsterVector.size(); i++) {
+       
+        //monsterVector[i].updatemon(deltatime, bullet1);
+       for (int i = 0; i < monsterVector.size(); i++) {
 
             monsterVector[i].updatemon(deltatime, bullet1);
 
 
         }
 
-        for (int i = 0; i < monsterVector.size(); i++) {
-
-            monsterVector[i].Draw(window);
-
-
-        }
+        
 
         sf::Vector2f direction;
         Collider playerCollision = player.GetCollider();
@@ -118,12 +116,12 @@ int main()
             float d = deltatime;
             bullet1.Update(d);
             bullet1.Draw(window);
-             /*for (int i = 0; i < 2; i++) {
+           for (int i = 0; i < 2; i++) {
                  if (monsterVector[i].hit() == 1)
                  {
                      bullet1.del();
                  }
-             }*/
+             }
         }
         if (player.getPosition().x - bullet1.GetPosition().x <= -1000.0f)
         {
@@ -136,12 +134,18 @@ int main()
 
         window.clear();
         window.setView(view);
-        //window.draw(background);
+        window.draw(background);
         player.Draw(window);
         bullet1.Draw(window);
+        //MONSTER1.Draw(window);
+        for (int i = 0; i < monsterVector.size(); i++) {
+
+            monsterVector[i].Draw(window);
+
+        }
         for (Platform& platform : platforms)
             platform.Draw(window);
-
+        //window.draw(background);
         window.display();
     }
 

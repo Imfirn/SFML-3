@@ -46,7 +46,7 @@ void Animation::updateBu(int row, float deltaTime)
 	uvRect.left = currentImage.x * uvRect.width;
 	uvRect.top = currentImage.y * uvRect.height;
 }
-void Animation::updateMonster(int row, float deltaTime)
+void Animation::updatemon(int row, float deltaTime)
 {
 	currentImage.y = row;
 	totalTime += deltaTime;

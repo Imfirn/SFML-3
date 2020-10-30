@@ -19,16 +19,16 @@ monster::~monster()
 
 void monster::updatemon(float deltaTime, Bullet bullet1)
 {
-    animation.updateMonster(row, deltaTime);
+    animation.updatemon(row, deltaTime);
     body.setTextureRect(animation.uvRect);
 
     if (bullet1.GetCollider().CheckCollision(this->GetCollider()))
     {
         std::cout << "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk";
-        /* count++;
+         count++;
          row = 1;
-         /*body.setPosition(-1000.0f, 350.0f);
-     }
+        body.setPosition(-1000.0f, 350.0f);
+    }
 
  }
 
@@ -53,8 +53,8 @@ void monster::updatemon(float deltaTime, Bullet bullet1)
          body.setPosition(-1000.0f, 350.0f); /
      }
      */
-    }
- }
+    
+ 
 void monster::Draw(sf::RenderWindow& window)
 {
     window.draw(body);
