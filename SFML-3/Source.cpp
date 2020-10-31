@@ -43,8 +43,18 @@ int main()
     BULLET.loadFromFile("gun-1.png");
     Bullet bullet1(&BULLET, sf::Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());
 
+    RectangleShape st(Vector2f(100.0f, 230.0f));
+    st.setPosition(612.0f,400.0f);
+    Texture sts;
+    sts.loadFromFile("pla-2.png");
+    st.setTexture(&sts);
+
+
     Texture Floor;
     Floor.loadFromFile("bg.png");
+
+    Texture Top;
+    Top.loadFromFile("test.png");
 
     Texture MONSTER;
     MONSTER.loadFromFile("P-1.png");
@@ -61,6 +71,7 @@ int main()
 
 
     platforms.push_back(Platform(&Floor, Vector2f(2000.0f,400.0f),Vector2f(500.0f, 800.0f)));
+    platforms.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), sf::Vector2f(700.0f, 400.0f)));
    // platforms.push_back(Platform(nullptr, sf::Vector2f(1080.0f, 100.0f), sf::Vector2f(500.0f, -50.0f)));
     //  platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(150.0f, 400.0f)));
    //   platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(900.0f, 100.0f)));
@@ -164,7 +175,7 @@ int main()
 
         view.setCenter(player.getPosition());
 
-       
+        
         window.setView(view);
         player.Draw(window);     
         window.draw(Score);        
@@ -173,7 +184,7 @@ int main()
         }
         for (Platform& platform : platforms)
             platform.Draw(window);
-       
+        window.draw(st);
         window.display();
     }
 

@@ -48,6 +48,7 @@ void Player::Update(float deltaTime) {
 
 	}
 
+
 	velocity.y += 981.0f * deltaTime;
 	row =0;
 	if (velocity.x== 0.0f) {
@@ -82,6 +83,9 @@ void Player::Update(float deltaTime) {
 	if (body.getPosition().x < 0)
 		body.setPosition(0, body.getPosition().y);
 
+	if (600<=body.getPosition().x && body.getPosition().x<=660) {
+		body.setPosition(body.getPosition().x,300);
+	}
 
 	animation.Update(row, deltaTime);
 	body.setTextureRect(animation.uvRect);
