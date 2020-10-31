@@ -1,9 +1,22 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include<math.h>
 #include "Player.h"
 #include "Animation.h"
 #include "Collider.h"
 #include "Bullet.h"
+
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
+#include <iostream>
+#include "stdlib.h"
+#include <string>
+#include <sstream>
+#include <math.h>
+#include <vector>
+#include <fstream>
 
 
 class monster
@@ -15,7 +28,8 @@ public:
     void updatemon2(float deltaTime, Player player);
     void Draw(sf::RenderWindow& window);
     Collider GetCollider() { return Collider(body); }
-
+    //Monbullet mb1;
+    
     int hit()
     {
         if (count == 1) {
@@ -23,12 +37,13 @@ public:
             return 1;
         }
     }
+    sf::RectangleShape body;
 private:
     int row;
     int count = 0;
     bool faceR;
     float speed;
-    sf::RectangleShape body;
+    
     Animation animation;
     sf::Vector2f velocity;
 };

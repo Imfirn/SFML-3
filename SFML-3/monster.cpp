@@ -1,6 +1,15 @@
 #include "monster.h"
 
+#include<math.h>
+#include<vector>
 #include<iostream>
+
+
+
+
+
+
+
 
 monster::monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y) :
     animation(texture, imageCount, switchTime)
@@ -34,31 +43,39 @@ void monster::updatemon(float deltaTime, Bullet bullet1)
 
 void monster::updatemon2(float deltaTime, Player player)
 {
-    if (abs(player.getPosition().x - body.getPosition().x) <=500.0f)
-    {
-        velocity.x = 50;
-        if (player.getPosition().x < body.getPosition().x) {
-            row = 1;
-            std::cout << "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk";
-            animation.Updatefacemon(row, deltaTime, faceR);
-            body.move(-velocity * deltaTime);
-        }
-        else if (player.getPosition().x > body.getPosition().x) {
-            row = 0;
-            animation.updatemon(row, deltaTime);
-            body.move(velocity * deltaTime);
+   
+        if (abs(player.getPosition().x - body.getPosition().x) <= 500.0f)
+        {
+            velocity.x = 50;
+            if (player.getPosition().x < body.getPosition().x) {
+                row = 1;
+                std::cout << "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk";
+                animation.Updatefacemon(row, deltaTime, faceR);
+                body.move(-velocity * deltaTime);
+                
 
-        }
-        else if((player.getPosition().x > body.getPosition().x) && faceR==false ){
-            animation.updatemon(row, deltaTime);
-            body.move(velocity * deltaTime);
-        }
-        body.setTextureRect(animation.uvRect);
-    }
 
+            }
+            else if (player.getPosition().x > body.getPosition().x) {
+                row = 0;
+                animation.updatemon(row, deltaTime);
+                body.move(velocity * deltaTime);
+               
+
+            }
+            else if ((player.getPosition().x > body.getPosition().x) && faceR == false) {
+                animation.updatemon(row, deltaTime);
+                body.move(velocity * deltaTime);
+              
+            }
+           
+            body.setTextureRect(animation.uvRect);
+        }
+    
 }
  
 void monster::Draw(sf::RenderWindow& window)
 {
     window.draw(body);
+    
 }

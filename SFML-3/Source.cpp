@@ -14,9 +14,11 @@
 #include "Bullet.h"
 #include"monster.h"
 
+using namespace sf;
+
 static const float VIEW_HIGHT = 1080.0f;
 
-void ResizeView(const sf::RenderWindow& window, sf::View& view)
+void ResizeView(const RenderWindow& window, View& view)
 {
     float aspectRatio = float(window.getSize().x) / float(window.getSize().y);
     view.setSize(VIEW_HIGHT * aspectRatio, VIEW_HIGHT);
@@ -24,28 +26,29 @@ void ResizeView(const sf::RenderWindow& window, sf::View& view)
 int main()
 {
 
-    sf::RenderWindow window(sf::VideoMode(1080, 720), "little red riding hood", sf::Style::Close | sf::Style::Resize);
-    sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(1080.0f, 720.0f));
-    sf::RectangleShape background(sf::Vector2f(1080.0f, 720.0f));
+   RenderWindow window(VideoMode(1080, 720), "little red riding hood",Style::Close | Style::Resize);
+   View view(Vector2f(0.0f, 0.0f), Vector2f(1080.0f, 720.0f));
+    
+    RectangleShape background(Vector2f(1080.0f, 720.0f));
     background.setPosition(0.0f, 0.0f);
-    sf::Texture space;
+    Texture space;
     space.loadFromFile("Background.png");
     background.setTexture(&space);
 
-    sf::Texture playtexture;
+    Texture playtexture;
     playtexture.loadFromFile("LR3.png");
-    Player player(&playtexture, sf::Vector2u(6, 4), 0.2f, 150.0f, 200.0f);
+    Player player(&playtexture, Vector2u(6, 4), 0.2f, 150.0f, 200.0f);
 
-    sf::Texture BULLET;
+    Texture BULLET;
     BULLET.loadFromFile("gun-1.png");
     Bullet bullet1(&BULLET, sf::Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());
 
-    sf::Texture Floor;
+    Texture Floor;
     Floor.loadFromFile("bg.png");
 
-    sf::Texture MONSTER;
+    Texture MONSTER;
     MONSTER.loadFromFile("P-1.png");
-   std::vector<monster> monsterVector;
+    std::vector<monster> monsterVector;
     monsterVector.push_back (monster (&MONSTER, sf::Vector2u(6, 2), 0.2f, 200.0f, 545.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 300.0f, 545.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 100.0f, 545.0f));
@@ -57,7 +60,7 @@ int main()
     //   platforms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
 
 
-    platforms.push_back(Platform(&Floor, sf::Vector2f(2000.0f,400.0f), sf::Vector2f(500.0f, 800.0f)));
+    platforms.push_back(Platform(&Floor, Vector2f(2000.0f,400.0f),Vector2f(500.0f, 800.0f)));
    // platforms.push_back(Platform(nullptr, sf::Vector2f(1080.0f, 100.0f), sf::Vector2f(500.0f, -50.0f)));
     //  platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(150.0f, 400.0f)));
    //   platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(900.0f, 100.0f)));
@@ -81,26 +84,27 @@ int main()
     while (window.isOpen())
     {
         deltatime = clock.restart().asSeconds();
-        sf::Vector2f pos = player.getPosition();
+        Vector2f pos = player.getPosition();
         std::cout << pos.x << ' ' << pos.y << '\n';
 
         if (deltatime > 1.0 / 20.0f)
             deltatime = 1.0 / 20.0f;
-        sf::Event event;
+        Event event;
         while (window.pollEvent(event))
         {
             switch (event.type) {
-            case sf::Event::Closed:
+            case Event::Closed:
                 window.close();
                 break;
-            case sf::Event::Resized:
+            case Event::Resized:
                 ResizeView(window, view);
                 break;
 
             }
         }
 
-
+       
+       
 
         player.Update(deltatime);
         Score.setPosition({ player.getPosition().x-100 ,250 });
@@ -119,12 +123,13 @@ int main()
 
         }
         
-       sf::Vector2f direction;
+       Vector2f direction;
         Collider playerCollision = player.GetCollider();
         for (Platform& platform : platforms)
             if (platform.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
                 player.OnCollision(direction);
-
+        window.clear();
+        window.draw(background);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::G))
         {
 
@@ -135,14 +140,15 @@ int main()
         {
             float d = deltatime;
             bullet1.Update(d);
+
             bullet1.Draw(window);
-           for (int i = 0; i < 4; i++) {
-                 if (monsterVector[i].hit() == 1)
-                 {
-                     scoreup += 100;
-                     bullet1.del();
-                 }
-             }
+            for (int i = 0; i < 4; i++) {
+                if (monsterVector[i].hit() == 1)
+                {
+                    scoreup += 100;
+                    bullet1.del();
+                }
+            }
 
 
 
@@ -158,21 +164,16 @@ int main()
 
         view.setCenter(player.getPosition());
 
-        window.clear();
+       
         window.setView(view);
-       // window.draw(background);
-        player.Draw(window);
-        bullet1.Draw(window);
-        window.draw(Score);
-        //MONSTER1.Draw(window);
+        player.Draw(window);     
+        window.draw(Score);        
         for (int i = 0; i < monsterVector.size(); i++) {
-
             monsterVector[i].Draw(window);
-
         }
         for (Platform& platform : platforms)
             platform.Draw(window);
-        //window.draw(background);
+       
         window.display();
     }
 

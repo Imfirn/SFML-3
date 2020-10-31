@@ -14,21 +14,22 @@ Bullet::Bullet(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 }
 Bullet::~Bullet()
 {
+
 }
 void Bullet::Update(float deltaTime)
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        //velocity.x -= 30;
+       
         LR = 1;
-        //std::cout << LR;
+       
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        //velocity.x += 30;
+        
         LR = -1;
 
     if (body.getPosition().x != NULL - 100 && body.getPosition().y != NULL - 100) {
         velocity.y = 0;
-        velocity.x = speed;
+        velocity.x = speed*1.5;
         if (face(LR)==1) {
 
             row = 1;
@@ -41,12 +42,10 @@ void Bullet::Update(float deltaTime)
             body.move(velocity * deltaTime);
             animation.updateBu(row, deltaTime);
         }
-        //animation.updateBu(row, deltaTime,faceRight);
+        
         body.setTextureRect(animation.uvRect);
     }
-    /* if (body.getPosition().x > 1920) {
-        isAva = true;
-    } */
+   
 }
 
 void Bullet::attack(sf::Vector2f pos) {
