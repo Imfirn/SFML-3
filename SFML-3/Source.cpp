@@ -84,15 +84,13 @@ int main()
     monsterbu BM(&MONBULLET, sf::Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());*/
 
 
-
-
     std::vector<Platform>platforms;
 
     //   platforms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f)));
     //   platforms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
 
 
-    platforms.push_back(Platform(&Floor, Vector2f(2000.0f,400.0f),Vector2f(500.0f, 800.0f)));
+    platforms.push_back(Platform(&Floor, Vector2f(10000.0f,400.0f),Vector2f(500.0f, 800.0f)));
     platforms.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), Vector2f(1000.0f, 400.0f)));
    // platforms.push_back(Platform(nullptr, sf::Vector2f(1080.0f, 100.0f), sf::Vector2f(500.0f, -50.0f)));
     //  platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(150.0f, 400.0f)));
@@ -140,9 +138,9 @@ int main()
        
 
         player.Update(deltatime);
-        Score.setPosition({ view.getCenter().x -100 ,view.getCenter().y - 200 });
+        Score.setPosition({ view.getCenter().x -100 ,view.getCenter().y - 300 });
         if (pos.x > 5000) {
-            Score.setPosition(view.getCenter().x - 540, 200);
+            Score.setPosition(view.getCenter().x - 540, 300);
         }
         point.str(" ");
         point << "SCORE: " << scoreup;
