@@ -118,9 +118,9 @@ int main()
        
 
         player.Update(deltatime);
-        Score.setPosition({ player.getPosition().x-100 ,250 });
+        Score.setPosition({ view.getCenter().x -100 ,view.getCenter().y - 250 });
         if (pos.x > 5000) {
-            Score.setPosition(player.getPosition().x - 110, 50);
+            Score.setPosition(view.getCenter().x - 540, 250);
         }
         point.str(" ");
         point << "SCORE: " << scoreup;
