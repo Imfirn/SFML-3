@@ -7,11 +7,10 @@ public:
 	Animation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime);
 	~Animation();
 	void Update(int row, float deltaTime);
-	void updateBu(int row, float deltaTime);
-	void updateBm(int row, float deltaTime);
+	void updateBu(int row, float deltaTime);	
 	void updatemon(int row, float deltaTime);
 	void Updatefacemon(int row, float deltaTime,bool faceR);
-
+	void Updateplat(int row, float deltaTime);
 public:
 	sf::IntRect uvRect;
 private:

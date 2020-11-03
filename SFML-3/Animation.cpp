@@ -46,7 +46,7 @@ void Animation::updateBu(int row, float deltaTime)
 	uvRect.left = currentImage.x * uvRect.width;
 	uvRect.top = currentImage.y * uvRect.height;
 }
-void Animation::updateBm(int row, float deltaTime)
+void Animation::Updateplat(int row, float deltaTime)
 {
 	currentImage.y = row;
 	totalTime += deltaTime;

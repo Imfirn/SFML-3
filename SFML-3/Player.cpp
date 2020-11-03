@@ -11,7 +11,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	bullet = false;
 	body.setSize(sf::Vector2f(90.0f, 100.0f));
 	body.setOrigin(body.getSize() / 2.0f);
-	body.setPosition(520.0f, 360.0f);
+	body.setPosition(626.0f, 360.0f);
 	body.setTexture(texture);
 }
 Player::~Player() {
@@ -83,7 +83,7 @@ void Player::Update(float deltaTime) {
 	if (body.getPosition().x < 0)
 		body.setPosition(0, body.getPosition().y);
 
-	if (600<=body.getPosition().x && body.getPosition().x<=660) {
+	if (899<=body.getPosition().x && body.getPosition().x<=960) {
 		body.setPosition(body.getPosition().x,300);
 	}
 

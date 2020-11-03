@@ -13,7 +13,8 @@
 #include"Platform.h"
 #include "Bullet.h"
 #include"monster.h"
-#include"monsterbu.h"
+#include"Platform2.h"
+//#include"monsterbu.h"
 
 using namespace sf;
 
@@ -30,7 +31,7 @@ int main()
    RenderWindow window(VideoMode(1080, 720), "little red riding hood",Style::Close | Style::Resize);
    View view(Vector2f(0.0f, 0.0f), Vector2f(1080.0f, 720.0f));
     
-    RectangleShape background(Vector2f(1080.0f, 720.0f));
+    RectangleShape background(Vector2f(5000.0f, 720.0f));
     background.setPosition(0.0f, 0.0f);
     Texture space;
     space.loadFromFile("Background.png");
@@ -47,7 +48,7 @@ int main()
     
 
     RectangleShape st(Vector2f(100.0f, 230.0f));
-    st.setPosition(612.0f,400.0f);
+    st.setPosition(899.0f,400.0f);
     Texture sts;
     sts.loadFromFile("pla-2.png");
     st.setTexture(&sts);
@@ -63,13 +64,24 @@ int main()
     MONSTER.loadFromFile("P-1.png");
     std::vector<monster> monsterVector;
     monsterVector.push_back (monster (&MONSTER, sf::Vector2u(6, 2), 0.2f, 200.0f, 545.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 300.0f, 545.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 100.0f, 545.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 800.0f, 545.0f));
+   // /monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 300.0f, 545.0f));
+   // monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 100.0f, 545.0f));
+  //  monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 800.0f, 545.0f));
+
+    Texture MONSTER2;
+    MONSTER2.loadFromFile("m2.png");
+    std::vector<monster> monsterVector2;
+    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, 200.0f, 545.0f));
    
-    Texture MONBULLET;
+
+    Texture MOVPLAT;
+    MOVPLAT.loadFromFile("test.png");
+    std::vector<Platform2>platVector2;
+    platVector2.push_back(Platform2(&MOVPLAT, sf::Vector2u(5, 2), 0.2f, 1000.0f, 400.0f));
+
+   /* Texture MONBULLET;
     MONBULLET.loadFromFile("gun-1.png");
-    monsterbu BM(&MONBULLET, sf::Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());
+    monsterbu BM(&MONBULLET, sf::Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());*/
 
 
 
@@ -81,7 +93,7 @@ int main()
 
 
     platforms.push_back(Platform(&Floor, Vector2f(2000.0f,400.0f),Vector2f(500.0f, 800.0f)));
-    platforms.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), sf::Vector2f(700.0f, 400.0f)));
+    platforms.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), Vector2f(1000.0f, 400.0f)));
    // platforms.push_back(Platform(nullptr, sf::Vector2f(1080.0f, 100.0f), sf::Vector2f(500.0f, -50.0f)));
     //  platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(150.0f, 400.0f)));
    //   platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(900.0f, 100.0f)));
@@ -128,9 +140,9 @@ int main()
        
 
         player.Update(deltatime);
-        Score.setPosition({ view.getCenter().x -100 ,view.getCenter().y - 250 });
+        Score.setPosition({ view.getCenter().x -100 ,view.getCenter().y - 200 });
         if (pos.x > 5000) {
-            Score.setPosition(view.getCenter().x - 540, 250);
+            Score.setPosition(view.getCenter().x - 540, 200);
         }
         point.str(" ");
         point << "SCORE: " << scoreup;
@@ -143,12 +155,32 @@ int main()
             monsterVector[i].updatemon2(deltatime, player);
 
         }
+       for (int i = 0; i < monsterVector2.size(); i++) {
+
+           monsterVector2[i].updatemon(deltatime, bullet1);
+           monsterVector2[i].updatemon2(deltatime, player);
+
+       }
+       for (int i = 0; i < platVector2.size(); i++) {
+
+          platVector2[i].updateX(deltatime);
+          
+
+       }
         
        Vector2f direction;
         Collider playerCollision = player.GetCollider();
         for (Platform& platform : platforms)
             if (platform.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
                 player.OnCollision(direction);
+
+        
+        Collider playerCollision_2 = player.GetCollider();
+        for (Platform2& platVector2 : platVector2)
+            if (platVector2.GetCollider().CheckCollision(playerCollision_2, direction, 1.0f))
+                player.OnCollision(direction);
+
+
         window.clear();
         window.draw(background);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::G))
@@ -163,14 +195,20 @@ int main()
             bullet1.Update(d);
 
             bullet1.Draw(window);
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 1; i++) {
+                if (monsterVector2[i].hit() == 1)
+                {
+                    scoreup += 200;
+                    bullet1.del();
+                }
+            }
+            for (int i = 0; i < 1; i++) {
                 if (monsterVector[i].hit() == 1)
                 {
                     scoreup += 100;
                     bullet1.del();
                 }
             }
-
 
 
 
@@ -183,7 +221,7 @@ int main()
         }
 
 
-        view.setCenter(player.getPosition());
+        view.setCenter(player.getPosition().x,360);
 
         //MONBULLET.draw(window);
         window.setView(view);
@@ -191,6 +229,12 @@ int main()
         window.draw(Score);        
         for (int i = 0; i < monsterVector.size(); i++) {
             monsterVector[i].Draw(window);
+        }
+        for (int i = 0; i < monsterVector2.size(); i++) {
+            monsterVector2[i].Draw(window);
+        }
+        for (int i = 0; i < platVector2.size(); i++) {
+            platVector2[i].draw(window);
         }
         for (Platform& platform : platforms)
             platform.Draw(window);

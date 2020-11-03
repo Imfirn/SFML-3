@@ -7,7 +7,7 @@ monsterbu::monsterbu(sf::Texture* texture, sf::Vector2u imageCount, float switch
 {
     this->speed = speed;
     row = 0;
-    LR;
+   
     shape.setSize(sf::Vector2f(50.0f, 50.0f));
     shape.setOrigin(shape.getSize() / 2.0f);
     shape.setPosition(pos);
@@ -28,8 +28,8 @@ void monsterbu::Update(float deltaTime)
 
             row = 1;
             shape.move(-velocity * deltaTime);
-
             animation.updateBu(row, deltaTime);
+
         }
         else
         {
