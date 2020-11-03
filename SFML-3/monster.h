@@ -6,17 +6,7 @@
 #include "Animation.h"
 #include "Collider.h"
 #include "Bullet.h"
-
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Audio.hpp>
-#include <iostream>
-#include "stdlib.h"
-#include <string>
-#include <sstream>
-#include <math.h>
-#include <vector>
-#include <fstream>
+#include"monsterbu.h"
 
 
 class monster
@@ -26,6 +16,7 @@ public:
     ~monster();
     void updatemon(float deltaTime, Bullet bullet1);
     void updatemon2(float deltaTime, Player player);
+
     void Draw(sf::RenderWindow& window);
     Collider GetCollider() { return Collider(body); }
     //Monbullet mb1;
@@ -43,7 +34,7 @@ private:
     int count = 0;
     bool faceR;
     float speed;
-    
+    bool Monsterbu;
     Animation animation;
     sf::Vector2f velocity;
 };

@@ -1,5 +1,4 @@
 #include "monster.h"
-
 #include<math.h>
 #include<vector>
 #include<iostream>
@@ -17,6 +16,7 @@ monster::monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime
     this->speed = speed;
     row = 0;
     faceR = true;
+    Monsterbu = true;
     body.setSize(sf::Vector2f(100.0f, 90.0f));
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(x, y);
@@ -28,7 +28,8 @@ monster::~monster()
 }
 
 void monster::updatemon(float deltaTime, Bullet bullet1)
-{
+{   
+   
     animation.updatemon(row, deltaTime);
     body.setTextureRect(animation.uvRect);
 
@@ -51,22 +52,23 @@ void monster::updatemon2(float deltaTime, Player player)
                 row = 1;
                 std::cout << "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk";
                 animation.Updatefacemon(row, deltaTime, faceR);
+                animation.updateBm
                 body.move(-velocity * deltaTime);
+                Monsterbu = true;
                 
-
 
             }
             else if (player.getPosition().x > body.getPosition().x) {
                 row = 0;
                 animation.updatemon(row, deltaTime);
                 body.move(velocity * deltaTime);
-               
+                
 
             }
             else if ((player.getPosition().x > body.getPosition().x) && faceR == false) {
                 animation.updatemon(row, deltaTime);
                 body.move(velocity * deltaTime);
-              
+                
             }
            
             body.setTextureRect(animation.uvRect);

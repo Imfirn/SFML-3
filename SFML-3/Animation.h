@@ -8,6 +8,7 @@ public:
 	~Animation();
 	void Update(int row, float deltaTime);
 	void updateBu(int row, float deltaTime);
+	void updateBm(int row, float deltaTime);
 	void updatemon(int row, float deltaTime);
 	void Updatefacemon(int row, float deltaTime,bool faceR);
 

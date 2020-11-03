@@ -13,6 +13,7 @@
 #include"Platform.h"
 #include "Bullet.h"
 #include"monster.h"
+#include"monsterbu.h"
 
 using namespace sf;
 
@@ -43,6 +44,8 @@ int main()
     BULLET.loadFromFile("gun-1.png");
     Bullet bullet1(&BULLET, sf::Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());
 
+    
+
     RectangleShape st(Vector2f(100.0f, 230.0f));
     st.setPosition(612.0f,400.0f);
     Texture sts;
@@ -63,6 +66,13 @@ int main()
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 300.0f, 545.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 100.0f, 545.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 800.0f, 545.0f));
+   
+    Texture MONBULLET;
+    MONBULLET.loadFromFile("gun-1.png");
+    monsterbu BM(&MONBULLET, sf::Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());
+
+
+
 
     std::vector<Platform>platforms;
 
@@ -175,7 +185,7 @@ int main()
 
         view.setCenter(player.getPosition());
 
-        
+        //MONBULLET.draw(window);
         window.setView(view);
         player.Draw(window);     
         window.draw(Score);        

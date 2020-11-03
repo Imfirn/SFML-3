@@ -153,6 +153,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="monster.cpp" />
+    <ClCompile Include="monsterbu.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="monster.h" />
+    <ClInclude Include="monsterbu.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>

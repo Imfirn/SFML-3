@@ -46,6 +46,22 @@ void Animation::updateBu(int row, float deltaTime)
 	uvRect.left = currentImage.x * uvRect.width;
 	uvRect.top = currentImage.y * uvRect.height;
 }
+void Animation::updateBm(int row, float deltaTime)
+{
+	currentImage.y = row;
+	totalTime += deltaTime;
+
+	if (totalTime >= switchTime) {
+
+		totalTime -= switchTime;
+		currentImage.x++;
+		if (currentImage.x >= imageCount.x) {
+			currentImage.x = 0;
+		}
+	}
+	uvRect.left = currentImage.x * uvRect.width;
+	uvRect.top = currentImage.y * uvRect.height;
+}
 void Animation::updatemon(int row, float deltaTime)
 {
 	currentImage.y = row;
