@@ -73,7 +73,7 @@ int main()
     std::vector<monster> monsterVector2;
     monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, 1200.0f, 545.0f));
     monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, 1300.0f, 300.0f));
-   
+       
 
     Texture MOVPLAT;
     MOVPLAT.loadFromFile("test.png");
