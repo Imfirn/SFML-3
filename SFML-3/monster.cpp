@@ -14,6 +14,7 @@ monster::monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime
     animation(texture, imageCount, switchTime)
 {
     this->speed = speed;
+    //this-> monsterVector.push_back(monster(nullptr, sf::Vector2u(6, 2), 0.2f, 200.0f, 545.0f));
     row = 0;
     faceR = true;
     body.setSize(sf::Vector2f(100.0f, 90.0f));
@@ -23,7 +24,9 @@ monster::monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime
 }
 
 monster::~monster()
-{
+{   
+    //for(int i=0;i<monsterVector.size();i++)
+   // delete this -> monsterVector[i];
 }
 
 void monster::updatemon(float deltaTime, Bullet bullet1)

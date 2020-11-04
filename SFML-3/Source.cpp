@@ -71,7 +71,8 @@ int main()
     Texture MONSTER2;
     MONSTER2.loadFromFile("m2.png");
     std::vector<monster> monsterVector2;
-    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, 200.0f, 545.0f));
+    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, 1200.0f, 545.0f));
+    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, 1300.0f, 300.0f));
    
 
     Texture MOVPLAT;
@@ -92,6 +93,7 @@ int main()
 
     platforms.push_back(Platform(&Floor, Vector2f(10000.0f,400.0f),Vector2f(500.0f, 800.0f)));
     platforms.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), Vector2f(1000.0f, 400.0f)));
+    platforms.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), Vector2f(1600.0f, 400.0f)));
    // platforms.push_back(Platform(nullptr, sf::Vector2f(1080.0f, 100.0f), sf::Vector2f(500.0f, -50.0f)));
     //  platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(150.0f, 400.0f)));
    //   platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(900.0f, 100.0f)));
@@ -151,7 +153,7 @@ int main()
 
             monsterVector[i].updatemon(deltatime, bullet1);
             monsterVector[i].updatemon2(deltatime, player);
-
+            
         }
        for (int i = 0; i < monsterVector2.size(); i++) {
 
@@ -193,7 +195,7 @@ int main()
             bullet1.Update(d);
 
             bullet1.Draw(window);
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 2; i++) {
                 if (monsterVector2[i].hit() == 1)
                 {
                     scoreup += 200;
@@ -235,7 +237,7 @@ int main()
             platVector2[i].draw(window);
         }
         for (Platform& platform : platforms)
-            platform.Draw(window);
+        platform.Draw(window);
         window.draw(st);
         window.display();
     }
