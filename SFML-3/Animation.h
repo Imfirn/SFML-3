@@ -11,7 +11,6 @@ public:
 	void updatemon(int row, float deltaTime);
 	void Updatefacemon(int row, float deltaTime,bool faceR);
 	void Updateplat(int row, float deltaTime);
-	//void updatesunshine(int row, float deltaTime);
 
 public:
 	sf::IntRect uvRect;

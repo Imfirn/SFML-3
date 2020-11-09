@@ -31,10 +31,10 @@ int main()
    RenderWindow window(VideoMode(1080, 720), "little red riding hood",Style::Close | Style::Resize);
    View view(Vector2f(0.0f, 0.0f), Vector2f(1080.0f, 720.0f));
     
-    RectangleShape background(Vector2f(5000.0f, 720.0f));
+    RectangleShape background(Vector2f(8000.0f, 720.0f));
     background.setPosition(0.0f, 0.0f);
     Texture space;
-    space.loadFromFile("Background.png");
+    space.loadFromFile("bg-2.png");
     background.setTexture(&space);
 
     Texture playtexture;
@@ -55,26 +55,29 @@ int main()
 
 
     Texture Floor;
-    Floor.loadFromFile("bg.png");
+    Floor.loadFromFile("F.png");
 
     Texture Top;
     Top.loadFromFile("test.png");
 
+
+    //monster1
     Texture MONSTER;
     MONSTER.loadFromFile("P-1.png");
     std::vector<monster> monsterVector;
-    monsterVector.push_back (monster (&MONSTER, sf::Vector2u(6, 2), 0.2f, 200.0f, 545.0f));
-   // /monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 300.0f, 545.0f));
+   //monsterVector.push_back (monster (&MONSTER, sf::Vector2u(6, 2), 0.2f, 200.0f, 545.0f));
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f,1500.0f, 545.0f));
    // monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 100.0f, 545.0f));
-  //  monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 800.0f, 545.0f));
+    //monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 800.0f, 545.0f));
 
+    //monster2
     Texture MONSTER2;
     MONSTER2.loadFromFile("m2.png");
     std::vector<monster> monsterVector2;
     monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, 1200.0f, 545.0f));
     monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, 1300.0f, 300.0f));
        
-
+    //movu=ing platform
     Texture MOVPLAT;
     MOVPLAT.loadFromFile("test.png");
     std::vector<Platform2>platVector2;
@@ -87,11 +90,13 @@ int main()
 
     std::vector<Platform>platforms;
 
-    //   platforms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f)));
-    //   platforms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f)));
+     platforms.push_back(Platform(nullptr, sf::Vector2f(50.0f, 50.0f), sf::Vector2f(3057.0f, 500.0f)));
+     platforms.push_back(Platform(nullptr, sf::Vector2f(342.0f, 32.0f), sf::Vector2f(3050.0f, 550.0f)));
+     platforms.push_back(Platform(nullptr, sf::Vector2f(342.0f, 32.0f), sf::Vector2f(3815.0f, 550.0f)));
+     platforms.push_back(Platform(nullptr, sf::Vector2f(342.0f, 32.0f), sf::Vector2f(3449.0f, 450.0f)));
+     platforms.push_back(Platform(nullptr, sf::Vector2f(274.0f, 80.0f), sf::Vector2f(4415.0f, 630.0f)));
 
-
-    platforms.push_back(Platform(&Floor, Vector2f(10000.0f,400.0f),Vector2f(500.0f, 800.0f)));
+    platforms.push_back(Platform(&Floor, Vector2f(8000.0f,68.0f),Vector2f(500.0f, 700.0f)));
     platforms.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), Vector2f(1000.0f, 400.0f)));
     platforms.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), Vector2f(1600.0f, 400.0f)));
    // platforms.push_back(Platform(nullptr, sf::Vector2f(1080.0f, 100.0f), sf::Vector2f(500.0f, -50.0f)));
@@ -230,8 +235,10 @@ int main()
         for (int i = 0; i < monsterVector.size(); i++) {
             monsterVector[i].Draw(window);
         }
-        for (int i = 0; i < monsterVector2.size(); i++) {
-            monsterVector2[i].Draw(window);
+        if (scoreup > 10) {
+            for (int i = 0; i < monsterVector2.size(); i++) {
+                monsterVector2[i].Draw(window);
+            }
         }
         for (int i = 0; i < platVector2.size(); i++) {
             platVector2[i].draw(window);
