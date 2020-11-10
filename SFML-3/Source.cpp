@@ -109,20 +109,27 @@ int main()
     platVector2.push_back(Platform2(&MOVPLAT, sf::Vector2u(5, 2), 0.2f, 1000.0f, 400.0f));
     platVector2.push_back(Platform2(&MOVPLAT2, sf::Vector2u(5, 2), 0.2f, 2000.0f, 400.0f));
 
-   /* Texture MONBULLET;
-    MONBULLET.loadFromFile("gun-1.png");
-    monsterbu BM(&MONBULLET, sf::Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());*/
-
+   
+    ///ITEM 1///
     Texture itemHPup;
-    itemHPup.loadFromFile("pic/P1.png");
+    itemHPup.loadFromFile("pic/t-1.png");
     std::vector<Item> itemHPupVector;
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(6, 2), 0.2f, rand() % 500 + 2000, 540.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(6, 2), 0.2f, rand() % 500 + 3000, 615.0f));
+    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2000, 540.0f));
+    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 3000, 615.0f));
+    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 4000, 615.0f));
+    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 5500, 615.0f));
+    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 6500, 615.0f));
+    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 7500, 615.0f));
 
+
+    //ITEM 2///
     Texture itemslow;
-    itemslow.loadFromFile("pic/m4.png");
+    itemslow.loadFromFile("pic/t-2.png");
     std::vector<Item2> itemslowVector;
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(10, 2), 0.2f,2000.0f , 540.0f));
+    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f,2000.0f , 540.0f));
+    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3000.0f, 540.0f));
+    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 4000.0f, 540.0f));
+    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 5000.0f, 540.0f));
    // itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(6, 2), 0.2f, rand() % 500 + 3000, 615.0f));
 
 
@@ -138,6 +145,9 @@ int main()
      platforms.push_back(Platform(nullptr, sf::Vector2f(296.0f, 50.0f), sf::Vector2f(5800.0f, 510.0f)));
      platforms.push_back(Platform(nullptr, sf::Vector2f(296.0f, 50.0f), sf::Vector2f(6138.0f, 400.0f)));
      platforms.push_back(Platform(nullptr, sf::Vector2f(592.0f, 50.0f), sf::Vector2f(6859.0f, 400.0f)));
+    
+
+   
 
      Texture Floor;
      Floor.loadFromFile("pic/f-2.png");
@@ -280,6 +290,7 @@ int main()
        
         for (Platform& platform : platforms)
             platform.Draw(window);
+
 
         window.draw(background);
         window.draw(background2);

@@ -7,7 +7,7 @@ animation(texture, imageCount, switchTime)
 {
 
 	row = 0;
-	body.setSize(Vector2f(70.0f, 88.0f));
+	body.setSize(Vector2f(50.0f, 45.0f));
 	body.setOrigin(body.getSize()/2.0f);
 	body.setPosition(x, y);
 	body.setTexture(texture);
