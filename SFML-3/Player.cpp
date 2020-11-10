@@ -86,6 +86,10 @@ void Player::Update(float deltaTime) {
 	if (899<=body.getPosition().x && body.getPosition().x<=960) {
 		body.setPosition(body.getPosition().x,300);
 	}
+	/// change Part///
+	if (7353 <= body.getPosition().x && body.getPosition().x <= 7615) {
+		body.setPosition(17960, body.getPosition().y);
+	}
 
 	animation.Update(row, deltaTime);
 	body.setTextureRect(animation.uvRect);
