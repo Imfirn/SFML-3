@@ -14,6 +14,7 @@
 #include "Bullet.h"
 #include"monster.h"
 #include"Platform2.h"
+#include"Item.h"
 #include<time.h>
 //#include"monsterbu.h"
 
@@ -80,13 +81,13 @@ int main()
    //monsterVector.push_back (monster (&MONSTER, sf::Vector2u(6, 2), 0.2f, 200.0f, 545.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f,rand()%500+1500, 615.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3500, 384.0f));
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3500, 384.0f));///ghost or bat
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 4500, 575.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6500, 615.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6500, 615.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6500, 615.0f));
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 5500, 615.0f));
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 2500, 615.0f));
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6000, 615.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 7500, 615.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 7500, 615.0f));
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 7000, 615.0f));
    // monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 100.0f, 545.0f));
     //monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 800.0f, 545.0f));
 
@@ -94,12 +95,13 @@ int main()
     Texture MONSTER2;
     MONSTER2.loadFromFile("pic/m2.png");
     std::vector<monster> monsterVector2;
-    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, 1200.0f, 615.0f));
-    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, 1300.0f, 300.0f));
+    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f));
+    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 7500, 615.0f));
        
     //movu=ing platform
     Texture MOVPLAT;
     MOVPLAT.loadFromFile("pic/test.png");
+   
     Texture MOVPLAT2;
     MOVPLAT2.loadFromFile("pic/test.png");
     std::vector<Platform2>platVector2;
@@ -110,6 +112,11 @@ int main()
     MONBULLET.loadFromFile("gun-1.png");
     monsterbu BM(&MONBULLET, sf::Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());*/
 
+    Texture itemHPup;
+    itemHPup.loadFromFile("pic/P1.png");
+    std::vector<Item> itemHPupVector;
+    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(6, 2), 0.2f, rand() % 500 + 2000, 540.0f));
+    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(6, 2), 0.2f, rand() % 500 + 3000, 615.0f));
 
     std::vector<Platform>platforms;
     ////Part 1/////
@@ -141,6 +148,15 @@ int main()
    // platforms.push_back(Platform(nullptr, sf::Vector2f(1080.0f, 100.0f), sf::Vector2f(500.0f, -50.0f)));
     //  platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(150.0f, 400.0f)));
    //   platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(900.0f, 100.0f)));
+
+     float playerHP = 80000;
+     RectangleShape HP(Vector2f(playerHP / 250.0f, 30));
+     HP.setPosition(Vector2f(450, 46));
+     HP.setFillColor(Color::Red);
+     HP.setSize(Vector2f(playerHP / 320.f, 15));
+
+
+
 
     int scoreup = 0;
 
@@ -184,6 +200,7 @@ int main()
        
 
         player.Update(deltatime);
+        HP.setPosition(Vector2f(view.getCenter().x - 520, 46));
         Score.setPosition({ view.getCenter().x -100 ,view.getCenter().y - 300 });
         if (pos.x > 10000) {
             Score.setPosition(view.getCenter().x - 540, 300);
@@ -192,6 +209,25 @@ int main()
         point << "SCORE: " << scoreup;
         Score.setString(point.str());
        
+        for (int i = 0; i < monsterVector.size(); i++) {
+            if (monsterVector[i].check() == 1) {
+                std::cout << "............................";
+                playerHP -= 50;
+                HP.setSize(Vector2f(playerHP / 320.f, 15));
+                if (playerHP < 0) {
+                    playerHP = 0;
+                }
+            }
+        }
+
+        for (int i = 0; i < itemHPupVector.size(); i++) {
+            if (itemHPupVector[i].check() == 1) {
+                std::cout << "............................";
+                playerHP += 100;
+                HP.setSize(Vector2f(playerHP / 320.f, 15));
+            }
+        }
+
         //monsterVector[i].updatemon(deltatime, bullet1);
        for (int i = 0; i < monsterVector.size(); i++) {
 
@@ -206,12 +242,12 @@ int main()
 
        }
        for (int i = 0; i < platVector2.size(); i++) {
-
           platVector2[i].updateX(deltatime);
-          
-
        }
-        
+       for (int i = 0; i < itemHPupVector.size(); i++) {
+           itemHPupVector[i].updateitem(deltatime, player);
+       }
+
        Vector2f direction;
         Collider playerCollision = player.GetCollider();
         for (Platform& platform : platforms)
@@ -293,9 +329,13 @@ int main()
         for (int i = 0; i < platVector2.size(); i++) {
             platVector2[i].draw(window);
         }
+        for (int i = 0; i < itemHPupVector.size(); i++) {
+            itemHPupVector[i].Draw(window);
+        }
+
         for (Platform& platform_1 : platforms_1)
             platform_1.Draw(window);
-       
+        window.draw(HP);
         window.draw(st);
         window.display();
     }

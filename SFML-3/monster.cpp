@@ -14,6 +14,7 @@ monster::monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime
     animation(texture, imageCount, switchTime)
 {
     this->speed = speed;
+    hpdown = 0;
     //this-> monsterVector.push_back(monster(nullptr, sf::Vector2u(6, 2), 0.2f, 200.0f, 545.0f));
     row = 0;
     faceR = true;
@@ -36,8 +37,9 @@ void monster::updatemon(float deltaTime, Bullet bullet1)
 
     if (bullet1.GetCollider().CheckCollision(this->GetCollider()))
     {
-         count++;
-         row = 1;
+        hpdown++;
+        count++;
+        row = 1;
         body.setPosition(-1000.0f, 350.0f);
     }
 
@@ -72,6 +74,10 @@ void monster::updatemon2(float deltaTime, Player player)
             }
            
             body.setTextureRect(animation.uvRect);
+        }
+        if (player.GetCollider().CheckCollision(this->GetCollider()))
+        {
+            hpdown++;
         }
     
 }
