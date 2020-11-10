@@ -15,6 +15,7 @@
 #include"monster.h"
 #include"Platform2.h"
 #include"Item.h"
+#include"Item2.h"
 #include<time.h>
 //#include"monsterbu.h"
 
@@ -118,6 +119,13 @@ int main()
     itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(6, 2), 0.2f, rand() % 500 + 2000, 540.0f));
     itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(6, 2), 0.2f, rand() % 500 + 3000, 615.0f));
 
+    Texture itemslow;
+    itemslow.loadFromFile("pic/m4.png");
+    std::vector<Item2> itemslowVector;
+    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(10, 2), 0.2f,2000.0f , 540.0f));
+   // itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(6, 2), 0.2f, rand() % 500 + 3000, 615.0f));
+
+
     std::vector<Platform>platforms;
     ////Part 1/////
      platforms.push_back(Platform(nullptr, sf::Vector2f(50.0f, 50.0f), sf::Vector2f(3057.0f, 500.0f)));
@@ -170,18 +178,17 @@ int main()
     Score.setFillColor(sf::Color::Red);
 
     int Bul = 0;
-    float deltatime = 0.0f;
+    float deltaTime = 0.0f;
     sf::Clock clock;
     //int b = 0;
 
     while (window.isOpen())
     {
-        deltatime = clock.restart().asSeconds();
+        deltaTime = clock.restart().asSeconds();
         Vector2f pos = player.getPosition();
         std::cout << pos.x << ' ' << pos.y << '\n';
-
-        if (deltatime > 1.0 / 20.0f)
-            deltatime = 1.0 / 20.0f;
+        
+        
         Event event;
         while (window.pollEvent(event))
         {
@@ -198,8 +205,8 @@ int main()
 
         
        
-
-        player.Update(deltatime);
+        //player.updateitem(deltaTime, itemslowVector);
+        player.Update(deltaTime, itemslowVector);
         HP.setPosition(Vector2f(view.getCenter().x - 520, 46));
         Score.setPosition({ view.getCenter().x -100 ,view.getCenter().y - 300 });
         if (pos.x > 10000) {
@@ -211,7 +218,7 @@ int main()
        
         for (int i = 0; i < monsterVector.size(); i++) {
             if (monsterVector[i].check() == 1) {
-                std::cout << "............................";
+                //std::cout << "............................";
                 playerHP -= 50;
                 HP.setSize(Vector2f(playerHP / 320.f, 15));
                 if (playerHP < 0) {
@@ -222,30 +229,34 @@ int main()
 
         for (int i = 0; i < itemHPupVector.size(); i++) {
             if (itemHPupVector[i].check() == 1) {
-                std::cout << "............................";
+                //std::cout << "............................";
                 playerHP += 100;
                 HP.setSize(Vector2f(playerHP / 320.f, 15));
             }
         }
 
-        //monsterVector[i].updatemon(deltatime, bullet1);
+        //monsterVector[i].updatemon(deltaTime, bullet1);
        for (int i = 0; i < monsterVector.size(); i++) {
 
-            monsterVector[i].updatemon(deltatime, bullet1);
-            monsterVector[i].updatemon2(deltatime, player);
+            monsterVector[i].updatemon(deltaTime, bullet1);
+            monsterVector[i].updatemon2(deltaTime, player);
             
         }
        for (int i = 0; i < monsterVector2.size(); i++) {
 
-           monsterVector2[i].updatemon(deltatime, bullet1);
-           monsterVector2[i].updatemon2(deltatime, player);
+           monsterVector2[i].updatemon(deltaTime, bullet1);
+           monsterVector2[i].updatemon2(deltaTime, player);
 
        }
        for (int i = 0; i < platVector2.size(); i++) {
-          platVector2[i].updateX(deltatime);
+          platVector2[i].updateX(deltaTime);
        }
        for (int i = 0; i < itemHPupVector.size(); i++) {
-           itemHPupVector[i].updateitem(deltatime, player);
+           itemHPupVector[i].updateitem(deltaTime, player);
+       }
+
+       for (int i = 0; i < itemslowVector.size(); i++) {
+           itemslowVector[i].update(deltaTime);
        }
 
        Vector2f direction;
@@ -281,7 +292,7 @@ int main()
         }
         if (Bul == 1)
         {
-            float d = deltatime;
+            float d = deltaTime;
             bullet1.Update(d);
 
             bullet1.Draw(window);
@@ -331,6 +342,9 @@ int main()
         }
         for (int i = 0; i < itemHPupVector.size(); i++) {
             itemHPupVector[i].Draw(window);
+        }
+        for (int i = 0; i < itemslowVector.size(); i++) {
+            itemslowVector[i].draw(window);
         }
 
         for (Platform& platform_1 : platforms_1)

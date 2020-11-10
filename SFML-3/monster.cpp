@@ -53,7 +53,7 @@ void monster::updatemon2(float deltaTime, Player player)
             velocity.x = 50;
             if (player.getPosition().x < body.getPosition().x) {
                 row = 1;
-                std::cout << "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk";
+                //std::cout << "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk";
                 animation.Updatefacemon(row, deltaTime, faceR);
                 body.move(-velocity * deltaTime);
                 

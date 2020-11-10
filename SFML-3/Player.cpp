@@ -5,6 +5,11 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 {
 	this->speed = speed;
 	this->jumpHigh = jumpHigh;
+	this-> itemTimer = 0;
+	this->v = 3;
+	
+	float time = 0.0f;
+	
 
 	row = 0;
 	face = 1;
@@ -17,9 +22,29 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 Player::~Player() {
 
 }
-void Player::Update(float deltaTime) {
+void Player::Update(float deltaTime, std::vector<Item2>& itemslowVector) {
 	//sf::Vector2f movement(0.0f, 0.0f);
+	for (int i = 0; i < itemslowVector.size(); i++) {
 
+		if (this->GetCollider().CheckCollision(itemslowVector[i].GetCollider())) {
+
+			this->buffslow = true;
+			itemslowVector[i].setPosition(-100.0f, 3000.0f);
+			this->v = 1;
+		}
+	}
+	if (this->buffslow == true) {
+		
+		itemTimer =itemTimer + deltaTime;
+		std::cout << deltaTime << '\n';
+		if (itemTimer >= 5) {
+			std::cout << "uioutreefggcv";
+			itemTimer = 0;
+			this->buffslow = false;
+			this->v = 3;
+		}
+
+	}
 	velocity.x = 0.0f;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
 	{
@@ -28,12 +53,12 @@ void Player::Update(float deltaTime) {
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		velocity.x -= speed*2;
+		velocity.x -= speed*v;
 		face = -1;
 		//std::cout << face;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		velocity.x += speed*2;
+		velocity.x += speed*v;
 		face = 1;
 		//std::cout << face;
 
@@ -66,20 +91,7 @@ void Player::Update(float deltaTime) {
 		else if(velocity.x < 0.0f)
 			row = 3;
 	}
-	/*if (velocity.x == 0.0f) {
-		row = 0;
-	}
-
-	else {
-		row = 2;
-		if (velocity.x > 0.0f){
-			row = 3;
-			face = 1;
-	}
-		else
-			face = -1;
-			row = 1;
-	}*/
+	
 	if (body.getPosition().x < 0)
 		body.setPosition(0, body.getPosition().y);
 
@@ -122,4 +134,27 @@ void Player::OnCollision(sf::Vector2f direction)
 
 	}
 }
+/*void Player::updateitem(float detaTime, std::vector<Item2>& itemslowVector)
+{
+	for (int i = 0; i < itemslowVector.size(); i++) {
+
+		
+		if (this->GetCollider().CheckCollision(itemslowVector[i].GetCollider())) {
+		
+			this->buffslow = true;
+			itemslowVector[i].setPosition(-100.0f, 3000.0f);
+			this->v = 2;
+		}
+	}
+	if (this->buffslow == true) {
+		itemTimer += detaTime;
+		if (itemTimer >= 5) {
+		
+			itemTimer = 0;
+			this->buffslow = false;
+			this->v = 10;
+		}
+	}
+	
+}*/
 
