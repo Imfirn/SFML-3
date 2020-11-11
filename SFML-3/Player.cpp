@@ -102,6 +102,7 @@ void Player::Update(float deltaTime, std::vector<Item2>& itemslowVector) {
 	if (7353 <= body.getPosition().x && body.getPosition().x <= 7615) {
 		body.setPosition(17960, body.getPosition().y);
 	}
+	
 
 	animation.Update(row, deltaTime);
 	body.setTextureRect(animation.uvRect);

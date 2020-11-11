@@ -17,6 +17,7 @@
 #include"Item.h"
 #include"Item2.h"
 #include<time.h>
+#include"Boss.h"
 //#include"monsterbu.h"
 
 using namespace sf;
@@ -28,6 +29,26 @@ void ResizeView(const RenderWindow& window, View& view)
     float aspectRatio = float(window.getSize().x) / float(window.getSize().y);
     view.setSize(VIEW_HIGHT * aspectRatio, VIEW_HIGHT);
 }
+class Bullet_boss {
+
+
+public:
+    CircleShape shape;
+    Vector2f currVelocity;
+    float maxSpeed;
+
+    Bullet_boss(float radius = 5.f)
+        :currVelocity(0.f, 0.f), maxSpeed(15.f)
+    {
+        this->shape.setRadius(radius);
+        this->shape.setFillColor(Color::Red);
+
+
+    }
+
+
+
+};
 int main()
 {
 
@@ -112,7 +133,16 @@ int main()
     platVector2.push_back(Platform2(&MOVPLAT, sf::Vector2u(5, 2), 0.2f, 1000.0f, 400.0f));
     platVector2.push_back(Platform2(&MOVPLAT2, sf::Vector2u(5, 2), 0.2f, 2000.0f, 400.0f));
 
-   
+
+
+    ///Boss//
+    Texture BOSS;
+    BOSS.loadFromFile("pic/m3.png");
+    std::vector<Boss> bossVector;
+    bossVector.push_back(Boss(&BOSS, sf::Vector2u(2, 2), 0.2f,2000, 615.0f));
+
+
+
     ///ITEM 1///
     Texture itemHPup;
     itemHPup.loadFromFile("pic/t-1.png");
@@ -176,6 +206,16 @@ int main()
      HP.setFillColor(Color::Red);
      HP.setSize(Vector2f(playerHP / 320.f, 15));
 
+     ///Boss//
+     Bullet_boss b1 ;
+
+     std::vector<Bullet_boss> bullet;
+     bullet.push_back(Bullet_boss(b1));
+
+     Vector2f bossCenter;
+     Vector2f mouse;
+     Vector2f aimDir;
+     Vector2f aimDirNorm;
 
 
 
@@ -215,7 +255,7 @@ int main()
 
             }
         }
-
+        ////Boss//
         
        
         //player.updateitem(deltaTime, itemslowVector);
@@ -267,6 +307,48 @@ int main()
             monsterVector[i].updatemon2(deltaTime, player);
             
         }
+
+       for (int i = 0; i < bossVector.size(); i++) {
+
+          bossVector[i].updateboss(deltaTime, bullet1);
+          bossVector[i].updateboss2(deltaTime, player);
+
+       }
+
+
+       //update
+
+
+       //bossCenter = Vector2f(boss.getPosition().x + boss.getRadius(), boss.getPosition().y + boss.getRadius());
+      // mouse = (Vector2f(boss.getPosition()));
+      // aimDir = mouse - bossCenter;
+      // aimDirNorm = aimDir / sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2));
+
+       //Player
+
+       //shoting
+       
+
+       if (player.getPosition().x<2000)
+       {
+
+           b1.shape.setPosition(2000, 616);
+           b1.currVelocity.x = -b1.maxSpeed;
+           bullet.push_back(Bullet_boss(b1));
+
+       }
+       for (size_t i = 0; i < bullet.size(); i++)
+       {
+           bullet[i].shape.move(bullet[i].currVelocity);
+       }
+
+       //Draw
+       window.clear();
+       for (size_t i = 0; i < bullet.size(); i++)
+       {
+           window.draw(bullet[i].shape);
+       }
+
        for (int i = 0; i < monsterVector2.size(); i++) {
 
            monsterVector2[i].updatemon(deltaTime, bullet1);
@@ -336,6 +418,13 @@ int main()
                     bullet1.del();
                 }
             }
+            for (int i = 0; i < 1; i++) {
+                if (bossVector[i].hit() == 1)
+                {
+                    scoreup += 100;
+                    bullet1.del();
+                }
+            }
 
 
 
@@ -358,6 +447,11 @@ int main()
         for (int i = 0; i < monsterVector.size(); i++) {
             monsterVector[i].Draw(window);
         }
+
+        for (int i = 0; i < bossVector.size(); i++) {
+            bossVector[i].Draw(window);
+        }
+
         if (scoreup > 10) {
             for (int i = 0; i < monsterVector2.size(); i++) {
                 monsterVector2[i].Draw(window);
@@ -371,6 +465,10 @@ int main()
         }
         for (int i = 0; i < itemslowVector.size(); i++) {
             itemslowVector[i].draw(window);
+        }
+        for (size_t i = 0; i < bullet.size(); i++)
+        {
+            window.draw(bullet[i].shape);
         }
 
         for (Platform& platform_1 : platforms_1)

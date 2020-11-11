@@ -9,6 +9,7 @@ public:
 	void Update(int row, float deltaTime);
 	void updateBu(int row, float deltaTime);	
 	void updatemon(int row, float deltaTime);
+	void updateboss(int row, float deltaTime);
 	void Updatefacemon(int row, float deltaTime,bool faceR);
 	void Updateplat(int row, float deltaTime);
 

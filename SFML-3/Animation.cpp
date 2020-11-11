@@ -102,3 +102,19 @@ void Animation::Updatefacemon(int row, float deltaTime, bool faceR)
 		uvRect.width = -abs(uvRect.width);
 	}
 }
+void Animation::updateboss(int row, float deltaTime)
+{
+	currentImage.y = row;
+	totalTime += deltaTime;
+
+	if (totalTime >= switchTime) {
+
+		totalTime -= switchTime;
+		currentImage.x++;
+		if (currentImage.x >= imageCount.x) {
+			currentImage.x = 0;
+		}
+	}
+	uvRect.left = currentImage.x * uvRect.width;
+	uvRect.top = currentImage.y * uvRect.height;
+}

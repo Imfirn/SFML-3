@@ -32,7 +32,7 @@ private:
 	float jumpHigh;
 	float time;
 	int l = 0;
-	
+	int b2 = 0;
 
 };
 
