@@ -82,7 +82,7 @@ int main()
    //monsterVector.push_back (monster (&MONSTER, sf::Vector2u(6, 2), 0.2f, 200.0f, 545.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f,rand()%500+1500, 615.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3500, 384.0f));///ghost or bat
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3500, 615.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 4500, 575.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 5500, 615.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 2500, 615.0f));
@@ -94,12 +94,15 @@ int main()
 
     ///monster2
     Texture MONSTER2;
-    MONSTER2.loadFromFile("pic/m2.png");
+    MONSTER2.loadFromFile("pic/mo3-1.png");
     std::vector<monster> monsterVector2;
     monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f));
     monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 7500, 615.0f));
-       
-    //movu=ing platform
+    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 3500, 384.0f));
+    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 615.0f));
+    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 5500, 615.0f));
+    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 615.0f));
+    //moving platform
     Texture MOVPLAT;
     MOVPLAT.loadFromFile("pic/test.png");
    
@@ -237,11 +240,23 @@ int main()
             }
         }
 
+        for (int i = 0; i < monsterVector2.size(); i++) {
+            if (monsterVector2[i].check() == 1) {
+                //std::cout << "............................";
+                playerHP -= 100;
+                HP.setSize(Vector2f(playerHP / 320.f, 15));
+                if (playerHP < 0) {
+                    playerHP = 0;
+                }
+            }
+        }
+
+
         for (int i = 0; i < itemHPupVector.size(); i++) {
             if (itemHPupVector[i].check() == 1) {
                 //std::cout << "............................";
-                playerHP += 100;
-                HP.setSize(Vector2f(playerHP / 320.f, 15));
+                playerHP += 1000;
+                HP.setSize(Vector2f(playerHP / 300.f, 15));
             }
         }
 
@@ -307,7 +322,7 @@ int main()
             bullet1.Update(d);
 
             bullet1.Draw(window);
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 6; i++) {
                 if (monsterVector2[i].hit() == 1)
                 {
                     scoreup += 200;

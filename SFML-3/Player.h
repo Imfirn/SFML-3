@@ -11,7 +11,9 @@ public:
 	void Update(float deltaTime, std::vector<Item2>& itemslowVector);
 	void Draw(sf::RenderWindow& window);
 	void OnCollision(sf::Vector2f direction);
-	//void updateitem(float detaTime, std::vector<Item2>& itemslowVector);
+	//void set(float x, float y);
+
+//void updateitem(float detaTime, std::vector<Item2>& itemslowVector);
 	sf::Vector2f getPosition() { return body.getPosition(); }
 	Collider GetCollider() { return Collider(body); }
 

@@ -134,6 +134,7 @@ void Player::OnCollision(sf::Vector2f direction)
 
 	}
 }
+
 /*void Player::updateitem(float detaTime, std::vector<Item2>& itemslowVector)
 {
 	for (int i = 0; i < itemslowVector.size(); i++) {
