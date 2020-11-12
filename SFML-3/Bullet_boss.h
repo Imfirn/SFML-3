@@ -17,19 +17,31 @@ class Bullet_boss {
 
 
 public:
-    CircleShape shape;
+    RectangleShape shape;
+    Texture* texture;
+
     Vector2f currVelocity;
     float maxSpeed;
 
-    Bullet_boss(float radius = 5.f)
-        :currVelocity(0.f, 0.f), maxSpeed(15.f)
+    void updatebb(float deltaTime, Player player);
+    Collider GetCollider() { return Collider(shape); }
+    Bullet_boss(float radius = 10.f)
+        :currVelocity(0.f, 0.f), maxSpeed(20.f)
     {
-        this->shape.setRadius(radius);
+        this->shape.setSize(sf::Vector2f(radius, radius));
         this->shape.setFillColor(Color::Red);
-
-
+        //this->shape.setTexture(texture);
+       
     }
-
+    int check() {
+        if (hpdown == 1) {
+            hpdown--;
+            return 1;
+        }
+    }
+private:
+    int count = 0;
+    int hpdown;
 
 };
 

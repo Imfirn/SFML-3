@@ -189,10 +189,12 @@ int main()
      HP.setSize(Vector2f(playerHP / 320.f, 15));
 
      ///Boss//
-     Bullet_boss b1 ;
-
+     /// 
+     Bullet_boss b1 ;          
      std::vector<Bullet_boss> bullet;
      bullet.push_back(Bullet_boss(b1));
+  
+     //bullet.push_back(Bullet_boss(&bb))
 
      Vector2f bossCenter;
      Vector2f mouse;
@@ -282,16 +284,16 @@ int main()
                 }
             }
         }
-     /*   for (int i = 0; i < bullet.size(); i++) {
-            if (bullet[i].check() == 1) {
-                //std::cout << "............................";
-                playerHP -= 100;
-                HP.setSize(Vector2f(playerHP / 320.f, 15));
-                if (playerHP < 0) {
-                    playerHP = 0;
-                }
+        for (int i = 0; i < bullet.size(); i++) {
+            if (player.GetCollider().CheckCollision(bullet[i].GetCollider())) {
+                std::cout << "............................";
+                    playerHP -= 100;
+                    HP.setSize(Vector2f(playerHP / 320.f, 15));
+                    if (playerHP < 0) {
+                        playerHP = 0;
+                    }
             }
-        }*/
+        }
 
 
         for (int i = 0; i < itemHPupVector.size(); i++) {
@@ -316,7 +318,12 @@ int main()
           bossVector[i].updateboss2(deltaTime, player);
 
        }
+       for (int i = 0; i < bullet.size(); i++) {
 
+          bullet[i].updatebb(deltaTime, player);
+          
+
+       }
 
        //update
 
@@ -331,7 +338,7 @@ int main()
        //Boss shoting
        
 
-       if (player.getPosition().x<23430&& player.getPosition().x>23000)
+       if (player.getPosition().x<23030&& player.getPosition().x>23000)
        {
 
            b1.shape.setPosition(23430, 616);
@@ -340,7 +347,7 @@ int main()
 
        }
 
-       if (player.getPosition().x < 23800 && player.getPosition().x>23500)
+       if (player.getPosition().x < 23630 && player.getPosition().x>23660)
        {
 
            b1.shape.setPosition(23430, 616);
@@ -411,8 +418,8 @@ int main()
         }
         if (Bul == 1)
         {
-            float d = deltaTime;
-            bullet1.Update(d);
+            
+            bullet1.Update(deltaTime);
 
             bullet1.Draw(window);
             for (int i = 0; i < 6; i++) {
