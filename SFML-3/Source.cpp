@@ -49,16 +49,24 @@ int main()
     ace2.loadFromFile("pic/bgp2.png");
     background2.setTexture(&ace2);
 
+
+    ///PLayer///
     Texture playtexture;
     playtexture.loadFromFile("pic/LR3.png");
     Player player(&playtexture, Vector2u(6, 4), 0.2f, 150.0f, 200.0f);
+
+    float playerHP = 80000;
+    RectangleShape HP(Vector2f(playerHP / 250.0f, 30));
+    HP.setPosition(Vector2f(450, 46));
+    HP.setFillColor(Color::Red);
+    HP.setSize(Vector2f(playerHP / 320.f, 15));
 
     Texture BULLET;
     BULLET.loadFromFile("pic/gun-1.png");
     Bullet bullet1(&BULLET, sf::Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());
 
     
-
+    ///stair///
     RectangleShape st(Vector2f(100.0f, 230.0f));
     st.setPosition(899.0f,400.0f);
     Texture sts;
@@ -74,9 +82,7 @@ int main()
     srand(time(NULL));
    
 
-    Texture Top;
-    Top.loadFromFile("pic/test.png");
-
+    
 
     ///monster1///
     Texture MONSTER;
@@ -123,6 +129,12 @@ int main()
    // std::vector<Boss> bossVector;
     //bossVector.push_back(Boss(&BOSS, sf::Vector2u(2, 2), 0.2f,23430.0f, 600.0f));
     Boss  bossVector(&BOSS, Vector2u(2, 2), 0.2f, 23430.0f, 600.0f);
+    ///Boss HP///
+    float bossHP = 80000;
+    RectangleShape HPb(Vector2f(bossHP / 250.0f, 50));
+    HPb.setPosition(Vector2f(450, 46));
+    HPb.setFillColor(Color::Magenta);
+    HPb.setSize(Vector2f(bossHP / 23430.f, 15));
 
 
     ///ITEM 1///
@@ -175,26 +187,26 @@ int main()
 
 
      std::vector<Platform>platforms_1;
-    
+     Texture Top;
+     Top.loadFromFile("pic/test.png");
+
      platforms_1.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), Vector2f(1000.0f, 400.0f)));
      platforms_1.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), Vector2f(1600.0f, 400.0f)));
    // platforms.push_back(Platform(nullptr, sf::Vector2f(1080.0f, 100.0f), sf::Vector2f(500.0f, -50.0f)));
     //  platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(150.0f, 400.0f)));
    //   platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(900.0f, 100.0f)));
 
-     float playerHP = 80000;
-     RectangleShape HP(Vector2f(playerHP / 250.0f, 30));
-     HP.setPosition(Vector2f(450, 46));
-     HP.setFillColor(Color::Red);
-     HP.setSize(Vector2f(playerHP / 320.f, 15));
+     
 
-     ///Boss//
-     /// 
+     ///Boss bullet//
+    
      Bullet_boss b1 ;          
      std::vector<Bullet_boss> bullet;
      bullet.push_back(Bullet_boss(b1));
+
+     
       
-     //bullet.push_back(Bullet_boss(&bb))
+     
 
      Vector2f bossCenter;
      Vector2f mouse;
@@ -242,9 +254,12 @@ int main()
         ////Boss//
         
        
-        //player.updateitem(deltaTime, itemslowVector);
+        
         player.Update(deltaTime, itemslowVector);
         HP.setPosition(Vector2f(view.getCenter().x - 520, 46));
+        HPb.setPosition(Vector2f(bossVector.getposix(), 46));////////----
+
+
         Score.setPosition({ view.getCenter().x -100 ,view.getCenter().y - 300 });
         if (pos.x > 10000) {
             Score.setPosition(view.getCenter().x - 540, 300);
@@ -264,6 +279,20 @@ int main()
             }
         }
 
+        if (bossVector.GetCollider().CheckCollision(bullet1.GetCollider())) {
+
+            bossHP -= 100;
+            HPb.setSize(Vector2f(bossHP / 320.f, 15));
+            if (bossHP < 0) {
+
+                bossHP = 0;
+               
+            }
+        }
+
+
+
+
         for (int i = 0; i < monsterVector2.size(); i++) {
             if (monsterVector2[i].check() == 1) {
                 //std::cout << "............................";
@@ -274,7 +303,7 @@ int main()
                 }
             }
         }
-       // for (int i = 0; i < bossVector.size(); i++) {
+       
             if (bossVector.check() == 1) {
                 //std::cout << "............................";
                 playerHP -= 100;
@@ -283,7 +312,7 @@ int main()
                     playerHP = 0;
                 }
             }
-     //   }
+   
         for (int i = 0; i < bullet.size(); i++) {
             if (player.GetCollider().CheckCollision(bullet[i].GetCollider())) {
                 std::cout << "............................";
@@ -304,7 +333,7 @@ int main()
             }
         }
 
-        //monsterVector[i].updatemon(deltaTime, bullet1);
+       
        for (int i = 0; i < monsterVector.size(); i++) {
 
             monsterVector[i].updatemon(deltaTime, bullet1);
@@ -312,20 +341,13 @@ int main()
             
         }
 
-      // for (int i = 0; i < bossVector.size(); i++) {
+      //bossVector
 
           bossVector.updateboss(deltaTime, bullet1);
           bossVector.updateboss2(deltaTime, player);
 
-       //}
-     /*  for (int i = 0; i < bullet.size(); i++) {
-
-          bullet[i].updatebb(deltaTime, player);
-          
-
-       }*/
-
-       //update
+    
+     
 
 
          
@@ -489,7 +511,8 @@ int main()
         for (Platform& platform_1 : platforms_1)
             platform_1.Draw(window);
 
-        window.draw(HP);
+        window.draw(HP); 
+        window.draw(HPb);
         window.draw(st);
         window.display();
     }

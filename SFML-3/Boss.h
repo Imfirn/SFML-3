@@ -40,11 +40,14 @@ public:
             return 1;
         }
     }
+
+   
     sf::RectangleShape body;
 private:
     int row;
     int count = 0;
     int hpdown;
+   
     bool faceR;
     float speed;
     bool Monsterbu;

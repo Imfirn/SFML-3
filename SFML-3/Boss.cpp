@@ -31,7 +31,8 @@ void Boss:: updateboss(float deltaTime, Bullet bullet1)
         hpdown++;
         count++;
         row = 1;
-        body.setPosition(-1000.0f, 350.0f);
+        //body.setPosition(-1000.0f, 350.0f);
+        
     }
 
 }
