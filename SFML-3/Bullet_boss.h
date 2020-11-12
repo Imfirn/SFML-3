@@ -12,25 +12,24 @@
 #include <fstream>
 #include"Animation.h"
 #include "Player.h"
-   class Bullet_boss {
+#include"Boss.h"
+class Bullet_boss {
 
 
-    public:
-        CircleShape shape;
-        Vector2f currVelocity;
-        float maxSpeed;
+public:
+    CircleShape shape;
+    Vector2f currVelocity;
+    float maxSpeed;
 
-        Bullet_boss(float radius = 5.f)
-            :currVelocity(0.f, 0.f), maxSpeed(15.f)
-        {
-            this->shape.setRadius(radius);
-            this->shape.setFillColor(Color::Red);
-
-
-        }
+    Bullet_boss(float radius = 5.f)
+        :currVelocity(0.f, 0.f), maxSpeed(15.f)
+    {
+        this->shape.setRadius(radius);
+        this->shape.setFillColor(Color::Red);
 
 
+    }
 
-    };
 
+};
 

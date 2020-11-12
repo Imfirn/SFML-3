@@ -1,24 +1,4 @@
 #include "Boss.h"
-class Bullet_boss {
-
-
-public:
-    CircleShape shape;
-    Vector2f currVelocity;
-    float maxSpeed;
-
-    Bullet_boss(float radius = 5.f)
-        :currVelocity(0.f, 0.f), maxSpeed(15.f)
-    {
-        this->shape.setRadius(radius);
-        this->shape.setFillColor(Color::Red);
-
-
-    }
-
-
-
-};
 
 
 Boss::Boss(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y) :
@@ -43,7 +23,7 @@ Boss::~Boss()
 
 void Boss:: updateboss(float deltaTime, Bullet bullet1)
 {
-    animation.updatemon(row, deltaTime);
+    animation.updateboss(row, deltaTime);
     body.setTextureRect(animation.uvRect);
 
     if (bullet1.GetCollider().CheckCollision(this->GetCollider()))
@@ -66,21 +46,21 @@ void Boss::updateboss2(float deltaTime, Player player)
             row = 1;
             //std::cout << "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk";
             animation.Updatefacemon(row, deltaTime, faceR);
-            body.move(-velocity * deltaTime);
+           // body.move(-velocity * deltaTime);
 
 
 
         }
         else if (player.getPosition().x > body.getPosition().x) {
             row = 0;
-            animation.updatemon(row, deltaTime);
-            body.move(velocity * deltaTime);
+            animation.updateboss(row, deltaTime);
+            //body.move(velocity * deltaTime);
           
 
         }
         else if ((player.getPosition().x > body.getPosition().x) && faceR == false) {
-            animation.updatemon(row, deltaTime);
-            body.move(velocity * deltaTime);
+            animation.updateboss(row, deltaTime);
+            //body.move(velocity * deltaTime);
             
         }
 

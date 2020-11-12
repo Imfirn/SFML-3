@@ -18,6 +18,7 @@
 #include"Item2.h"
 #include<time.h>
 #include"Boss.h"
+#include"Bullet_boss.h"
 //#include"monsterbu.h"
 
 using namespace sf;
@@ -29,26 +30,7 @@ void ResizeView(const RenderWindow& window, View& view)
     float aspectRatio = float(window.getSize().x) / float(window.getSize().y);
     view.setSize(VIEW_HIGHT * aspectRatio, VIEW_HIGHT);
 }
-class Bullet_boss {
 
-
-public:
-    CircleShape shape;
-    Vector2f currVelocity;
-    float maxSpeed;
-
-    Bullet_boss(float radius = 5.f)
-        :currVelocity(0.f, 0.f), maxSpeed(15.f)
-    {
-        this->shape.setRadius(radius);
-        this->shape.setFillColor(Color::Red);
-
-
-    }
-
-
-
-};
 int main()
 {
 
@@ -139,7 +121,7 @@ int main()
     Texture BOSS;
     BOSS.loadFromFile("pic/m3.png");
     std::vector<Boss> bossVector;
-    bossVector.push_back(Boss(&BOSS, sf::Vector2u(2, 2), 0.2f,2000, 615.0f));
+    bossVector.push_back(Boss(&BOSS, sf::Vector2u(2, 2), 0.2f,23430.0f, 600.0f));
 
 
 
@@ -290,6 +272,26 @@ int main()
                 }
             }
         }
+        for (int i = 0; i < bossVector.size(); i++) {
+            if (bossVector[i].check() == 1) {
+                //std::cout << "............................";
+                playerHP -= 100;
+                HP.setSize(Vector2f(playerHP / 320.f, 15));
+                if (playerHP < 0) {
+                    playerHP = 0;
+                }
+            }
+        }
+     /*   for (int i = 0; i < bullet.size(); i++) {
+            if (bullet[i].check() == 1) {
+                //std::cout << "............................";
+                playerHP -= 100;
+                HP.setSize(Vector2f(playerHP / 320.f, 15));
+                if (playerHP < 0) {
+                    playerHP = 0;
+                }
+            }
+        }*/
 
 
         for (int i = 0; i < itemHPupVector.size(); i++) {
@@ -324,16 +326,25 @@ int main()
       // aimDir = mouse - bossCenter;
       // aimDirNorm = aimDir / sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2));
 
-       //Player
-
-       //shoting
        
 
-       if (player.getPosition().x<2000)
+       //Boss shoting
+       
+
+       if (player.getPosition().x<23430&& player.getPosition().x>23000)
        {
 
-           b1.shape.setPosition(2000, 616);
+           b1.shape.setPosition(23430, 616);
            b1.currVelocity.x = -b1.maxSpeed;
+           bullet.push_back(Bullet_boss(b1));
+
+       }
+
+       if (player.getPosition().x < 23800 && player.getPosition().x>23500)
+       {
+
+           b1.shape.setPosition(23430, 616);
+           b1.currVelocity.x = b1.maxSpeed;
            bullet.push_back(Bullet_boss(b1));
 
        }
