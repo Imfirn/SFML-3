@@ -18,19 +18,22 @@ class Bullet_boss {
 
 public:
     RectangleShape shape;
-    Texture* texture;
+    Texture texture;
+    
 
     Vector2f currVelocity;
     float maxSpeed;
 
     void updatebb(float deltaTime, Player player);
     Collider GetCollider() { return Collider(shape); }
-    Bullet_boss(float radius = 10.f)
+    Bullet_boss(float radius = 50.f)
         :currVelocity(0.f, 0.f), maxSpeed(20.f)
     {
         this->shape.setSize(sf::Vector2f(radius, radius));
-        this->shape.setFillColor(Color::Red);
-        //this->shape.setTexture(texture);
+       // this->shape.setFillColor(Color::Red);
+
+        texture.loadFromFile("pic/bb.png ");
+        this->shape.setTexture(&texture);
        
     }
     int check() {

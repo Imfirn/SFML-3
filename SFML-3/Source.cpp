@@ -120,9 +120,9 @@ int main()
     ///Boss//
     Texture BOSS;
     BOSS.loadFromFile("pic/m3.png");
-    std::vector<Boss> bossVector;
-    bossVector.push_back(Boss(&BOSS, sf::Vector2u(2, 2), 0.2f,23430.0f, 600.0f));
-
+   // std::vector<Boss> bossVector;
+    //bossVector.push_back(Boss(&BOSS, sf::Vector2u(2, 2), 0.2f,23430.0f, 600.0f));
+    Boss  bossVector(&BOSS, Vector2u(2, 2), 0.2f, 23430.0f, 600.0f);
 
 
     ///ITEM 1///
@@ -193,7 +193,7 @@ int main()
      Bullet_boss b1 ;          
      std::vector<Bullet_boss> bullet;
      bullet.push_back(Bullet_boss(b1));
-  
+      
      //bullet.push_back(Bullet_boss(&bb))
 
      Vector2f bossCenter;
@@ -274,8 +274,8 @@ int main()
                 }
             }
         }
-        for (int i = 0; i < bossVector.size(); i++) {
-            if (bossVector[i].check() == 1) {
+       // for (int i = 0; i < bossVector.size(); i++) {
+            if (bossVector.check() == 1) {
                 //std::cout << "............................";
                 playerHP -= 100;
                 HP.setSize(Vector2f(playerHP / 320.f, 15));
@@ -283,7 +283,7 @@ int main()
                     playerHP = 0;
                 }
             }
-        }
+     //   }
         for (int i = 0; i < bullet.size(); i++) {
             if (player.GetCollider().CheckCollision(bullet[i].GetCollider())) {
                 std::cout << "............................";
@@ -312,33 +312,28 @@ int main()
             
         }
 
-       for (int i = 0; i < bossVector.size(); i++) {
+      // for (int i = 0; i < bossVector.size(); i++) {
 
-          bossVector[i].updateboss(deltaTime, bullet1);
-          bossVector[i].updateboss2(deltaTime, player);
+          bossVector.updateboss(deltaTime, bullet1);
+          bossVector.updateboss2(deltaTime, player);
 
-       }
-       for (int i = 0; i < bullet.size(); i++) {
+       //}
+     /*  for (int i = 0; i < bullet.size(); i++) {
 
           bullet[i].updatebb(deltaTime, player);
           
 
-       }
+       }*/
 
        //update
 
 
-       //bossCenter = Vector2f(boss.getPosition().x + boss.getRadius(), boss.getPosition().y + boss.getRadius());
-      // mouse = (Vector2f(boss.getPosition()));
-      // aimDir = mouse - bossCenter;
-      // aimDirNorm = aimDir / sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2));
-
-       
-
+         
+             
        //Boss shoting
-       
-
-       if (player.getPosition().x<23030&& player.getPosition().x>23000)
+      
+   
+       if (player.getPosition().x<23030&& player.getPosition().x>23000 && bossVector.getposix() == 23430)
        {
 
            b1.shape.setPosition(23430, 616);
@@ -347,7 +342,7 @@ int main()
 
        }
 
-       if (player.getPosition().x < 23630 && player.getPosition().x>23660)
+       if (player.getPosition().x < 23690 && player.getPosition().x>23660 && bossVector.getposix() == 23430)
        {
 
            b1.shape.setPosition(23430, 616);
@@ -436,13 +431,13 @@ int main()
                     bullet1.del();
                 }
             }
-            for (int i = 0; i < 1; i++) {
-                if (bossVector[i].hit() == 1)
+          //  for (int i = 0; i < 1; i++) {
+                if (bossVector.hit() == 1)
                 {
                     scoreup += 100;
                     bullet1.del();
                 }
-            }
+           // }
 
 
 
@@ -466,8 +461,13 @@ int main()
             monsterVector[i].Draw(window);
         }
 
-        for (int i = 0; i < bossVector.size(); i++) {
-            bossVector[i].Draw(window);
+       // for (int i = 0; i < bossVector.size(); i++) {
+            bossVector.Draw(window);
+       // }
+
+        for (size_t i = 0; i < bullet.size(); i++)
+        {
+            window.draw(bullet[i].shape);
         }
 
         if (scoreup > 10) {
@@ -484,13 +484,11 @@ int main()
         for (int i = 0; i < itemslowVector.size(); i++) {
             itemslowVector[i].draw(window);
         }
-        for (size_t i = 0; i < bullet.size(); i++)
-        {
-            window.draw(bullet[i].shape);
-        }
+       
 
         for (Platform& platform_1 : platforms_1)
             platform_1.Draw(window);
+
         window.draw(HP);
         window.draw(st);
         window.display();

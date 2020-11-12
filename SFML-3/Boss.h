@@ -20,7 +20,7 @@ public:
     ~Boss();
     void updateboss(float deltaTime, Bullet bullet1);
     void updateboss2(float deltaTime, Player player);
-
+    float getposix();
     void Draw(sf::RenderWindow& window);
     Collider GetCollider() { return Collider(body); }
     // std::vector<monster> monsterVector;
@@ -48,7 +48,7 @@ private:
     bool faceR;
     float speed;
     bool Monsterbu;
-    
+    float x;
     Animation animation;
     sf::Vector2f velocity;
 };

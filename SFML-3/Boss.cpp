@@ -79,3 +79,8 @@ void Boss::Draw(sf::RenderWindow& window)
     window.draw(body);
 
 }
+float Boss::getposix() {
+   
+    body.getPosition().x;
+    return body.getPosition().x;
+}
