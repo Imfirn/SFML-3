@@ -281,12 +281,12 @@ int main()
 
         if (bossVector.GetCollider().CheckCollision(bullet1.GetCollider())) {
 
-            bossHP -= 100;
+            bossHP -= 1000;
             HPb.setSize(Vector2f(bossHP / 320.f, 15));
             if (bossHP < 0) {
-
                 bossHP = 0;
-               
+                HPb.setSize(Vector2f(bossHP / 320.f, 15));
+                    bossVector.delelet();
             }
         }
 
