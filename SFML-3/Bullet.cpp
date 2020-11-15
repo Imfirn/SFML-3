@@ -6,7 +6,7 @@ Bullet::Bullet(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 {
     this->speed = speed;
     row = 0;
-    LR;
+   
     body.setSize(sf::Vector2f(50.0f, 50.0f));
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(pos);
@@ -16,47 +16,56 @@ Bullet::~Bullet()
 {
 
 }
-void Bullet::Update(float deltaTime)
+void Bullet::UpdateR(float deltaTime)
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-       
-        LR = 1;
-       
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        
-        LR = -1;
+  
 
     if (body.getPosition().x != NULL - 100 && body.getPosition().y != NULL - 100) {
         velocity.y = 0;
         velocity.x = speed*1.5;
-        if (face(LR)==1) {
-
-            row = 1;
-            body.move(-velocity * deltaTime);
-            animation.updateBu(row, deltaTime);
-        }
-        else 
-        {
+       
+            
+        
             row = 0;
             body.move(velocity * deltaTime);
             animation.updateBu(row, deltaTime);
-        }
+        
         
         body.setTextureRect(animation.uvRect);
     }
    
 }
+void Bullet::UpdateL(float deltaTime)
+{
 
-void Bullet::attack(sf::Vector2f pos) {
-    if (face(LR) == 1) {
-        body.setPosition(pos.x - 53.0f, pos.y + 10.0f);
+
+    if (body.getPosition().x != NULL - 100 && body.getPosition().y != NULL - 100) {
+        velocity.y = 0;
+        velocity.x = speed * 1.5;
+        
+
+            row = 1;
+            body.move(-velocity * deltaTime);
+            animation.updateBu(row, deltaTime);
+        
+                 
+        
+
+        body.setTextureRect(animation.uvRect);
     }
-    else {
+
+}
+
+void Bullet::attackR(sf::Vector2f pos) {
+        
+ 
         body.setPosition(pos.x + 53.0f, pos.y + 10.0f);
-    }
+        isAva = false;
+}
+void Bullet::attackL(sf::Vector2f pos) {
 
-    isAva = false;
+        body.setPosition(pos.x - 53.0f, pos.y + 10.0f);
+        isAva = false;
 }
 
 void Bullet::del()

@@ -11,6 +11,7 @@ public:
 	void Update(float deltaTime, std::vector<Item2>& itemslowVector);
 	void Draw(sf::RenderWindow& window);
 	void OnCollision(sf::Vector2f direction);
+	int Direction() { return this->LR; }
 	//void set(float x, float y);
 
 //void updateitem(float detaTime, std::vector<Item2>& itemslowVector);
@@ -33,6 +34,6 @@ private:
 	float time;
 	int l = 0;
 	int b2 = 0;
-
+	int LR;
 };
 

@@ -10,10 +10,12 @@ class Bullet
 public:
     Bullet(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, sf::Vector2f pos);
     ~Bullet();
-    void Update(float deltaTime);
+    void UpdateL(float deltaTime);
+    void UpdateR(float deltaTime);
     void Draw(sf::RenderWindow& window);
     bool isAvaliable();
-    void attack(sf::Vector2f pos);
+    void attackL(sf::Vector2f pos);
+    void attackR(sf::Vector2f pos);
     void del();
     
     int face(int x) {
@@ -36,7 +38,7 @@ private:
     Animation animation;
     float speed;
     sf::RectangleShape body;
-    int LR;
+    //int LR;
     //bool LR=true;
     unsigned int row;
     sf::Vector2f velocity;

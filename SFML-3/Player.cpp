@@ -10,7 +10,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	
 	float time = 0.0f;
 	
-
+	this -> LR=0 ;
 	row = 0;
 	face = 1;
 	bullet = false;
@@ -53,15 +53,19 @@ void Player::Update(float deltaTime, std::vector<Item2>& itemslowVector) {
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		velocity.x -= speed*v;
+	{
+		velocity.x -= speed * v;
 		face = -1;
+		this->LR = -1;
 		//std::cout << face;
-
+	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		velocity.x += speed*v;
+	{
+		velocity.x += speed * v;
 		face = 1;
+		this->LR = 1;
 		//std::cout << face;
-
+	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canJump)
 	{
 		canJump = false;
@@ -135,28 +139,4 @@ void Player::OnCollision(sf::Vector2f direction)
 
 	}
 }
-
-/*void Player::updateitem(float detaTime, std::vector<Item2>& itemslowVector)
-{
-	for (int i = 0; i < itemslowVector.size(); i++) {
-
-		
-		if (this->GetCollider().CheckCollision(itemslowVector[i].GetCollider())) {
-		
-			this->buffslow = true;
-			itemslowVector[i].setPosition(-100.0f, 3000.0f);
-			this->v = 2;
-		}
-	}
-	if (this->buffslow == true) {
-		itemTimer += detaTime;
-		if (itemTimer >= 5) {
-		
-			itemTimer = 0;
-			this->buffslow = false;
-			this->v = 10;
-		}
-	}
-	
-}*/
 
