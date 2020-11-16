@@ -123,9 +123,9 @@ int main()
     platVector2.push_back(Platform2(&MOVPLAT, sf::Vector2u(1, 1), 0.2f, 1000.0f, 400.0f));
     platVector2.push_back(Platform2(&MOVPLAT2, sf::Vector2u(1, 1), 0.2f, 2000.0f, 400.0f));
 
-    std::vector<Platform2>platVector3;
+    std::vector<Platform2>platVector_3;
     MOVPLAT2.loadFromFile("pic/test.png");
-    platVector3.push_back(Platform2(&MOVPLAT, sf::Vector2u(5, 2), 0.2f, 18550.0f, 250.0f));
+    platVector_3.push_back(Platform2(&MOVPLAT, sf::Vector2u(5, 2), 0.2f, 18550.0f, 250.0f));
 
 
 
@@ -237,6 +237,7 @@ int main()
     Score.setString(point.str());
     Score.setFont(font);
     Score.setFillColor(sf::Color::Red);
+
 
     int Bul = 0;
     float deltaTime = 0.0f;
@@ -407,8 +408,8 @@ int main()
             platVector2[i].updateX(deltaTime);
         }
 
-        for (int i = 0; i < platVector3.size(); i++) {
-            platVector3[i].updateY(deltaTime);
+        for (int i = 0; i < platVector_3.size(); i++) {
+            platVector_3[i].updateY(deltaTime);
         }
 
 
@@ -431,14 +432,14 @@ int main()
                 player.OnCollision(direction);
 
 
-        Collider playerCollision_2 = player.GetCollider();
-        for (Platform2& platVector2 : platVector2)
-            if (platVector2.GetCollider().CheckCollision(playerCollision_2, direction, 1.0f))
+      
+        for (Platform2& platVector : platVector2)
+            if (platVector.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
                 player.OnCollision(direction);
 
-        Collider playerCollision_3 = player.GetCollider();
-        for (Platform2& platVector3 : platVector2)
-            if (platVector3.GetCollider().CheckCollision(playerCollision_3, direction, 1.0f))
+        
+        for (Platform2& platVector3 : platVector_3)
+            if (platVector3.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
                 player.OnCollision(direction);
 
 
@@ -549,8 +550,8 @@ int main()
             platVector2[i].draw(window);
         }
 
-        for (int i = 0; i < platVector3.size(); i++) {
-            platVector3[i].draw(window);
+        for (int i = 0; i < platVector_3.size(); i++) {
+            platVector_3[i].draw(window);
         }
 
         for (int i = 0; i < itemHPupVector.size(); i++) {
