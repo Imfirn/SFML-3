@@ -119,8 +119,14 @@ int main()
     Texture MOVPLAT2;
     MOVPLAT2.loadFromFile("pic/test.png");
     std::vector<Platform2>platVector2;
-    platVector2.push_back(Platform2(&MOVPLAT, sf::Vector2u(5, 2), 0.2f, 1000.0f, 400.0f));
-    platVector2.push_back(Platform2(&MOVPLAT2, sf::Vector2u(5, 2), 0.2f, 2000.0f, 400.0f));
+    
+    platVector2.push_back(Platform2(&MOVPLAT, sf::Vector2u(1, 1), 0.2f, 1000.0f, 400.0f));
+    platVector2.push_back(Platform2(&MOVPLAT2, sf::Vector2u(1, 1), 0.2f, 2000.0f, 400.0f));
+
+    std::vector<Platform2>platVector3;
+    MOVPLAT2.loadFromFile("pic/test.png");
+    platVector3.push_back(Platform2(&MOVPLAT, sf::Vector2u(5, 2), 0.2f, 18550.0f, 250.0f));
+
 
 
 
@@ -174,7 +180,7 @@ int main()
      platforms.push_back(Platform(nullptr, sf::Vector2f(296.0f, 50.0f), sf::Vector2f(6138.0f, 400.0f)));
      platforms.push_back(Platform(nullptr, sf::Vector2f(592.0f, 50.0f), sf::Vector2f(6859.0f, 400.0f)));
     
-
+    
    
 
      Texture Floor;
@@ -183,9 +189,14 @@ int main()
      ///Part 2//////
      Texture Floor2;
      Floor2.loadFromFile("pic/f2-2.png");
-     platforms.push_back(Platform(&Floor2, Vector2f(16000.0f, 68.0f), Vector2f(17000.0f, 700.0f)));
+     platforms.push_back(Platform(&Floor2, Vector2f(16000.0f, 75.0f), Vector2f(17000.0f, 650.0f)));
 
-
+     platforms.push_back(Platform(nullptr, sf::Vector2f(80.0f, 250.0f), sf::Vector2f(18550.0f, 250.0f)));//
+     platforms.push_back(Platform(nullptr, sf::Vector2f(80.0f, 250.0f), sf::Vector2f(21750.0f, 250.0f)));//
+     platforms.push_back(Platform(nullptr, sf::Vector2f(260.0f, 50.0f), sf::Vector2f(19518.0f, 460.0f)));
+     platforms.push_back(Platform(nullptr, sf::Vector2f(260.0f, 50.0f), sf::Vector2f(20947.0f, 460.0f)));
+     platforms.push_back(Platform(nullptr, sf::Vector2f(260.0f, 50.0f), sf::Vector2f(19972.0f, 380.0f)));
+     platforms.push_back(Platform(nullptr, sf::Vector2f(260.0f, 50.0f), sf::Vector2f(20493.0f, 380.0f)));
 
      std::vector<Platform>platforms_1;
      Texture Top;
@@ -359,7 +370,7 @@ int main()
         if (player.getPosition().x < 23030 && player.getPosition().x>23000 && bossVector.getposix() == 23430)
         {
 
-            b1.shape.setPosition(23430, 616);
+            b1.shape.setPosition(23430, 570);
             b1.currVelocity.x = -b1.maxSpeed;
             bullet.push_back(Bullet_boss(b1));
 
@@ -368,7 +379,7 @@ int main()
         if (player.getPosition().x < 23690 && player.getPosition().x>23660 && bossVector.getposix() == 23430)
         {
 
-            b1.shape.setPosition(23430, 616);
+            b1.shape.setPosition(23430, 570);
             b1.currVelocity.x = b1.maxSpeed;
             bullet.push_back(Bullet_boss(b1));
 
@@ -391,9 +402,16 @@ int main()
             monsterVector2[i].updatemon2(deltaTime, player);
 
         }
+
         for (int i = 0; i < platVector2.size(); i++) {
             platVector2[i].updateX(deltaTime);
         }
+
+        for (int i = 0; i < platVector3.size(); i++) {
+            platVector3[i].updateY(deltaTime);
+        }
+
+
         for (int i = 0; i < itemHPupVector.size(); i++) {
             itemHPupVector[i].updateitem(deltaTime, player);
         }
@@ -418,15 +436,21 @@ int main()
             if (platVector2.GetCollider().CheckCollision(playerCollision_2, direction, 1.0f))
                 player.OnCollision(direction);
 
+        Collider playerCollision_3 = player.GetCollider();
+        for (Platform2& platVector3 : platVector2)
+            if (platVector3.GetCollider().CheckCollision(playerCollision_3, direction, 1.0f))
+                player.OnCollision(direction);
+
 
         window.clear();
+        window.draw(background2);
 
         for (Platform& platform : platforms)
             platform.Draw(window);
 
 
         window.draw(background);
-        window.draw(background2);
+        
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::G))
         {
@@ -524,6 +548,11 @@ int main()
         for (int i = 0; i < platVector2.size(); i++) {
             platVector2[i].draw(window);
         }
+
+        for (int i = 0; i < platVector3.size(); i++) {
+            platVector3[i].draw(window);
+        }
+
         for (int i = 0; i < itemHPupVector.size(); i++) {
             itemHPupVector[i].Draw(window);
         }
