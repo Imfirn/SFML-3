@@ -493,12 +493,14 @@ int main()
                     Mouse::getPosition(window).y >= 0 &&
                     Mouse::getPosition(window).x <= 1080 &&
                     Mouse::getPosition(window).y <= 720) {
+                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
-                    start = false;
-                    menu = true;
+                        start = false;
+                        menu = true;
 
+                        Hi.setPosition(view.getCenter().x - 540, 0);
 
-
+                    }
                 }
 
             
