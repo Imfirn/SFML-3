@@ -89,6 +89,13 @@ int main()
     Menu4.setTexture(&Menu_4);
 
 
+    RectangleShape Hi(Vector2f(1080.0f, 720.0f));
+    Hi.setPosition(0.0f, 0.0f);
+    Texture hello;
+    hello.loadFromFile("pic/h.png");
+    Hi.setTexture(&hello);
+
+
 
 
     ///PLayer///
@@ -130,7 +137,7 @@ int main()
     MONSTER.loadFromFile("pic/m3.png");
     std::vector<monster> monsterVector;
     //monsterVector.push_back (monster (&MONSTER, sf::Vector2u(6, 2), 0.2f, 200.0f, 545.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f));
+  /*  monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3500, 615.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 4500, 575.0f));
@@ -138,7 +145,7 @@ int main()
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 2500, 615.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6000, 615.0f));
     monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 7500, 615.0f));
-    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 7000, 615.0f));
+    monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 7000, 615.0f));*/
     // monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 100.0f, 545.0f));
      //monsterVector.push_back(monster(&MONSTER, sf::Vector2u(6, 2), 0.2f, 800.0f, 545.0f));
 
@@ -146,12 +153,9 @@ int main()
     Texture MONSTER2;
     MONSTER2.loadFromFile("pic/mo3-1.png");
     std::vector<monster> monsterVector2;
-    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f));
-    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 7500, 615.0f));
-    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 3500, 384.0f));
-    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 615.0f));
-    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 5500, 615.0f));
-    monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 615.0f));
+   
+
+
     //moving platform
     Texture MOVPLAT;
     MOVPLAT.loadFromFile("pic/test.png");
@@ -175,7 +179,7 @@ int main()
     BOSS.loadFromFile("pic/m3.png");
     // std::vector<Boss> bossVector;
      //bossVector.push_back(Boss(&BOSS, sf::Vector2u(2, 2), 0.2f,23430.0f, 600.0f));
-    Boss  bossVector(&BOSS, Vector2u(2, 2), 0.2f, 23430.0f, 600.0f);
+   
     ///Boss HP///
     float bossHP = 80000;
     RectangleShape HPb(Vector2f(bossHP / 250.0f, 50));
@@ -254,7 +258,7 @@ int main()
 
     Bullet_boss b1;
     std::vector<Bullet_boss> bullet;
-    bullet.push_back(Bullet_boss(b1));
+  
 
 
 
@@ -283,6 +287,7 @@ int main()
     float deltaTime = 0.0f;
     sf::Clock clock;
     //int b = 0;
+    bool end = false;
     bool start = false;
     bool menu = true;
 
@@ -290,7 +295,8 @@ int main()
     {
         
         while (menu == true)
-        {
+        {   
+
             sf::Event event;
             while (window.pollEvent(event)) {
                 switch (event.type)
@@ -319,16 +325,21 @@ int main()
                     //Soundch.play();
                    menu = false;
                     start = true;
+                    Menu.setPosition(view.getCenter().x - 540, 0);
+                    Menu1.setPosition(view.getCenter().x - 540, 0);
+                    Menu2.setPosition(view.getCenter().x - 540, 0);
+                    Menu3.setPosition(view.getCenter().x - 540, 0);
+                    Menu4.setPosition(view.getCenter().x - 540, 0);
                   //  MemScore = true;
                 }
             }
-            else if (sf::Mouse::getPosition(window).x >= 596 &&
-                sf::Mouse::getPosition(window).y >= 366 &&
-                sf::Mouse::getPosition(window).x <= 980 &&
-                sf::Mouse::getPosition(window).y <= 480)
+            else if (Mouse::getPosition(window).x >= 596 &&
+                Mouse::getPosition(window).y >= 366 &&
+                Mouse::getPosition(window).x <= 980 &&
+                Mouse::getPosition(window).y <= 480)
             {
                 window.draw(Menu3);
-                if (sf::Mouse::isButtonPressed(sf::Mouse::Left) )
+                if (Mouse::isButtonPressed(Mouse::Left) )
                 {
                     /*Soundch.play();
                     MENU = false;
@@ -350,12 +361,41 @@ int main()
             }
            window.display();
         }
+        playerHP = 80000;
+
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3500, 615.0f));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 4500, 575.0f));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 5500, 615.0f));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 2500, 615.0f));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6000, 615.0f));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 7500, 615.0f));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 7000, 615.0f));
+
+
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 7500, 615.0f));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 3500, 384.0f));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 615.0f));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 5500, 615.0f));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 615.0f));
+
+
+        Boss  bossVector(&BOSS, Vector2u(2, 2), 0.2f, 23430.0f, 600.0f);
+        bullet.push_back(Bullet_boss(b1));
+
+
+
+
+
+
 
        while (start == true) {
             deltaTime = clock.restart().asSeconds();
             Vector2f pos = player.getPosition();
-            std::cout << pos.x << ' ' << pos.y << '\n';
-
+            //std::cout << pos.x << ' ' << pos.y << '\n';
+            cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
 
             Event event;
             while (window.pollEvent(event))
@@ -394,6 +434,8 @@ int main()
                     HP.setSize(Vector2f(playerHP / 320.f, 15));
                     if (playerHP < 0) {
                         playerHP = 0;
+                        start = false;
+                        menu = true;
                     }
                 }
             }
@@ -439,8 +481,27 @@ int main()
                     HP.setSize(Vector2f(playerHP / 320.f, 15));
                     if (playerHP < 0) {
                         playerHP = 0;
+                        end = true;
                     }
                 }
+            }
+
+            if (end == true) {
+            
+                window.draw(Hi);
+                if (Mouse::getPosition(window).x >= 0 &&
+                    Mouse::getPosition(window).y >= 0 &&
+                    Mouse::getPosition(window).x <= 1080 &&
+                    Mouse::getPosition(window).y <= 720) {
+
+                    start = false;
+                    menu = true;
+
+
+
+                }
+
+            
             }
 
 
