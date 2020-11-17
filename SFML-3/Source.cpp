@@ -423,6 +423,7 @@ int main()
             if (pos.x > 30000) {
                 Score.setPosition(view.getCenter().x - 540, 300);
             }
+
             point.str(" ");
             point << "SCORE: " << scoreup;
             Score.setString(point.str());
@@ -498,8 +499,11 @@ int main()
                         start = false;
                         menu = true;
 
-                        Hi.setPosition(view.getCenter().x - 540, 0);
-
+                        Hi.setPosition(player.getPosition().x , 0);
+                        Menu.setPosition(player.getPosition().x , 0);
+                        Menu1.setPosition(player.getPosition().x , 0);
+                        Menu2.setPosition(player.getPosition().x , 0);
+                        Menu3.setPosition(player.getPosition().x , 0);
                     }
                 }
 
@@ -740,7 +744,8 @@ int main()
             //window.draw(Menu);
             window.display();
             }
+            player.setPosition(626.0f, 360.0f);
     }
-
-        return 0;
+   
+    return 0;
     }

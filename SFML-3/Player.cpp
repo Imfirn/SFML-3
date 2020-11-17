@@ -140,3 +140,8 @@ void Player::OnCollision(sf::Vector2f direction)
 	}
 }
 
+void Player::setPosition(float x, float y)
+{
+	body.setPosition(x, y);
+}
+

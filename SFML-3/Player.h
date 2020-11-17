@@ -12,6 +12,7 @@ public:
 	void Draw(sf::RenderWindow& window);
 	void OnCollision(sf::Vector2f direction);
 	int Direction() { return this->LR; }
+	void setPosition(float x,float y);
 	//void set(float x, float y);
 
 //void updateitem(float detaTime, std::vector<Item2>& itemslowVector);
