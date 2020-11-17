@@ -24,9 +24,7 @@ public:
     void Draw(sf::RenderWindow& window);
     void delelet();
     Collider GetCollider() { return Collider(body); }
-    // std::vector<monster> monsterVector;
-
-     //Monbullet mb1;
+    
 
     int hit()
     {
