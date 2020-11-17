@@ -90,9 +90,9 @@ int main()
 
 
     RectangleShape Hi(Vector2f(1080.0f, 720.0f));
-    Hi.setPosition(0.0f, 0.0f);
+   // Hi.setPosition(0.0f, 0.0f);
     Texture hello;
-    hello.loadFromFile("pic/h.png");
+    hello.loadFromFile("pic/menu1.png");
     Hi.setTexture(&hello);
 
 
@@ -394,9 +394,9 @@ int main()
        while (start == true) {
             deltaTime = clock.restart().asSeconds();
             Vector2f pos = player.getPosition();
-            //std::cout << pos.x << ' ' << pos.y << '\n';
-            cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
-
+           std::cout << pos.x << ' ' << pos.y << '\n';
+          // cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
+          // std::cout << "............................";
             Event event;
             while (window.pollEvent(event))
             {
@@ -433,13 +433,12 @@ int main()
                     //std::cout << "............................";
                     playerHP -= 50;
                     HP.setSize(Vector2f(playerHP / 320.f, 15));
-                    if (playerHP < 0) {
-                        playerHP = 0;
-                        start = false;
-                        menu = true;
-                    }
+                    
                 }
             }
+
+
+            /// เรายิงบอส
 
             if (bossVector.GetCollider().CheckCollision(bullet1.GetCollider())) {
 
@@ -460,55 +459,34 @@ int main()
                     //std::cout << "............................";
                     playerHP -= 100;
                     HP.setSize(Vector2f(playerHP / 320.f, 15));
-                    if (playerHP < 0) {
-                        playerHP = 0;
-                    }
+                   
                 }
             }
 
+
+            //ชน boss
             if (bossVector.check() == 1) {
                 //std::cout << "............................";
                 playerHP -= 100;
                 HP.setSize(Vector2f(playerHP / 320.f, 15));
-                if (playerHP < 0) {
-                    playerHP = 0;
-                }
-            }
+                
+            }    
 
+
+            /// ถูก boss ยิง
             for (int i = 0; i < bullet.size(); i++) {
                 if (player.GetCollider().CheckCollision(bullet[i].GetCollider())) {
                     std::cout << "............................";
                     playerHP -= 100;
                     HP.setSize(Vector2f(playerHP / 320.f, 15));
-                    if (playerHP < 0) {
-                        playerHP = 0;
-                        end = true;
-                    }
+                    
                 }
             }
-
-            if (end == true) {
-            
-                window.draw(Hi);
-                if (Mouse::getPosition(window).x >= 0 &&
-                    Mouse::getPosition(window).y >= 0 &&
-                    Mouse::getPosition(window).x <= 1080 &&
-                    Mouse::getPosition(window).y <= 720) {
-                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-                        start = false;
-                        menu = true;
-
-                        Hi.setPosition(player.getPosition().x , 0);
-                        Menu.setPosition(player.getPosition().x , 0);
-                        Menu1.setPosition(player.getPosition().x , 0);
-                        Menu2.setPosition(player.getPosition().x , 0);
-                        Menu3.setPosition(player.getPosition().x , 0);
-                    }
-                }
-
-            
+            if (playerHP < 0) {
+                playerHP = 0;
+                end = true;
             }
+           
 
 
             for (int i = 0; i < itemHPupVector.size(); i++) {
@@ -540,7 +518,6 @@ int main()
 
             //Boss shoting
 
-
             if (player.getPosition().x < 23030 && player.getPosition().x>23000 && bossVector.getposix() == 23430)
             {
 
@@ -564,6 +541,7 @@ int main()
             }
 
             //Draw
+
             window.clear();
             for (size_t i = 0; i < bullet.size(); i++)
             {
@@ -620,11 +598,12 @@ int main()
             window.draw(background2);
 
             for (Platform& platform : platforms)
-                platform.Draw(window);
+           platform.Draw(window);
+           window.draw(background);
 
 
-            window.draw(background);
 
+           
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::G))
             {
@@ -675,13 +654,7 @@ int main()
                         bullet1.del();
                     }
                 }
-                //  for (int i = 0; i < 1; i++) {
-                if (bossVector.hit() == 1)
-                {
-                    scoreup += 100;
-                    bullet1.del();
-                }
-                // }
+              
             }
 
 
@@ -696,6 +669,16 @@ int main()
 
             view.setCenter(player.getPosition().x, 360);
 
+            if (view.getCenter().x - 540 <= 0.0f) {
+                view.setCenter(540, 360);
+                
+            }
+          
+           if (view.getCenter().x + 540 >= 25158) {
+            
+                view.setCenter(24618, 360);
+            
+            }
             //MONBULLET.draw(window);
             window.setView(view);
             window.draw(door);
@@ -742,9 +725,48 @@ int main()
             window.draw(HPb);
             window.draw(st);
             //window.draw(Menu);
+            Hi.setPosition(view.getCenter().x - 540, 0);
+
+            if (end == true) {
+                std::cout << "............................";
+                window.draw(Hi);
+                //window.draw(Hi);
+                if (Mouse::getPosition(window).x >= 0 &&
+                    Mouse::getPosition(window).y >= 540 &&
+                    Mouse::getPosition(window).x <= 1080 &&
+                    Mouse::getPosition(window).y <= 720)
+                {
+                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+                        start = false;
+                       // end = false;
+                        menu = true;
+
+                        
+                        Menu.setPosition(view.getCenter().x - 540, 0);
+                        Menu1.setPosition(view.getCenter().x - 540, 0);
+                        Menu2.setPosition(view.getCenter().x - 540, 0);
+                        Menu3.setPosition(view.getCenter().x - 540, 0);
+                        Menu4.setPosition(view.getCenter().x - 540, 0);
+                    }
+                }
+
+
+            }
             window.display();
             }
             player.setPosition(626.0f, 360.0f);
+            end = false;
+            for (int i = 0; i < monsterVector.size(); i++) {
+                monsterVector.erase(monsterVector.begin() + i);
+            }
+            monsterVector.clear();
+
+            for (int i = 0; i < monsterVector2.size(); i++) {
+                monsterVector2.erase(monsterVector2.begin() + i);
+            }
+           
+            monsterVector2.clear();
     }
    
     return 0;
