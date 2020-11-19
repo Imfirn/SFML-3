@@ -168,8 +168,9 @@ int main()
     platVector2.push_back(Platform2(&MOVPLAT2, sf::Vector2u(1, 1), 0.2f, 2000.0f, 400.0f));
 
     std::vector<Platform2>platVector_3;
-    MOVPLAT2.loadFromFile("pic/test.png");
-    platVector_3.push_back(Platform2(&MOVPLAT, sf::Vector2u(5, 2), 0.2f, 18550.0f, 250.0f));
+    Texture MOVPLAT3;
+    MOVPLAT3.loadFromFile("pic/pm2.png");
+    platVector_3.push_back(Platform2(&MOVPLAT3, sf::Vector2u(5, 2), 0.2f, 18705.0f, 250.0f));
 
 
 
@@ -193,19 +194,19 @@ int main()
     itemHPup.loadFromFile("pic/t-1.png");
     std::vector<Item> itemHPupVector;
     itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2000, 540.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 3000, 615.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 4000, 615.0f));
+    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 3000, 540.0f));
+    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 4000, 540.0f));
     itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 5500, 615.0f));
     itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 6500, 615.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 7500, 615.0f));
+    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 6000, 615.0f));
 
 
     //ITEM 2///
     Texture itemslow;
     itemslow.loadFromFile("pic/t-2.png");
     std::vector<Item2> itemslowVector;
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 2000.0f, 540.0f));
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3000.0f, 540.0f));
+    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 2000.0f, 480.0f));
+    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3000.0f, 530.0f));
     itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 4000.0f, 540.0f));
     itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 5000.0f, 540.0f));
     // itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(6, 2), 0.2f, rand() % 500 + 3000, 615.0f));
@@ -235,12 +236,17 @@ int main()
     Floor2.loadFromFile("pic/f2-2.png");
     platforms.push_back(Platform(&Floor2, Vector2f(16000.0f, 75.0f), Vector2f(17000.0f, 650.0f)));
 
-    platforms.push_back(Platform(nullptr, sf::Vector2f(80.0f, 250.0f), sf::Vector2f(18550.0f, 250.0f)));//
-    platforms.push_back(Platform(nullptr, sf::Vector2f(80.0f, 250.0f), sf::Vector2f(21750.0f, 250.0f)));//
+    platforms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 350.0f), sf::Vector2f(18705.0f, 250.0f)));//
+    platforms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 350.0f), sf::Vector2f(21756.0f, 250.0f)));//
     platforms.push_back(Platform(nullptr, sf::Vector2f(260.0f, 50.0f), sf::Vector2f(19518.0f, 460.0f)));
     platforms.push_back(Platform(nullptr, sf::Vector2f(260.0f, 50.0f), sf::Vector2f(20947.0f, 460.0f)));
     platforms.push_back(Platform(nullptr, sf::Vector2f(260.0f, 50.0f), sf::Vector2f(19972.0f, 380.0f)));
     platforms.push_back(Platform(nullptr, sf::Vector2f(260.0f, 50.0f), sf::Vector2f(20493.0f, 380.0f)));
+
+    std::vector<Platform>platforms_2;
+    Texture Statue;
+    Statue.loadFromFile("pic/stat.png");
+    platforms_2.push_back(Platform(&Statue, sf::Vector2f(500.0f,500.0f), sf::Vector2f(17335.0f, 350.0f)));
 
     std::vector<Platform>platforms_1;
     Texture Top;
@@ -361,7 +367,10 @@ int main()
             }
            window.display();
         }
+        
         playerHP = 80000;
+        HP.setSize(Vector2f(playerHP / 320.f, 15));
+        scoreup = 0;
 
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f));
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f));
@@ -370,14 +379,14 @@ int main()
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 5500, 615.0f));
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 2500, 615.0f));
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6000, 615.0f));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 7500, 615.0f));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 7000, 615.0f));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 5000, 615.0f));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6500, 615.0f));
 
 
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 7500, 615.0f));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 3500, 384.0f));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 615.0f));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 3500, 545.0f));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 545.0f));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 5500, 615.0f));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 615.0f));
 
@@ -392,11 +401,12 @@ int main()
 
 
        while (start == true) {
+
             deltaTime = clock.restart().asSeconds();
             Vector2f pos = player.getPosition();
            std::cout << pos.x << ' ' << pos.y << '\n';
           // cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
-          // std::cout << "............................";
+           //std::cout << "............................";
             Event event;
             while (window.pollEvent(event))
             {
@@ -582,6 +592,10 @@ int main()
                 if (platform_1.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
                     player.OnCollision(direction);
 
+            for (Platform& platforms_2 : platforms_2)
+                if (platforms_2.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
+                    player.OnCollision(direction);
+
 
 
             for (Platform2& platVector : platVector2)
@@ -594,11 +608,12 @@ int main()
                     player.OnCollision(direction);
 
 
+            for (Platform& platform : platforms)
+                platform.Draw(window);
+
             window.clear();
             window.draw(background2);
 
-            for (Platform& platform : platforms)
-           platform.Draw(window);
            window.draw(background);
 
 
@@ -717,6 +732,9 @@ int main()
                 itemslowVector[i].draw(window);
             }
 
+
+            for (Platform& platforms_2 : platforms_2)
+                platforms_2.Draw(window);
 
             for (Platform& platform_1 : platforms_1)
                 platform_1.Draw(window);
