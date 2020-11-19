@@ -23,14 +23,16 @@ public:
 
     Vector2f currVelocity;
     float maxSpeed;
-
+    float getposix();
     void updatebb(float deltaTime, Player player);
+    void del();
     Collider GetCollider() { return Collider(shape); }
+
     Bullet_boss(float radius = 50.f)
-        :currVelocity(0.f, 0.f), maxSpeed(20.f)
+        :currVelocity(0.f, 0.f), maxSpeed(35.f)
     {
         this->shape.setSize(sf::Vector2f(radius, radius));
-       // this->shape.setFillColor(Color::Red);
+       
 
         texture.loadFromFile("pic/bb.png ");
         this->shape.setTexture(&texture);

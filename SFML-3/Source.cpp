@@ -490,7 +490,7 @@ int main()
                     std::cout << "............................";
                     playerHP -= 100;
                     HP.setSize(Vector2f(playerHP / 320.f, 15));
-                    
+                    bullet.erase(bullet.begin() + i);
                 }
             }
             if (playerHP < 0) {
@@ -535,6 +535,15 @@ int main()
                 b1.shape.setPosition(23430, 570);
                 b1.currVelocity.x = -b1.maxSpeed;
                 bullet.push_back(Bullet_boss(b1));
+
+                if (abs(b1.getposix() - bossVector.getposix()) == 40) {
+                    
+                    for (size_t i = 0; i < bullet.size(); i++)
+                    {
+                        bullet.erase(bullet.begin() + i);
+                    }
+
+                }
 
             }
 
@@ -785,7 +794,15 @@ int main()
             }
            
             monsterVector2.clear();
+
+
+            for (int i = 0; i < bullet.size(); i++) {
+                bullet.erase(bullet.begin() + i);
+            }
+              bullet.clear();
+
     }
    
     return 0;
+
     }
