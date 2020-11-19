@@ -452,8 +452,9 @@ int main()
 
             if (bossVector.GetCollider().CheckCollision(bullet1.GetCollider())) {
 
-                bossHP -= 1000;
+                bossHP -= 10;
                 HPb.setSize(Vector2f(bossHP / 320.f, 15));
+                bullet1.del();
                 if (bossHP < 0) {
                     bossHP = 0;
                     HPb.setSize(Vector2f(bossHP / 320.f, 15));
@@ -694,7 +695,7 @@ int main()
                 view.setCenter(24618, 360);
             
             }
-            //MONBULLET.draw(window);
+           
             window.setView(view);
             window.draw(door);
             player.Draw(window);
@@ -703,9 +704,8 @@ int main()
                 monsterVector[i].Draw(window);
             }
 
-            // for (int i = 0; i < bossVector.size(); i++) {
             bossVector.Draw(window);
-            // }
+            
 
             for (size_t i = 0; i < bullet.size(); i++)
             {
