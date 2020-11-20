@@ -10,10 +10,11 @@
 
 
 
-monster::monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y) :
+monster::monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y,float a) :
     animation(texture, imageCount, switchTime)
 {
     this->speed = speed;
+    this->velocity.x = a;
     hpdown = 0;
     //this-> monsterVector.push_back(monster(nullptr, sf::Vector2u(6, 2), 0.2f, 200.0f, 545.0f));
     row = 0;
@@ -50,7 +51,7 @@ void monster::updatemon2(float deltaTime, Player player)
    
         if (abs(player.getPosition().x - body.getPosition().x) <= 500.0f)
         {
-            velocity.x = 50;
+            velocity.x;
             if (player.getPosition().x < body.getPosition().x) {
                 row = 1;
                 //std::cout << "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk";

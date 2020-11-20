@@ -10,13 +10,3 @@ void Bullet_boss::updatebb(float deltaTime, Player player)
     }
 
 }
-float Bullet_boss:: getposix() {
-
-    shape.getPosition().x;
-    return shape.getPosition().x;
-
-}
-void Bullet_boss::del()
-{
-    shape.setPosition(NULL - 100, NULL - 100);
-}

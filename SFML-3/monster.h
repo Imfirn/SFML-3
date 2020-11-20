@@ -12,7 +12,7 @@
 class monster
 {
 public:
-    monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y);
+    monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y,float a);
     ~monster();
     void updatemon(float deltaTime, Bullet bullet1);
     void updatemon2(float deltaTime, Player player);
@@ -42,6 +42,7 @@ private:
     int count = 0;
     int hpdown;
     bool faceR;
+    float a;
     float speed;
     bool Monsterbu;
     Animation animation;
