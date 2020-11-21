@@ -154,7 +154,9 @@ int main()
     MONSTER2.loadFromFile("pic/mo3-1.png");
     std::vector<monster> monsterVector2;
    
-
+    Texture MONSTER3;
+    MONSTER3.loadFromFile("pic/g1.png");
+    std::vector<monster> monsterVector3;
 
     //moving platform
     Texture MOVPLAT;
@@ -439,6 +441,15 @@ int main()
         Boss  bossVector(&BOSS, Vector2u(2, 2), 0.2f, 23430.0f, 600.0f);
         bullet.push_back(Bullet_boss(b1));
 
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 17500, 530.0f, 200));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 17500, 500.0f, 200));
+
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 19000, 300.0f, 200));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 18000, 300.0f, 200));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 18500, 530.0f, 200));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 20000, 5330.0f, 200));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 20000, 530.0f, 200));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 18500, 530.0f, 200));
 
 
 
@@ -520,6 +531,15 @@ int main()
                 }
             }
 
+            for (int i = 0; i < monsterVector3.size(); i++) {
+                if (monsterVector3[i].check() == 1) {
+                    //std::cout << "............................";
+                    playerHP -= 200;
+                    HP.setSize(Vector2f(playerHP / 320.f, 15));
+
+                }
+            }
+
 
             //ชน boss
             if (bossVector.check() == 1) {
@@ -559,6 +579,13 @@ int main()
 
                 monsterVector[i].updatemon(deltaTime, bullet1);
                 monsterVector[i].updatemon2(deltaTime, player);
+
+            }
+
+            for (int i = 0; i < monsterVector3.size(); i++) {
+
+                monsterVector3[i].updatemon(deltaTime, bullet1);
+                monsterVector3[i].updatemon2(deltaTime, player);
 
             }
 
@@ -725,6 +752,14 @@ int main()
                         bullet1.del();
                     }
                 }
+
+                for (int i = 0; i < monsterVector3.size(); i++) {
+                    if (monsterVector3[i].hit() == 1)
+                    {
+                        scoreup += 250;
+                        bullet1.del();
+                    }
+                }
               
             }
 
@@ -764,7 +799,9 @@ int main()
 
            
             }
-
+            for (int i = 0; i < monsterVector3.size(); i++) {
+                monsterVector3[i].Draw(window);
+            }
             if (scoreup > 10) {
                 for (int i = 0; i < monsterVector2.size(); i++) {
                     monsterVector2[i].Draw(window);
@@ -841,6 +878,11 @@ int main()
            
             monsterVector2.clear();
 
+            for (int i = 0; i < monsterVector3.size(); i++) {
+                monsterVector3.erase(monsterVector3.begin() + i);
+            }
+
+            monsterVector3.clear();
 
             for (int i = 0; i < bullet.size(); i++) {
                 bullet.erase(bullet.begin() + i);
