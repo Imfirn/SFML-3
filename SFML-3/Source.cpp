@@ -88,11 +88,11 @@ int main()
     Menu_4.loadFromFile("pic/m/b3.png");
     Menu4.setTexture(&Menu_4);
 
-
+    ///score
     RectangleShape Hi(Vector2f(1080.0f, 720.0f));
    // Hi.setPosition(0.0f, 0.0f);
     Texture hello;
-    hello.loadFromFile("pic/menu1.png");
+    hello.loadFromFile("pic/score.png");
     Hi.setTexture(&hello);
 
 
@@ -417,7 +417,7 @@ int main()
             deltaTime = clock.restart().asSeconds();
             Vector2f pos = player.getPosition();
            std::cout << pos.x << ' ' << pos.y << '\n';
-          // cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
+          cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
            //std::cout << "............................";
             Event event;
             while (window.pollEvent(event))
@@ -765,13 +765,15 @@ int main()
             Hi.setPosition(view.getCenter().x - 540, 0);
 
             if (end == true) {
-                std::cout << "............................";
+                //std::cout << "............................";
+                cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
                 window.draw(Hi);
+                
                 //window.draw(Hi);
-                if (Mouse::getPosition(window).x >= 0 &&
-                    Mouse::getPosition(window).y >= 540 &&
-                    Mouse::getPosition(window).x <= 1080 &&
-                    Mouse::getPosition(window).y <= 720)
+                if (Mouse::getPosition(window).x >= 525 &&
+                    Mouse::getPosition(window).y >= 475 &&
+                    Mouse::getPosition(window).x <= 845 &&
+                    Mouse::getPosition(window).y <= 565)
                 {
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
