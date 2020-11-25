@@ -20,7 +20,7 @@ void Bullet::UpdateR(float deltaTime)
 {
   
 
-    if (body.getPosition().x != NULL - 100 && body.getPosition().y != NULL - 100) {
+    if (body.getPosition().x != NULL - 50 && body.getPosition().y != NULL - 50) {
         velocity.y = 0;
         velocity.x = speed*1.5;
        
@@ -39,7 +39,7 @@ void Bullet::UpdateL(float deltaTime)
 {
 
 
-    if (body.getPosition().x != NULL - 100 && body.getPosition().y != NULL - 100) {
+    if (body.getPosition().x != NULL - 50 && body.getPosition().y != NULL - 50) {
         velocity.y = 0;
         velocity.x = speed * 1.5;
         

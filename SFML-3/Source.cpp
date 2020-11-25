@@ -154,14 +154,15 @@ int main()
 
     //moving platform
     Texture MOVPLAT;
-    MOVPLAT.loadFromFile("pic/test.png");
+    MOVPLAT.loadFromFile("pic/test-1.png");
 
     Texture MOVPLAT2;
-    MOVPLAT2.loadFromFile("pic/test.png");
+    MOVPLAT2.loadFromFile("pic/test-1.png");
     std::vector<Platform2>platVector2;
+  
 
-    platVector2.push_back(Platform2(&MOVPLAT, sf::Vector2u(1, 1), 0.2f, 1000.0f, 400.0f));
-    platVector2.push_back(Platform2(&MOVPLAT2, sf::Vector2u(1, 1), 0.2f, 2000.0f, 400.0f));
+    platVector2.push_back(Platform2(&MOVPLAT, sf::Vector2u(4, 0), 0.2f, 1000.0f, 400.0f));
+    platVector2.push_back(Platform2(&MOVPLAT2, sf::Vector2u(4, 0), 0.2f, 2000.0f, 400.0f));
 
     std::vector<Platform2>platVector_3;
     Texture MOVPLAT3;
@@ -240,7 +241,7 @@ int main()
 
     std::vector<Platform>platforms_1;
     Texture Top;
-    Top.loadFromFile("pic/test.png");
+    Top.loadFromFile("pic/test-1.png");
 
     platforms_1.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), Vector2f(1000.0f, 400.0f)));
     platforms_1.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), Vector2f(1600.0f, 400.0f)));
@@ -286,7 +287,7 @@ int main()
     LastScore.setCharacterSize(50);
     LastScore.setString(point1.str());
     LastScore.setFont(font1);
-    LastScore.setFillColor(sf::Color::Yellow);
+    LastScore.setFillColor(sf::Color::Black);
 
 
 
@@ -875,12 +876,13 @@ int main()
                     monsterVector2[i].Draw(window);
                 }
             }
-            for (int i = 0; i < platVector2.size(); i++) {
-                platVector2[i].draw(window);
-            }
+          
 
             for (int i = 0; i < platVector_3.size(); i++) {
                 platVector_3[i].draw(window);
+            }
+            for (int i = 0; i < platVector2.size(); i++) {
+                platVector2[i].draw(window);
             }
 
             for (int i = 0; i < itemHPupVector.size(); i++) {

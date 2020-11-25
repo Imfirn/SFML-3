@@ -19,17 +19,10 @@ public:
     void del();
     
     int face(int x) {
-        if (x>0)return 1;
-        else return 2;
+        if (x > 0) { return 1; }
+        else { return 2; }
     }
-   /*int face(bool x) {
-        if (body.getPosition().x)
-        {
-            x = false;
-            return 1;
-        }
-        else return 2;
-    }*/
+   
 
     sf::Vector2f GetPosition() { return body.getPosition(); }
     Collider GetCollider() { return Collider(body); }
