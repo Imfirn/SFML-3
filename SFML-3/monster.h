@@ -16,6 +16,7 @@ public:
     ~monster();
     void updatemon(float deltaTime, Bullet bullet1);
     void updatemon2(float deltaTime, Player player);
+    void OnCollision(sf::Vector2f direction, float deltaTime);
 
     void Draw(sf::RenderWindow& window);
     Collider GetCollider() { return Collider(body); }

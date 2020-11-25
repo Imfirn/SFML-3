@@ -189,35 +189,7 @@ int main()
     Texture itemHPup;
     itemHPup.loadFromFile("pic/t-1.png");
     std::vector<Item> itemHPupVector;
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2000, 600.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2200, 300.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2100, 300.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 3000, 380.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 4000, 600.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 5500, 600.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 6500, 600.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 6000, 600.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 4300, 510.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 6100,380.0f));
-
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f,5700, 380.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 5800, 380.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 5900, 380.0f));
-
-
-
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 6700, 300.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 6800, 300.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 6900, 300.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 7000, 300.0f));
-
-
-
-
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 19500, 305.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 20000, 300.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 20000, 550.0f));
-    itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 19500, 550.0f));
+   
 
 
 
@@ -225,22 +197,7 @@ int main()
     Texture itemslow;
     itemslow.loadFromFile("pic/t-2.png");
     std::vector<Item2> itemslowVector;
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 2000.0f, 600.0f));
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 2500.0f, 600.0f));
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3400.0f, 600.0f));
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3500.0f, 600.0f));
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3300.0f, 600.0f));
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3600.0f, 600.0f));
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6000.0f, 600.0f));
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6300.0f, 600.0f));
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6500.0f, 600.0f));
-
-
-    //p2
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 19905.0f, 305.0f));
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 20200.0f, 305.0f));
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 22370.0f, 550.0f));
-    itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 21406.0f, 550.0f));
+   
 
     // itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(6, 2), 0.2f, rand() % 500 + 3000, 615.0f));
 
@@ -420,12 +377,13 @@ int main()
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f, 140));
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 100 + 1500, 300.0f, 130));
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 200 + 1700, 300.0f, 130));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f, 50));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f, 80));
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3500, 615.0f, 130));
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3500, 615.0f, 80));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3300, 380.0f, 80));
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 4500, 575.0f, 150));
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 5500, 615.0f, 150));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 2500, 615.0f, 70));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 2500, 615.0f, 80));
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6000, 615.0f, 50));
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 5000, 615.0f, 50));
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6500, 615.0f, 100));
@@ -433,6 +391,7 @@ int main()
 
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f, 250));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f, 250));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 5500, 615.0f, 250));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4000, 545.0f, 150));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 5000, 615.0f, 150));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 545.0f, 150));
@@ -441,6 +400,67 @@ int main()
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6000, 615.0f, 200));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6000, 320.0f, 200));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 320.0f, 200));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 320.0f, 200));
+
+
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2000, 600.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2200, 300.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2100, 300.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 3000, 380.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 4000, 600.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 5500, 600.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 6500, 600.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 6000, 600.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 4300, 510.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 6100, 380.0f));
+
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 5700, 380.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 5800, 380.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 5900, 380.0f));
+
+
+
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 6700, 300.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 6800, 300.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 6900, 300.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 7000, 300.0f));
+
+
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 19500, 305.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 20000, 300.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 20000, 550.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 20200, 300.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 19500, 550.0f));
+
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 17645, 550.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 17745, 550.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 17845, 550.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 17945, 550.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 18045, 550.0f));
+
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 21000, 550.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 21300, 550.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 22000, 550.0f));
+
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 2000.0f, 600.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 2500.0f, 600.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3400.0f, 600.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3500.0f, 600.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3300.0f, 600.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3600.0f, 600.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6000.0f, 600.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6300.0f, 600.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6500.0f, 600.0f));
+
+
+        //p2
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 19905.0f, 305.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 20200.0f, 305.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 22370.0f, 550.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 21406.0f, 550.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 21606.0f, 550.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 21806.0f, 550.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 22006.0f, 550.0f));
 
         //part 2//
 
@@ -448,16 +468,21 @@ int main()
         bullet.push_back(Bullet_boss(b1));
 
         monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 17500, 530.0f, 200));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 17500, 500.0f, 200));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 17500, 500.0f, 250));
 
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 19000, 300.0f, 200));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 19000, 300.0f, 250));
         monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 18000, 300.0f, 200));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 18500, 530.0f, 200));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 20000, 5330.0f, 200));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 20000, 530.0f, 200));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 18500, 530.0f, 200));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 18500, 300.0f, 200));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 20000, 530.0f, 250));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 21000, 530.0f, 200));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 21200, 530.0f, 250));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.2f, rand() % 500 + 21100, 530.0f, 200));
 
-
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 21000, 300.0f, 200));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 17500, 615.0f, 200));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 17500, 615.0f, 200));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 18500, 615.0f, 200));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f, 200));
 
 
 
@@ -494,7 +519,7 @@ int main()
             HPb.setPosition(Vector2f(bossVector.getposix(), 46));////////----
 
 
-            Score.setPosition({ view.getCenter().x - 10 ,view.getCenter().y - 300 });
+            Score.setPosition({ view.getCenter().x - 130 ,view.getCenter().y - 300 });
             if (pos.x > 30000) {
                 Score.setPosition(view.getCenter().x - 540, 300);
             }
@@ -597,7 +622,7 @@ int main()
             for (int i = 0; i < itemHPupVector.size(); i++) {
                 if (itemHPupVector[i].check() == 1) {
                     //std::cout << "............................";
-                    playerHP += 1000;
+                    playerHP += 3000;
                     HP.setSize(Vector2f(playerHP / 300.f, 15));
                 }
             }
@@ -712,6 +737,17 @@ int main()
                 if (platVector3.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
                     player.OnCollision(direction);
 
+            for (int i = 0; i < monsterVector.size(); i++) {
+
+                Collider monster_1 = monsterVector[i].GetCollider();
+
+                for (Platform& platform : platforms)
+                    if (platform.GetCollider().CheckCollision(monster_1, direction, 1.0f))
+                        monsterVector[i].OnCollision(direction,deltaTime);
+                                                                         
+
+            }
+
 
             for (Platform& platform : platforms)
                 platform.Draw(window);
@@ -793,6 +829,7 @@ int main()
               
                  }
 
+            
 
 
 
@@ -920,6 +957,17 @@ int main()
                 bullet.erase(bullet.begin() + i);
             }
               bullet.clear();
+
+
+              for (int i = 0; i <itemHPupVector.size(); i++) {
+                  itemHPupVector.erase(itemHPupVector.begin() + i);
+              }
+              itemHPupVector.clear();
+
+              for (int i = 0; i < itemslowVector.size(); i++) {
+                  itemslowVector.erase(itemslowVector.begin() + i);
+              }
+            itemslowVector.clear();
 
     }
    

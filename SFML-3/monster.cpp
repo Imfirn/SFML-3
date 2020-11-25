@@ -89,3 +89,15 @@ void monster::Draw(sf::RenderWindow& window)
     window.draw(body);
     
 }
+void monster::OnCollision(sf::Vector2f direction, float deltaTime)
+{
+    if (direction.x < 0.0f)
+    {
+        body.move(-velocity * deltaTime);
+    }
+    else if (direction.x > 0.0f)
+    {
+        body.move(velocity * deltaTime);
+    }
+    
+}
