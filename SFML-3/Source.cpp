@@ -133,37 +133,42 @@ int main()
     doors.loadFromFile("pic/d.png");
     door.setTexture(&doors);
 
+   
+    
+
+
+   
     srand(time(NULL));
 
 
 
 
-    ///monster1///
+    ///monster1-mud///
     Texture MONSTER;
     MONSTER.loadFromFile("pic/m3.png");
     std::vector<monster> monsterVector;
    
-     ///monster2
+    ///monster2-bat///
     Texture MONSTER2;
     MONSTER2.loadFromFile("pic/mo3-1.png");
     std::vector<monster> monsterVector2;
    
+    ///monster3-ghost///
     Texture MONSTER3;
     MONSTER3.loadFromFile("pic/g1.png");
     std::vector<monster> monsterVector3;
 
-    //moving platform
-    Texture MOVPLAT;
-    MOVPLAT.loadFromFile("pic/test-1.png");
-
+    //moving platform//
+    
     Texture MOVPLAT2;
-    MOVPLAT2.loadFromFile("pic/test-1.png");
+   
     std::vector<Platform2>platVector2;
-  
-
-    platVector2.push_back(Platform2(&MOVPLAT, sf::Vector2u(4, 0), 0.2f, 1000.0f, 400.0f));
+    MOVPLAT2.loadFromFile("pic/test-1.png");
+    platVector2.push_back(Platform2(&MOVPLAT2, sf::Vector2u(4, 0), 0.2f, 1000.0f, 400.0f));
     platVector2.push_back(Platform2(&MOVPLAT2, sf::Vector2u(4, 0), 0.2f, 2000.0f, 400.0f));
 
+
+    //moving platform - part2//
     std::vector<Platform2>platVector_3;
     Texture MOVPLAT3;
     MOVPLAT3.loadFromFile("pic/pm2.png");
@@ -176,9 +181,9 @@ int main()
     ///Boss//
     Texture BOSS;
     BOSS.loadFromFile("pic/m3.png");
-    // std::vector<Boss> bossVector;
-     //bossVector.push_back(Boss(&BOSS, sf::Vector2u(2, 2), 0.2f,23430.0f, 600.0f));
    
+
+
     ///Boss HP///
     float bossHP = 80000;
     RectangleShape HPb(Vector2f(bossHP / 250.0f, 50));
@@ -201,59 +206,61 @@ int main()
     std::vector<Item2> itemslowVector;
    
 
-    // itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(6, 2), 0.2f, rand() % 500 + 3000, 615.0f));
 
 
     std::vector<Platform>platforms;
     ////Part 1/////
-    platforms.push_back(Platform(nullptr, sf::Vector2f(50.0f, 50.0f), sf::Vector2f(3057.0f, 500.0f)));
-    platforms.push_back(Platform(nullptr, sf::Vector2f(342.0f, 32.0f), sf::Vector2f(3050.0f, 550.0f)));
-    platforms.push_back(Platform(nullptr, sf::Vector2f(342.0f, 32.0f), sf::Vector2f(3815.0f, 550.0f)));
-    platforms.push_back(Platform(nullptr, sf::Vector2f(342.0f, 32.0f), sf::Vector2f(3449.0f, 450.0f)));
-    platforms.push_back(Platform(nullptr, sf::Vector2f(274.0f, 80.0f), sf::Vector2f(4415.0f, 630.0f)));
-    platforms.push_back(Platform(nullptr, sf::Vector2f(316.0f, 40.0f), sf::Vector2f(4710.0f, 640.0f)));
-    platforms.push_back(Platform(nullptr, sf::Vector2f(274.0f, 80.0f), sf::Vector2f(5000.0f, 630.0f)));
-    platforms.push_back(Platform(nullptr, sf::Vector2f(296.0f, 50.0f), sf::Vector2f(5800.0f, 510.0f)));
-    platforms.push_back(Platform(nullptr, sf::Vector2f(296.0f, 50.0f), sf::Vector2f(6138.0f, 400.0f)));
-    platforms.push_back(Platform(nullptr, sf::Vector2f(592.0f, 50.0f), sf::Vector2f(6859.0f, 400.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(50.0f, 50.0f),Vector2f(3057.0f, 500.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(3050.0f, 550.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(3815.0f, 550.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(3449.0f, 450.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(274.0f, 80.0f),Vector2f(4415.0f, 630.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(316.0f, 40.0f),Vector2f(4710.0f, 640.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(274.0f, 80.0f),Vector2f(5000.0f, 630.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(296.0f, 50.0f),Vector2f(5800.0f, 510.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(296.0f, 50.0f),Vector2f(6138.0f, 400.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(592.0f, 50.0f),Vector2f(6859.0f, 400.0f)));
 
-
-
-
+    ///Exit part1///
+    std::vector<Platform>Door_1;
+    Door_1.push_back(Platform(nullptr,Vector2f(300.0f, 500.0f), Vector2f(7340.0f, 175.0f)));
+  
     Texture Floor;
     Floor.loadFromFile("pic/f-2.png");
     platforms.push_back(Platform(&Floor, Vector2f(16000.0f, 68.0f), Vector2f(1000.0f, 700.0f)));
+
+
+
     ///Part 2//////
     Texture Floor2;
     Floor2.loadFromFile("pic/f2-2.png");
     platforms.push_back(Platform(&Floor2, Vector2f(16000.0f, 75.0f), Vector2f(17000.0f, 650.0f)));
 
-    platforms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 350.0f), sf::Vector2f(18705.0f, 250.0f)));//
-    platforms.push_back(Platform(nullptr, sf::Vector2f(400.0f, 350.0f), sf::Vector2f(21756.0f, 250.0f)));//
-    platforms.push_back(Platform(nullptr, sf::Vector2f(260.0f, 50.0f), sf::Vector2f(19518.0f, 460.0f)));
-    platforms.push_back(Platform(nullptr, sf::Vector2f(260.0f, 50.0f), sf::Vector2f(20947.0f, 460.0f)));
-    platforms.push_back(Platform(nullptr, sf::Vector2f(260.0f, 50.0f), sf::Vector2f(19972.0f, 380.0f)));
-    platforms.push_back(Platform(nullptr, sf::Vector2f(260.0f, 50.0f), sf::Vector2f(20493.0f, 380.0f)));
-
-    std::vector<Platform>platforms_2;
-    Texture Statue;
-    Statue.loadFromFile("pic/stat.png");
-    platforms_2.push_back(Platform(&Statue, sf::Vector2f(500.0f,500.0f), sf::Vector2f(17335.0f, 350.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(400.0f, 350.0f),Vector2f(18705.0f, 250.0f)));//
+    platforms.push_back(Platform(nullptr,Vector2f(400.0f, 350.0f),Vector2f(21756.0f, 250.0f)));//
+    platforms.push_back(Platform(nullptr,Vector2f(260.0f, 50.0f),Vector2f(19518.0f, 460.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(260.0f, 50.0f),Vector2f(20947.0f, 460.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(260.0f, 50.0f), Vector2f(19972.0f, 380.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(260.0f, 50.0f),Vector2f(20493.0f, 380.0f)));
 
     std::vector<Platform>platforms_1;
     Texture Top;
     Top.loadFromFile("pic/test-1.png");
 
-    platforms_1.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), Vector2f(1000.0f, 400.0f)));
-    platforms_1.push_back(Platform(&Top, sf::Vector2f(400.0f, 100.0f), Vector2f(1600.0f, 400.0f)));
-    // platforms.push_back(Platform(nullptr, sf::Vector2f(1080.0f, 100.0f), sf::Vector2f(500.0f, -50.0f)));
-     //  platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(150.0f, 400.0f)));
-    //   platforms.push_back(Platform(nullptr, sf::Vector2f(100.0f, 200.0f), sf::Vector2f(900.0f, 100.0f)));
+    platforms_1.push_back(Platform(&Top, Vector2f(400.0f, 100.0f), Vector2f(1000.0f, 400.0f)));
+    platforms_1.push_back(Platform(&Top, Vector2f(400.0f, 100.0f), Vector2f(1600.0f, 400.0f)));
 
 
+    std::vector<Platform>platforms_2;
+    Texture Statue;
+    Statue.loadFromFile("pic/stat.png");
+    platforms_2.push_back(Platform(&Statue,Vector2f(500.0f,500.0f),Vector2f(17335.0f, 350.0f)));
 
-      ///Boss bullet//
+    
+   
 
+
+     ///Boss bullet//
     Bullet_boss b1;
     std::vector<Bullet_boss> bullet;
     Vector2f bossCenter;
@@ -264,25 +271,25 @@ int main()
 
 
    
-
-    sf::Font font;
+    ///Score////
+    Font font;
     font.loadFromFile("ABCD.ttf");
     std::ostringstream point;
-    sf::Text Score;
+    Text Score;
     Score.setCharacterSize(50);
     Score.setString(point.str());
     Score.setFont(font);
-    Score.setFillColor(sf::Color::Red);
+    Score.setFillColor(Color::Red);
 
-
-    sf::Font font1;
+    ///Score when end////
+    Font font1;
     font1.loadFromFile("ABCD.ttf");
-    std::ostringstream point1;
-    sf::Text LastScore;
+    ostringstream point1;
+    Text LastScore;
     LastScore.setCharacterSize(50);
     LastScore.setString(point1.str());
     LastScore.setFont(font1);
-    LastScore.setFillColor(sf::Color::Black);
+    LastScore.setFillColor(Color::Black);
 
 
 
@@ -291,8 +298,9 @@ int main()
     int scoreup = 0;
     float counTime=0;
     float deltaTime = 0.0f;
-    sf::Clock clock;
-    //int b = 0;
+    int Loop = 0;
+    Clock clock;
+   
     bool end = false;
     bool start = false;
     bool SCore_li = false;
@@ -300,49 +308,52 @@ int main()
     bool MemScore = false;
 
     
-
-    sf::String playerInput;
+    // Adding name///
+    String playerInput;
     std::ofstream fileWriter;
     std::ostringstream keyname;
     Text Keyname;
     std::string userName;
+    fstream adminFile;
     Keyname.setCharacterSize(40);
     Keyname.setString(" ");
     Keyname.setFont(font);
-    Keyname.setFillColor(sf::Color::White);
-
-
-    // Modify textbox /
+    Keyname.setFillColor(sf::Color::White);    
     char last_char = ' ';
-    sf::RectangleShape cursor;
-    cursor.setSize(sf::Vector2f(5.0f, 30.0f));
-    cursor.setOrigin(sf::Vector2f(2.5f, 15.0f));
-    cursor.setFillColor(sf::Color::White);
-    sf::Text text("", font);
+    RectangleShape cursor;
+    cursor.setSize(Vector2f(5.0f, 30.0f));
+    cursor.setOrigin(Vector2f(2.5f, 15.0f));
+    cursor.setFillColor(Color::White);
+    Text text("", font);
+
     Keyname.setPosition(300, 500);
-    text.setFillColor(sf::Color::White);
+    text.setFillColor(Color::White);
     text.setPosition(545, 535);
     cursor.setPosition(545.0f + text.getGlobalBounds().width + 10, 555.0f);
     float totalTime_cursor = 0;
-    sf::Clock clock_cursor;
+    Clock clock_cursor;
     bool state_cursor = false;
     
+    std::map<int, std::string> save_score;
+    std::ifstream Opentext;
+    std::string list;
+
     while (window.isOpen())
     {
         
         while (menu == true)
         {   
 
-            sf::Event event;
+            Event event;
             while (window.pollEvent(event)) {
                 switch (event.type)
                 {
-                case sf::Event::Closed:
-                    window.close();
-                    break;
+                case Event::Closed:
+                     window.close();
+                     break;
                 }
             }
-            sf::Vector2f mouesPosition = sf::Vector2f(0.0f, 0.0f);
+            Vector2f mouesPosition = sf::Vector2f(0.0f, 0.0f);
             mouesPosition = window.mapPixelToCoords(sf::Mouse::getPosition(window));
            // cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y  << endl;
 
@@ -351,23 +362,23 @@ int main()
                 window.draw(Menu);
                 window.draw(Menu1);
                
-           if (sf::Mouse::getPosition(window).x >= 596&&
-                sf::Mouse::getPosition(window).y >= 203 &&
-                sf::Mouse::getPosition(window).x <= 980&&
-                sf::Mouse::getPosition(window).y <= 322)
+           if (Mouse::getPosition(window).x >= 596&&
+                Mouse::getPosition(window).y >= 203 &&
+                Mouse::getPosition(window).x <= 980&&
+                Mouse::getPosition(window).y <= 322)
             {
                 window.draw(Menu2);
-                if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                if (Mouse::isButtonPressed(sf::Mouse::Left)) {
                     //Soundch.play();
-                    menu = false;
-                    start = true;
-                    MemScore = true;
                     Menu.setPosition(view.getCenter().x - 540, 0);
                     Menu1.setPosition(view.getCenter().x - 540, 0);
                     Menu2.setPosition(view.getCenter().x - 540, 0);
                     Menu3.setPosition(view.getCenter().x - 540, 0);
                     Menu4.setPosition(view.getCenter().x - 540, 0);
                   //  MemScore = true;
+                    menu = false;
+                    start = false;
+                    MemScore = true;
                 }
             }
             else if (Mouse::getPosition(window).x >= 596 &&
@@ -378,20 +389,20 @@ int main()
                 window.draw(Menu3);
                 if (Mouse::isButtonPressed(Mouse::Left) )
                 {
-                    /*Soundch.play();
-                    MENU = false;
-                    START = false;
-                    Rank = true;*/
+                   
+                    menu = false;
+                    start = false;
+                    SCore_li = true;
                 }
             }
-            else if (sf::Mouse::getPosition(window).x >= 596 &&
-                sf::Mouse::getPosition(window).y >= 529 &&
-                sf::Mouse::getPosition(window).x <= 980&&
-                sf::Mouse::getPosition(window).y <= 653)
+            else if (Mouse::getPosition(window).x >= 596 &&
+                    Mouse::getPosition(window).y >= 529 &&
+                    Mouse::getPosition(window).x <= 980&&
+                    Mouse::getPosition(window).y <= 653)
             {
                 window.draw(Menu4);
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                   // Soundch.play();
+                  
                     window.close();
                     break;
                 }
@@ -431,18 +442,18 @@ int main()
                         }
                     }
                 }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+                if (Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
                     menu = false;
                     SCore_li = false;
-                    start = true;
                     MemScore = false;
+                    start = true;
                 }
 
                 last_char = event.text.unicode;
                 text.setString(playerInput);
                 cursor.setPosition(545.0f + text.getGlobalBounds().width + 10, 555.0f);
             }
-            else if (event.type == sf::Event::EventType::KeyReleased && last_char != ' ') {
+            else if (event.type == Event::EventType::KeyReleased && last_char != ' ') {
                 last_char = ' ';
             }
             window.clear();
@@ -462,9 +473,60 @@ int main()
             window.display();
         }
         ////////////////////////
+        while (SCore_li == true) {
 
+            if (Loop == 0) {
+                view.setCenter(540, 360);
+            }
+           
+            sf::Vector2f mouesPosition = sf::Vector2f(0.0f, 0.0f);
+            mouesPosition = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+            cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
 
-        
+            window.clear();
+            //window.draw(hh);
+            sf::Text text1("", font);
+            text1.setCharacterSize(30);
+            text1.setFillColor(sf::Color::White);
+            Opentext.open("text/high_s.txt");
+            do {
+                Opentext >> list;
+                std::string first_token = list.substr(0, list.find(','));
+                int second_token = std::stoi(list.substr(list.find(',') + 1, list.length()));
+                save_score[second_token] = first_token;
+            } while (Opentext.good());
+            Opentext.close();
+            std::map<int, std::string>::iterator end = save_score.end();
+            std::map<int, std::string>::iterator beg = save_score.begin();
+            end--;
+            beg--;
+            int currentDisplay = 0;
+            for (std::map<int, std::string>::iterator it = end; it != beg; it--) {
+                text1.setString(it->second);
+                text1.setPosition(view.getCenter().x - 170, 210 + 80 * currentDisplay);
+                window.draw(text1);
+                text1.setString(std::to_string(it->first));
+                text1.setPosition(view.getCenter().x + 95, 210 + 80 * currentDisplay);
+                window.draw(text1);
+                currentDisplay++;
+                if (currentDisplay == 5)
+                {
+                    break;
+                }
+            }
+
+                if (Keyboard::isKeyPressed(sf::Keyboard::E))
+                {
+                    //Soundch.play();
+                    SCore_li = false;
+                    menu = true;
+                }
+           
+            window.display();
+        }
+
+        deltaTime = 0;
+        clock.restart();
         playerHP = 80000;
         HP.setSize(Vector2f(playerHP / 320.f, 15));
         scoreup = 0;
@@ -609,16 +671,9 @@ int main()
 
                 player.Update(deltaTime, itemslowVector);
 
-            }
-            HP.setPosition(Vector2f(view.getCenter().x - 520, 46));
-            HPb.setPosition(Vector2f(bossVector.getposix(), 46));////////----
-
-
-            Score.setPosition({ view.getCenter().x - 130 ,view.getCenter().y - 300 });
-            if (pos.x > 30000) {
-                Score.setPosition(view.getCenter().x - 540, 300);
-            }
-
+            } 
+          
+           
 
             
 
@@ -628,7 +683,7 @@ int main()
 
             for (int i = 0; i < monsterVector.size(); i++) {
                 if (monsterVector[i].check() == 1) {
-                    //std::cout << "............................";
+                   
                     playerHP -= 50;
                     HP.setSize(Vector2f(playerHP / 320.f, 15));
                     
@@ -650,6 +705,7 @@ int main()
                 HPb.setSize(Vector2f(bossHP / 320.f, 15));
                 bossVector.delelet();
                 end = true;
+
             }
 
             if (bossHP == 0) { 
@@ -680,7 +736,9 @@ int main()
                 }
             }
 
-            LastScore.setPosition({ view.getCenter().x - 20 ,view.getCenter().y - 170});
+          
+
+          
 
 
             //ชน boss
@@ -701,10 +759,10 @@ int main()
                     bullet.erase(bullet.begin() + i);
                 }
             }
-            if (playerHP < 0) {
-                playerHP = 0;
-                end = true;
-            }
+                 if (playerHP < 0) {
+                         playerHP = 0;
+                         end = true;
+                      }
            
             if (playerHP == 0) {
             
@@ -788,15 +846,8 @@ int main()
             for (size_t i = 0; i < bullet.size(); i++)
             {
                 window.draw(bullet[i].shape);
-            }
-
-            for (int i = 0; i < monsterVector2.size(); i++) {
-
-                monsterVector2[i].updatemon(deltaTime, bullet1);
-                monsterVector2[i].updatemon2(deltaTime, player);
-
-            }
-
+            }                    
+            
             for (int i = 0; i < platVector2.size(); i++) {
                 platVector2[i].updateX(deltaTime);
             }
@@ -839,6 +890,10 @@ int main()
                 if (platVector3.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
                     player.OnCollision(direction);
 
+            for (Platform& DoorVector : Door_1)
+                if (DoorVector.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
+                    player.OnCollision(direction);
+
             for (int i = 0; i < monsterVector.size(); i++) {
 
                 Collider monster_1 = monsterVector[i].GetCollider();
@@ -849,7 +904,7 @@ int main()
                                                                          
 
             }
-
+            
 
             for (Platform& platform : platforms)
                 platform.Draw(window);
@@ -857,7 +912,13 @@ int main()
             window.clear();
             window.draw(background2);
 
-
+            if (scoreup > 700) {
+                for (int i = 0; i < Door_1.size(); i++) {
+                    Door_1.erase(Door_1.begin()+i);
+                }
+               
+            
+            }
            
 
             for (size_t i = 0; i < bullet.size(); i++)
@@ -871,7 +932,7 @@ int main()
 
            
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::G))
+            if (Keyboard::isKeyPressed(sf::Keyboard::Key::G))
             {
                 player_di = player.Direction();
 
@@ -954,11 +1015,38 @@ int main()
                 view.setCenter(24618, 360);
             
                 }
-           
+              HP.setPosition(Vector2f(view.getCenter().x - 520, 46));
+              HPb.setPosition(Vector2f(bossVector.getposix(), 46));////////----
+              LastScore.setPosition({ view.getCenter().x - 20 ,view.getCenter().y - 170 });
+              Score.setPosition({ view.getCenter().x - 130 ,view.getCenter().y - 300 });
+
+              if (pos.x > 30000) {
+
+                  Score.setPosition(view.getCenter().x - 540, 300);
+              }
+
+             
+
+
             window.setView(view);
             window.draw(door);
             player.Draw(window);
             window.draw(Score);
+
+            if (scoreup > 500) {
+
+                for (int i = 0; i < monsterVector2.size(); i++) {
+
+                    monsterVector2[i].updatemon(deltaTime, bullet1);
+                    monsterVector2[i].updatemon2(deltaTime, player);
+
+                }
+
+                for (int i = 0; i < monsterVector2.size(); i++) {
+
+                    monsterVector2[i].Draw(window);
+                }
+            }
 
             for (int i = 0; i < monsterVector.size(); i++) {
                 monsterVector[i].Draw(window);
@@ -972,11 +1060,7 @@ int main()
             for (int i = 0; i < monsterVector3.size(); i++) {
                 monsterVector3[i].Draw(window);
             }
-            if (scoreup > 10) {
-                for (int i = 0; i < monsterVector2.size(); i++) {
-                    monsterVector2[i].Draw(window);
-                }
-            }
+           
           
 
             for (int i = 0; i < platVector_3.size(); i++) {
@@ -1000,16 +1084,21 @@ int main()
             for (Platform& platform_1 : platforms_1)
                 platform_1.Draw(window);
 
+            for (Platform& DoorVector :Door_1)
+                DoorVector.Draw(window);
+
             window.draw(HP);
             window.draw(HPb);
             window.draw(st);
             //window.draw(Menu);
             Hi.setPosition(view.getCenter().x - 540, 0);
             Hi2.setPosition(view.getCenter().x - 540, 0);
+
+
             if (end == true) {
 
                 //std::cout << "............................";
-                cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
+                cout << Mouse::getPosition(window).x << " " <<Mouse::getPosition(window).y << endl;
                 window.draw(Hi);
                 if (bossHP == 0) { window.draw(Hi2); }
                 window.draw(LastScore);
@@ -1019,18 +1108,37 @@ int main()
                     Mouse::getPosition(window).x <= 845 &&
                     Mouse::getPosition(window).y <= 565)
                 {
-                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
+                    if (Mouse::isButtonPressed(sf::Mouse::Left)) {
+                        vector<pair<int, string> > score;
+                        string temp, tempString;
+                        int tempInt = 0, X = 1;
+                        while (window.pollEvent(event))
+                        {
+                            if (event.type == sf::Event::Closed)
+                                window.close();
+                            fileWriter.open("text/high_s.txt", std::ios::out | std::ios::app);
+                            fileWriter << "\n" << userName << "," << scoreup;
+                            fileWriter.close();
+                            playerInput.clear();
+                        }
+                        adminFile.close();
                         start = false;
-                       // end = false;
+                        MemScore = false;
+                        end = false;
                         menu = true;
-
+                       
                         
                         Menu.setPosition(view.getCenter().x - 540, 0);
                         Menu1.setPosition(view.getCenter().x - 540, 0);
                         Menu2.setPosition(view.getCenter().x - 540, 0);
                         Menu3.setPosition(view.getCenter().x - 540, 0);
                         Menu4.setPosition(view.getCenter().x - 540, 0);
+                        cursor.setPosition(view.getCenter().x + 5 + text.getGlobalBounds().width + 10, 555.0f);
+                        last_char = event.text.unicode;
+                        text.setString(playerInput);
+                        cursor.setPosition(view.getCenter().x + 5 + text.getGlobalBounds().width + 10, 555.0f);
+                        Keyname.setPosition(view.getCenter().x - 240, 500);
+                        text.setPosition(view.getCenter().x - 15, 535.0f);
                     }
                 }
 
@@ -1038,9 +1146,10 @@ int main()
             }
             window.display();
             }
-         
-            player.setPosition(626.0f, 360.0f);
+            
+            Loop++;
             end = false;
+            player.setPosition(700.0f, 360.0f);
             player.Reset();
             
             for (int i = 0; i < monsterVector.size(); i++) {
