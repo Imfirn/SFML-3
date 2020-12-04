@@ -256,12 +256,6 @@ int main()
 
     Bullet_boss b1;
     std::vector<Bullet_boss> bullet;
-  
-
-
-
-
-
     Vector2f bossCenter;
     Vector2f mouse;
     Vector2f aimDir;
@@ -269,7 +263,7 @@ int main()
 
 
 
-    int scoreup = 0;
+   
 
     sf::Font font;
     font.loadFromFile("ABCD.ttf");
@@ -294,13 +288,45 @@ int main()
 
 
     int Bul = 0;
+    int scoreup = 0;
+    float counTime=0;
     float deltaTime = 0.0f;
     sf::Clock clock;
     //int b = 0;
     bool end = false;
     bool start = false;
+    bool SCore_li = false;
     bool menu = true;
+    bool MemScore = false;
 
+    
+
+    sf::String playerInput;
+    std::ofstream fileWriter;
+    std::ostringstream keyname;
+    Text Keyname;
+    std::string userName;
+    Keyname.setCharacterSize(40);
+    Keyname.setString(" ");
+    Keyname.setFont(font);
+    Keyname.setFillColor(sf::Color::White);
+
+
+    // Modify textbox /
+    char last_char = ' ';
+    sf::RectangleShape cursor;
+    cursor.setSize(sf::Vector2f(5.0f, 30.0f));
+    cursor.setOrigin(sf::Vector2f(2.5f, 15.0f));
+    cursor.setFillColor(sf::Color::White);
+    sf::Text text("", font);
+    Keyname.setPosition(300, 500);
+    text.setFillColor(sf::Color::White);
+    text.setPosition(545, 535);
+    cursor.setPosition(545.0f + text.getGlobalBounds().width + 10, 555.0f);
+    float totalTime_cursor = 0;
+    sf::Clock clock_cursor;
+    bool state_cursor = false;
+    
     while (window.isOpen())
     {
         
@@ -335,6 +361,7 @@ int main()
                     //Soundch.play();
                     menu = false;
                     start = true;
+                    MemScore = true;
                     Menu.setPosition(view.getCenter().x - 540, 0);
                     Menu1.setPosition(view.getCenter().x - 540, 0);
                     Menu2.setPosition(view.getCenter().x - 540, 0);
@@ -371,6 +398,72 @@ int main()
             }
            window.display();
         }
+        
+        /////////////////////////////
+        while (MemScore == true) {
+            
+            counTime += deltaTime;
+            sf::Event event;
+            while (window.pollEvent(event)) {
+                switch (event.type)
+                {
+                case sf::Event::Closed:
+                    window.close();
+                    break;
+                }
+            }
+
+            if (event.type == sf::Event::TextEntered && last_char != event.text.unicode)
+            {
+                if (event.text.unicode == 13) { //enter
+                    userName = playerInput;
+                    playerInput.clear();
+                    menu = true;
+                }
+                else if (event.text.unicode == 8 && playerInput.getSize() > 0) { // backspace delete
+                    playerInput = playerInput.substring(0, playerInput.getSize() - 1);
+                }
+                else {
+                    if (playerInput.getSize() < 10) {
+                        if (counTime > 0.2) {
+                            playerInput += event.text.unicode;
+                            counTime = 0;
+                        }
+                    }
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+                    menu = false;
+                    SCore_li = false;
+                    start = true;
+                    MemScore = false;
+                }
+
+                last_char = event.text.unicode;
+                text.setString(playerInput);
+                cursor.setPosition(545.0f + text.getGlobalBounds().width + 10, 555.0f);
+            }
+            else if (event.type == sf::Event::EventType::KeyReleased && last_char != ' ') {
+                last_char = ' ';
+            }
+            window.clear();
+            //window.draw(key);
+            window.draw(Keyname);
+
+            totalTime_cursor += clock_cursor.restart().asSeconds();
+            if (totalTime_cursor >= 0.5) {
+                totalTime_cursor = 0;
+                state_cursor = !state_cursor;
+            }
+            if (state_cursor == true) {
+                window.draw(cursor);
+            }
+            window.draw(text);
+
+            window.display();
+        }
+        ////////////////////////
+
+
         
         playerHP = 80000;
         HP.setSize(Vector2f(playerHP / 320.f, 15));
@@ -487,7 +580,7 @@ int main()
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f, 200));
 
 
-
+        
 
 
        while (start == true) {
@@ -945,6 +1038,7 @@ int main()
             }
             window.display();
             }
+         
             player.setPosition(626.0f, 360.0f);
             end = false;
             player.Reset();
