@@ -13,12 +13,12 @@ public:
 	void OnCollision(sf::Vector2f direction);
 	int Direction() { return this->LR; }
 	void setPosition(float x,float y);
-	//void set(float x, float y);
+	void Reset();
 
 //void updateitem(float detaTime, std::vector<Item2>& itemslowVector);
 	sf::Vector2f getPosition() { return body.getPosition(); }
 	Collider GetCollider() { return Collider(body); }
-
+	
 private:
 	sf::RectangleShape body;
 	Animation animation;

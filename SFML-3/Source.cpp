@@ -168,6 +168,7 @@ int main()
     Texture MOVPLAT3;
     MOVPLAT3.loadFromFile("pic/pm2.png");
     platVector_3.push_back(Platform2(&MOVPLAT3, sf::Vector2u(5, 2), 0.2f, 18705.0f, 250.0f));
+    platVector_3.push_back(Platform2(&MOVPLAT3, sf::Vector2u(5, 2), 0.2f, 21830.0f, 250.0f));
 
 
 
@@ -179,7 +180,7 @@ int main()
      //bossVector.push_back(Boss(&BOSS, sf::Vector2u(2, 2), 0.2f,23430.0f, 600.0f));
    
     ///Boss HP///
-    float bossHP = 8000;
+    float bossHP = 80000;
     RectangleShape HPb(Vector2f(bossHP / 250.0f, 50));
     HPb.setPosition(Vector2f(450, 46));
     HPb.setFillColor(Color::Magenta);
@@ -332,7 +333,7 @@ int main()
                 window.draw(Menu2);
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                     //Soundch.play();
-                   menu = false;
+                    menu = false;
                     start = true;
                     Menu.setPosition(view.getCenter().x - 540, 0);
                     Menu1.setPosition(view.getCenter().x - 540, 0);
@@ -513,8 +514,8 @@ int main()
 
             if (end == false) {
 
-
                 player.Update(deltaTime, itemslowVector);
+
             }
             HP.setPosition(Vector2f(view.getCenter().x - 520, 46));
             HPb.setPosition(Vector2f(bossVector.getposix(), 46));////////----
@@ -546,14 +547,16 @@ int main()
 
             if (bossVector.GetCollider().CheckCollision(bullet1.GetCollider())) {
 
-                bossHP -= 100;
+                bossHP -= 10000;
                 HPb.setSize(Vector2f(bossHP / 320.f, 15));
                 bullet1.del();
-                if (bossHP < 0) {
-                    bossHP = 0;
-                    HPb.setSize(Vector2f(bossHP / 320.f, 15));
-                    bossVector.delelet();
-                }
+              
+            }
+            if (bossHP < 0) {
+                bossHP = 0;
+                HPb.setSize(Vector2f(bossHP / 320.f, 15));
+                bossVector.delelet();
+                end = true;
             }
 
             if (bossHP == 0) { 
@@ -623,8 +626,13 @@ int main()
             for (int i = 0; i < itemHPupVector.size(); i++) {
                 if (itemHPupVector[i].check() == 1) {
                     //std::cout << "............................";
-                    playerHP += 3000;
+                    playerHP += 2500;
                     HP.setSize(Vector2f(playerHP / 300.f, 15));
+                    if (playerHP > 80000) {
+                            
+                        playerHP = 80000;
+                    
+                    }
                 }
             }
 
@@ -906,6 +914,7 @@ int main()
             Hi.setPosition(view.getCenter().x - 540, 0);
             Hi2.setPosition(view.getCenter().x - 540, 0);
             if (end == true) {
+
                 //std::cout << "............................";
                 cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
                 window.draw(Hi);
@@ -938,6 +947,8 @@ int main()
             }
             player.setPosition(626.0f, 360.0f);
             end = false;
+            player.Reset();
+            
             for (int i = 0; i < monsterVector.size(); i++) {
                 monsterVector.erase(monsterVector.begin() + i);
             }

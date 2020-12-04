@@ -2,8 +2,8 @@
 
 #include<iostream>
 
-Platform2::Platform2(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y) :
-    animation(texture, imageCount, switchTime)
+Platform2::Platform2(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y) 
+   
 {
     this->posiX = x;
     this->posiY = y;
@@ -34,8 +34,7 @@ void Platform2::updateX(float deltaTime)
         this->direction = -1;
     }
     body.move(this->direction * velocity * deltaTime);
-    animation.Updateplat(row, deltaTime);
-    body.setTextureRect(animation.uvRect);
+    
 }
 
 void Platform2::updateY(float deltaTime)
@@ -52,8 +51,7 @@ void Platform2::updateY(float deltaTime)
         this->direction = -1;
     }
     body.move(0, this->direction * velocity.y * deltaTime);
-    animation.Updateplat(row, deltaTime);
-    body.setTextureRect(animation.uvRect);
+   
 }
 
 void Platform2::MOVE() {

@@ -20,9 +20,9 @@ void Bullet::UpdateR(float deltaTime)
 {
   
 
-    if (body.getPosition().x != NULL - 50 && body.getPosition().y != NULL - 50) {
+    if (body.getPosition().x != NULL -100&& body.getPosition().y != NULL - 100) {
         velocity.y = 0;
-        velocity.x = speed*1.5;
+        velocity.x = speed*2;
        
             
         
@@ -43,12 +43,10 @@ void Bullet::UpdateL(float deltaTime)
         velocity.y = 0;
         velocity.x = speed * 1.5;
         
-
             row = 1;
             body.move(-velocity * deltaTime);
             animation.updateBu(row, deltaTime);
-        
-                 
+                        
         
 
         body.setTextureRect(animation.uvRect);

@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Player.h"
-#include "Animation.h"
 #include "Collider.h"
 
 class Platform2
@@ -31,6 +30,5 @@ private:
     float speed;
     float direction;
     sf::RectangleShape body;
-    Animation animation;
     sf::Vector2f velocity;
 };

@@ -39,9 +39,9 @@ void Player::Update(float deltaTime, std::vector<Item2>& itemslowVector) {
 		std::cout << deltaTime << '\n';
 		if (itemTimer >= 5) {
 			std::cout << "uioutreefggcv";
-			itemTimer = 0;
-			this->buffslow = false;
+			itemTimer = 0;		
 			this->v = 3;
+			this->buffslow = false;
 		}
 
 	}
@@ -143,5 +143,11 @@ void Player::OnCollision(sf::Vector2f direction)
 void Player::setPosition(float x, float y)
 {
 	body.setPosition(x, y);
+}
+
+void Player::Reset()
+{
+	this->buffslow = false;
+	this->v = 3;
 }
 
