@@ -55,8 +55,7 @@ void Bullet::UpdateL(float deltaTime)
 }
 
 void Bullet::attackR(sf::Vector2f pos) {
-        
- 
+         
         body.setPosition(pos.x + 53.0f, pos.y + 10.0f);
         isAva = false;
 }
