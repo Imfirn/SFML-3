@@ -330,8 +330,8 @@ int main()
     ///Sound-part2//--ยังใส่ไม่ได้
     SoundBuffer Part_2;
     Part_2.loadFromFile("sound/part2.ogg");
-    Sound part2Sound;
-    part2Sound.setBuffer(Part_2);
+    Sound partSound2;
+    partSound2.setBuffer(Part_2);
 
     ///Sound-score menu//
     SoundBuffer menuScore;
@@ -339,6 +339,11 @@ int main()
     Sound scoreSound;
     scoreSound.setBuffer(menuScore);
 
+    ///Sound-menu//
+    SoundBuffer menuMain;
+    menuMain.loadFromFile("sound/manu.ogg");
+    Sound mainSound;
+    mainSound.setBuffer(menuMain);
 
     int Bul = 0;
     int scoreup = 0;
@@ -352,6 +357,7 @@ int main()
     bool SCore_li = false;
     bool menu = true;
     bool MemScore = false;
+   
 
     
     // Adding name///
@@ -386,10 +392,12 @@ int main()
 
     while (window.isOpen())
     {
-        
+        if (menu == true) {
+            mainSound.play();
+        }
         while (menu == true)
         {   
-
+            
             Event event;
             while (window.pollEvent(event)) {
                 switch (event.type)
@@ -425,6 +433,7 @@ int main()
                     menu = false;
                     start = false;
                     MemScore = true;
+                    mainSound.stop();
                 }
             }
             else if (Mouse::getPosition(window).x >= 596 &&
@@ -435,7 +444,7 @@ int main()
                 window.draw(Menu3);
                 if (Mouse::isButtonPressed(Mouse::Left) )
                 {
-                   
+                    mainSound.stop();
                     menu = false;
                     start = false;
                     SCore_li = true;
@@ -449,7 +458,7 @@ int main()
             {
                 window.draw(Menu4);
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                  
+                     
                     window.close();
                     break;
                 }
@@ -477,6 +486,7 @@ int main()
                     userName = playerInput;
                     playerInput.clear();
                     menu = true;
+                   
                 }
                 else if (event.text.unicode == 8 && playerInput.getSize() > 0) { // backspace delete
                     playerInput = playerInput.substring(0, playerInput.getSize() - 1);
@@ -494,7 +504,9 @@ int main()
                     SCore_li = false;
                     MemScore = false;
                     start = true;
-                    part1Sound.play();
+                    part1Sound.play();                    
+                    mainSound.stop();
+                    
                 }
 
                 last_char = event.text.unicode;
@@ -1120,13 +1132,13 @@ int main()
               }
 
              
-              if (player.getPosition().x > 17000) {
+             /* if (player.getPosition().x > 17000) {
                  
                  part1Sound.stop();
-                 
-                        }
+               
+                        }*/
 
-             
+              
 
 
             window.setView(view);
@@ -1201,7 +1213,7 @@ int main()
             if (end == true) {
                              
                 part1Sound.stop();
-                part2Sound.stop();
+                //part2Sound.stop();
                 //std::cout << "............................";
                 cout << Mouse::getPosition(window).x << " " <<Mouse::getPosition(window).y << endl;
                 window.draw(Hi);
