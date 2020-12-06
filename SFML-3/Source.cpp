@@ -109,15 +109,28 @@ int main()
     playtexture.loadFromFile("pic/LR3.png");
     Player player(&playtexture, Vector2u(6, 4), 0.2f, 150.0f, 200.0f);
 
-    float playerHP = 80000;
-    RectangleShape HP(Vector2f(playerHP / 250.0f, 30));
+    //playerHP//
+    float playerHP = 60000;
+    RectangleShape HP(Vector2f(playerHP / 200.0f,25));
     HP.setPosition(Vector2f(450, 46));
     HP.setFillColor(Color::Red);
-    HP.setSize(Vector2f(playerHP / 320.f, 15));
+    HP.setSize(Vector2f(playerHP / 200.f, 25));
+
+    RectangleShape hp(Vector2f(350.0f, 65.0f));
+    Texture hpTexture;
+    hpTexture.loadFromFile("pic/HP.png");
+    hp.setTexture(&hpTexture);
+
+    RectangleShape hp1(Vector2f(60.0f, 60.0f));
+    Texture hp1Texture;
+    hp1Texture.loadFromFile("pic/HP-1.png");
+    hp1.setTexture(&hp1Texture);
+
+    
 
     Texture BULLET;
     BULLET.loadFromFile("pic/gun-1.png");
-    Bullet bullet1(&BULLET, sf::Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());
+    Bullet bullet1(&BULLET, Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());
 
 
     ///stair///
@@ -132,14 +145,10 @@ int main()
     Texture doors;
     doors.loadFromFile("pic/d.png");
     door.setTexture(&doors);
-
-   
+      
     
-
-
    
     srand(time(NULL));
-
 
 
 
@@ -173,7 +182,7 @@ int main()
     Texture MOVPLAT3;
     MOVPLAT3.loadFromFile("pic/pm2.png");
     platVector_3.push_back(Platform2(&MOVPLAT3, sf::Vector2u(5, 2), 0.2f, 18705.0f, 250.0f));
-    platVector_3.push_back(Platform2(&MOVPLAT3, sf::Vector2u(5, 2), 0.2f, 21830.0f, 250.0f));
+    platVector_3.push_back(Platform2(&MOVPLAT3, sf::Vector2u(5, 2), 0.2f, 17810.0f, 250.0f));
 
 
 
@@ -290,6 +299,15 @@ int main()
     LastScore.setFont(font1);
     LastScore.setFillColor(Color::Black);
 
+    //hp
+    Font font3;
+    font3.loadFromFile("ABCD.ttf");
+    std::ostringstream blood;
+    Text hpbar;
+    hpbar.setCharacterSize(20);
+    hpbar.setString(blood.str());
+    hpbar.setFont(font3);
+    hpbar.setFillColor(Color::Blue);
 
 
 
@@ -526,8 +544,9 @@ int main()
 
         deltaTime = 0;
         clock.restart();
-        playerHP = 80000;
-        HP.setSize(Vector2f(playerHP / 320.f, 15));
+        playerHP = 60000;
+        HP.setSize(Vector2f(playerHP / 200.f,25));
+
         scoreup = 0;
 
         Door_1.push_back(Platform(nullptr, Vector2f(300.0f, 900.0f), Vector2f(7430.0f, 500.0f)));
@@ -683,11 +702,14 @@ int main()
             point << "SCORE: " << scoreup;
             Score.setString(point.str());
 
+
+          
+
             for (int i = 0; i < monsterVector.size(); i++) {
                 if (monsterVector[i].check() == 1) {
                    
                     playerHP -= 50;
-                    HP.setSize(Vector2f(playerHP / 320.f, 15));
+                    HP.setSize(Vector2f(playerHP /200.f, 25));
                     
                 }
             }
@@ -724,7 +746,7 @@ int main()
                 if (monsterVector2[i].check() == 1) {
                     //std::cout << "............................";
                  //   playerHP -= 100;
-                    HP.setSize(Vector2f(playerHP / 320.f, 15));
+                    HP.setSize(Vector2f(playerHP / 200.f,25));
                    
                 }
             }
@@ -733,7 +755,7 @@ int main()
                 if (monsterVector3[i].check() == 1) {
                     //std::cout << "............................";
                    // playerHP -= 200;
-                    HP.setSize(Vector2f(playerHP / 320.f, 15));
+                    HP.setSize(Vector2f(playerHP / 200.f, 25));
 
                 }
             }
@@ -747,7 +769,7 @@ int main()
             if (bossVector.check() == 1) {
                 //std::cout << "............................";
                 playerHP -= 100;
-                HP.setSize(Vector2f(playerHP / 320.f, 15));
+                HP.setSize(Vector2f(playerHP /200.f, 25));
                 
             }    
 
@@ -757,7 +779,7 @@ int main()
                 if (player.GetCollider().CheckCollision(bullet[i].GetCollider())) {
                     std::cout << "............................";
                     playerHP -= 100;
-                    HP.setSize(Vector2f(playerHP / 320.f, 15));
+                    HP.setSize(Vector2f(playerHP /200.f, 25));
                     bullet.erase(bullet.begin() + i);
                 }
             }
@@ -779,16 +801,20 @@ int main()
             for (int i = 0; i < itemHPupVector.size(); i++) {
                 if (itemHPupVector[i].check() == 1) {
                     //std::cout << "............................";
-                    playerHP += 2500;
-                    HP.setSize(Vector2f(playerHP / 300.f, 15));
-                    if (playerHP > 80000) {
+                    playerHP += 2000;
+
+                    HP.setSize(Vector2f(playerHP /200.f, 25));
+                    if (playerHP >= 60000) {
                             
-                        playerHP = 80000;
-                    
+                        playerHP = 60000;
+                        HP.setSize(Vector2f(playerHP / 200.f, 25));
                     }
                 }
             }
 
+            blood.str(" ");
+            blood << playerHP << " /60000";
+            hpbar.setString(blood.str());
 
             for (int i = 0; i < monsterVector.size(); i++) {
 
@@ -1041,14 +1067,20 @@ int main()
                 view.setCenter(24618, 360);
             
                 }
-              HP.setPosition(Vector2f(view.getCenter().x - 520, 46));
+             
+              HP.setPosition(Vector2f(view.getCenter().x -475, 49));
+              hp.setPosition(Vector2f(view.getCenter().x - 520, 26));
+              hp1.setPosition(Vector2f(hp.getPosition().x , hp.getPosition().y));
               HPb.setPosition(Vector2f(bossVector.getposix(), 46));////////----
               LastScore.setPosition({ view.getCenter().x - 20 ,view.getCenter().y - 170 });
               Score.setPosition({ view.getCenter().x - 130 ,view.getCenter().y - 300 });
+              hpbar.setPosition(Vector2f(view.getCenter().x -460, 20));
+
 
               if (pos.x > 30000) {
 
                   Score.setPosition(view.getCenter().x - 540, 300);
+
               }
 
              
@@ -1058,7 +1090,7 @@ int main()
             window.draw(door);
             player.Draw(window);
             window.draw(Score);
-
+            window.draw(hpbar);
             if (scoreup > 500) {
 
                 for (int i = 0; i < monsterVector2.size(); i++) {
@@ -1113,7 +1145,9 @@ int main()
             for (Platform& DoorVector :Door_1)
                 DoorVector.Draw(window);
 
+            window.draw(hp);           
             window.draw(HP);
+            window.draw(hp1);
             window.draw(HPb);
             window.draw(st);
             //window.draw(Menu);
