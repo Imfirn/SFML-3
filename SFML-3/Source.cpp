@@ -309,6 +309,35 @@ int main()
     hpbar.setFont(font3);
     hpbar.setFillColor(Color::Blue);
 
+    ///Sound-shooting//
+    SoundBuffer Shooting;
+    Shooting.loadFromFile("sound/shooting.ogg");
+    Sound playerShooting;
+    playerShooting.setBuffer(Shooting);
+
+    ///Sound-hp+//
+    SoundBuffer HPup;
+    HPup.loadFromFile("sound/hp+.wav");
+    Sound itemUP;
+    itemUP.setBuffer(HPup);
+
+    ///Sound-part1//
+    SoundBuffer Part_1;
+    Part_1.loadFromFile("sound/part1.ogg");
+    Sound part1Sound;
+    part1Sound.setBuffer(Part_1);
+
+    ///Sound-part2//--ยังใส่ไม่ได้
+    SoundBuffer Part_2;
+    Part_2.loadFromFile("sound/part2.ogg");
+    Sound part2Sound;
+    part2Sound.setBuffer(Part_2);
+
+    ///Sound-score menu//
+    SoundBuffer menuScore;
+    menuScore.loadFromFile("sound/score.ogg");
+    Sound scoreSound;
+    scoreSound.setBuffer(menuScore);
 
 
     int Bul = 0;
@@ -410,6 +439,7 @@ int main()
                     menu = false;
                     start = false;
                     SCore_li = true;
+                    scoreSound.play();
                 }
             }
             else if (Mouse::getPosition(window).x >= 596 &&
@@ -464,6 +494,7 @@ int main()
                     SCore_li = false;
                     MemScore = false;
                     start = true;
+                    part1Sound.play();
                 }
 
                 last_char = event.text.unicode;
@@ -537,6 +568,7 @@ int main()
                     //Soundch.play();
                     SCore_li = false;
                     menu = true;
+                    scoreSound.stop();
                 }
            
             window.display();
@@ -667,7 +699,7 @@ int main()
 
 
        while (start == true) {
-
+            
             deltaTime = clock.restart().asSeconds();
             Vector2f pos = player.getPosition();
            std::cout << pos.x << ' ' << pos.y << '\n';
@@ -687,7 +719,7 @@ int main()
                 }
             }
             ////Boss//
-
+            
             if (end == false) {
 
                 player.Update(deltaTime, itemslowVector);
@@ -784,8 +816,10 @@ int main()
                 }
             }
                  if (playerHP < 0) {
-                         playerHP = 0;
+                                              
+                         playerHP = 0;                        
                          end = true;
+                         
                       }
            
             if (playerHP == 0) {
@@ -800,6 +834,7 @@ int main()
 
             for (int i = 0; i < itemHPupVector.size(); i++) {
                 if (itemHPupVector[i].check() == 1) {
+                    itemUP.play();
                     //std::cout << "............................";
                     playerHP += 2000;
 
@@ -985,7 +1020,7 @@ int main()
            
 
             if (Keyboard::isKeyPressed(sf::Keyboard::Key::G))
-            {
+            {   
                 player_di = player.Direction();
 
                 if (player_di == 1) {
@@ -999,6 +1034,7 @@ int main()
                 }
 
                 Bul = 1;
+                playerShooting.play();
             }
 
 
@@ -1084,6 +1120,13 @@ int main()
               }
 
              
+              if (player.getPosition().x > 17000) {
+                 
+                 part1Sound.stop();
+                 
+                        }
+
+             
 
 
             window.setView(view);
@@ -1156,7 +1199,9 @@ int main()
 
 
             if (end == true) {
-
+                             
+                part1Sound.stop();
+                part2Sound.stop();
                 //std::cout << "............................";
                 cout << Mouse::getPosition(window).x << " " <<Mouse::getPosition(window).y << endl;
                 window.draw(Hi);
@@ -1169,6 +1214,8 @@ int main()
                     Mouse::getPosition(window).y <= 565)
                 {
                     if (Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+
                         vector<pair<int, string> > score;
                         string temp, tempString;
                         int tempInt = 0, X = 1;
@@ -1183,6 +1230,7 @@ int main()
                         }
                         adminFile.close();
                         start = false;
+                        part1Sound.stop();
                         MemScore = false;
                         end = false;
                         menu = true;
