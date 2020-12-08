@@ -23,6 +23,7 @@
 
 using namespace sf;
 int player_di;
+bool playSound = false;
 
 static const float VIEW_HIGHT = 1080.0f;
 
@@ -333,6 +334,14 @@ int main()
     Sound partSound2;
     partSound2.setBuffer(Part_2);
 
+    if (!Part_2.loadFromFile("sound.wav"))
+    {
+        std::cout << "ERROR";
+    }
+
+
+
+
     ///Sound-score menu//
     SoundBuffer menuScore;
     menuScore.loadFromFile("sound/score.ogg");
@@ -589,6 +598,8 @@ int main()
         deltaTime = 0;
         clock.restart();
         playerHP = 60000;
+        bossHP = 80000;
+
         HP.setSize(Vector2f(playerHP / 200.f,25));
 
         scoreup = 0;
@@ -763,7 +774,7 @@ int main()
 
             if (bossVector.GetCollider().CheckCollision(bullet1.GetCollider())) {
 
-                bossHP -= 10000;
+                bossHP -= 5000;
                 HPb.setSize(Vector2f(bossHP / 320.f, 15));
                 bullet1.del();
               
@@ -963,7 +974,10 @@ int main()
 
             for (Platform2& platVector3 : platVector_3)
                 if (platVector3.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
+                {
                     player.OnCollision(direction);
+                    
+                }
 
             for (Platform& DoorVector : Door_1)
                 if (DoorVector.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
@@ -1132,13 +1146,18 @@ int main()
               }
 
              
-             /* if (player.getPosition().x > 17000) {
+             if (player.getPosition().x > 17000) {
                  
-                 part1Sound.stop();
-               
-                        }*/
+                part1Sound.stop();
+                playSound = true;
+                
+                        }
+             
+             if (playSound == true) {
 
-              
+                 //   partSound2.play();
+                 std::cout << "............................";
+             }
 
 
             window.setView(view);
