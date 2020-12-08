@@ -24,6 +24,7 @@
 using namespace sf;
 int player_di;
 bool playSound = false;
+int checkSound=0;
 
 static const float VIEW_HIGHT = 1080.0f;
 
@@ -182,7 +183,7 @@ int main()
     std::vector<Platform2>platVector_3;
     Texture MOVPLAT3;
     MOVPLAT3.loadFromFile("pic/pm2.png");
-    platVector_3.push_back(Platform2(&MOVPLAT3, sf::Vector2u(5, 2), 0.2f, 18705.0f, 250.0f));
+    platVector_3.push_back(Platform2(&MOVPLAT3, sf::Vector2u(5, 2), 0.2f, 21400.0f, 250.0f));
     platVector_3.push_back(Platform2(&MOVPLAT3, sf::Vector2u(5, 2), 0.2f, 17810.0f, 250.0f));
 
 
@@ -323,36 +324,36 @@ int main()
     itemUP.setBuffer(HPup);
 
     ///Sound-part1//
-    SoundBuffer Part_1;
-    Part_1.loadFromFile("sound/part1.ogg");
-    Sound part1Sound;
-    part1Sound.setBuffer(Part_1);
+    
+    Music part1Sound;
+    part1Sound.openFromFile("sound/part1.ogg");
+    part1Sound.setLoop(true);
+    part1Sound.setVolume(20.f);
 
     ///Sound-part2//--ยังใส่ไม่ได้
-    SoundBuffer Part_2;
-    Part_2.loadFromFile("sound/part2.ogg");
-    Sound partSound2;
-    partSound2.setBuffer(Part_2);
-
-    if (!Part_2.loadFromFile("sound.wav"))
-    {
-        std::cout << "ERROR";
-    }
-
+    
+    Music  part2Sound;
+    part2Sound.openFromFile("sound/part2.ogg");
+    part2Sound.setLoop(true);
+    part2Sound.setVolume(20.f);
 
 
 
     ///Sound-score menu//
-    SoundBuffer menuScore;
-    menuScore.loadFromFile("sound/score.ogg");
-    Sound scoreSound;
-    scoreSound.setBuffer(menuScore);
+   
+    Music scoreSound;
+    scoreSound.openFromFile("sound/score.ogg");
+    scoreSound.setLoop(true);
+    scoreSound.setVolume(20.f);
+
 
     ///Sound-menu//
-    SoundBuffer menuMain;
-    menuMain.loadFromFile("sound/manu.ogg");
-    Sound mainSound;
-    mainSound.setBuffer(menuMain);
+   
+    
+    Music mainSound;
+    mainSound.openFromFile("sound/manu.ogg");
+    mainSound.setLoop(true);
+    mainSound.setVolume(20.f);
 
     int Bul = 0;
     int scoreup = 0;
@@ -1154,9 +1155,10 @@ int main()
                         }
              
              if (playSound == true) {
-
-                 //   partSound2.play();
-                 std::cout << "............................";
+                 for (; checkSound < 1; checkSound++) {
+                     part2Sound.play();
+                     std::cout << "............................";
+                 }
              }
 
 
@@ -1232,7 +1234,7 @@ int main()
             if (end == true) {
                              
                 part1Sound.stop();
-                //part2Sound.stop();
+                part2Sound.stop();
                 //std::cout << "............................";
                 cout << Mouse::getPosition(window).x << " " <<Mouse::getPosition(window).y << endl;
                 window.draw(Hi);
