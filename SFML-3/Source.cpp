@@ -75,6 +75,14 @@ int main()
     Menu_2.loadFromFile("pic/m/b1.png");
     Menu2.setTexture(&Menu_2);
 
+    ///Menu_keyname////
+    RectangleShape addName(Vector2f(1080.0f, 720.0f));
+    addName.setPosition(0.0f, 0.0f);
+    Texture addName_1;
+    addName_1.loadFromFile("pic/Keyname.png");
+    addName.setTexture(&addName_1);
+
+
 
     ///Menu_b2////
     RectangleShape Menu3(Vector2f(1080.0f, 720.0f));
@@ -330,7 +338,9 @@ int main()
     part1Sound.setLoop(true);
     part1Sound.setVolume(20.f);
 
-    ///Sound-part2//--ยังใส่ไม่ได้
+   
+
+    ///Sound-part2//
     
     Music  part2Sound;
     part2Sound.openFromFile("sound/part2.ogg");
@@ -419,11 +429,12 @@ int main()
             }
             Vector2f mouesPosition = sf::Vector2f(0.0f, 0.0f);
             mouesPosition = window.mapPixelToCoords(sf::Mouse::getPosition(window));
-           // cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y  << endl;
+           cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y  << endl;
 
             deltaTime = clock.restart().asSeconds();
             
                 window.draw(Menu);
+               
                 window.draw(Menu1);
                
            if (Mouse::getPosition(window).x >= 596&&
@@ -434,17 +445,15 @@ int main()
                 window.draw(Menu2);
                 if (Mouse::isButtonPressed(sf::Mouse::Left)) {
                     //Soundch.play();
-                    Menu.setPosition(view.getCenter().x - 540, 0);
-                    Menu1.setPosition(view.getCenter().x - 540, 0);
-                    Menu2.setPosition(view.getCenter().x - 540, 0);
-                    Menu3.setPosition(view.getCenter().x - 540, 0);
-                    Menu4.setPosition(view.getCenter().x - 540, 0);
+                  
                   //  MemScore = true;
+                    
                     menu = false;
                     start = false;
-                    MemScore = true;
+                    MemScore = true;                   
                     mainSound.stop();
                 }
+               
             }
             else if (Mouse::getPosition(window).x >= 596 &&
                 Mouse::getPosition(window).y >= 366 &&
@@ -475,10 +484,12 @@ int main()
             }
            window.display();
         }
-        
+       
         /////////////////////////////
         while (MemScore == true) {
             
+
+          
             counTime += deltaTime;
             sf::Event event;
             while (window.pollEvent(event)) {
@@ -489,9 +500,9 @@ int main()
                     break;
                 }
             }
-
+              
             if (event.type == sf::Event::TextEntered && last_char != event.text.unicode)
-            {
+            {  
                 if (event.text.unicode == 13) { //enter
                     userName = playerInput;
                     playerInput.clear();
@@ -528,6 +539,7 @@ int main()
             }
             window.clear();
             //window.draw(key);
+            window.draw(addName);
             window.draw(Keyname);
 
             totalTime_cursor += clock_cursor.restart().asSeconds();
@@ -1274,7 +1286,8 @@ int main()
                         Menu2.setPosition(view.getCenter().x - 540, 0);
                         Menu3.setPosition(view.getCenter().x - 540, 0);
                         Menu4.setPosition(view.getCenter().x - 540, 0);
-                        cursor.setPosition(view.getCenter().x + 5 + text.getGlobalBounds().width + 10, 555.0f);
+                        addName.setPosition(view.getCenter().x - 540, 0);
+                        cursor.setPosition(view.getCenter().x + 5  + text.getGlobalBounds().width + 10, 555.0f);                      
                         last_char = event.text.unicode;
                         text.setString(playerInput);
                         cursor.setPosition(view.getCenter().x + 5 + text.getGlobalBounds().width + 10, 555.0f);
