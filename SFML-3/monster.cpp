@@ -10,11 +10,12 @@
 
 
 
-monster::monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y,float a) :
+monster::monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y,float a,float hp) :
     animation(texture, imageCount, switchTime)
 {
     this->speed = speed;
     this->velocity.x = a;
+    this->monHP = hp;
     hpdown = 0;
     
     row = 0;
@@ -38,9 +39,8 @@ void monster::updatemon(float deltaTime, Bullet bullet1)
     if (bullet1.GetCollider().CheckCollision(this->GetCollider()))
     {
         hpdown++;
-        count++;
-        row = 1;
-        body.setPosition(-1000.0f, 350.0f);
+        count++;        
+       // body.setPosition(-1000.0f, 350.0f);
     }
 
  }
@@ -100,3 +100,16 @@ void monster::OnCollision(sf::Vector2f direction, float deltaTime)
     }
     
 }
+
+float monster::getScore(float attack)
+{   
+    monHP -= attack;
+
+    if (monHP < 0)
+    {   
+        monHP = 0;
+        return 1;
+    }
+   
+}
+

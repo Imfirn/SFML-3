@@ -12,15 +12,15 @@
 class monster
 {
 public:
-    monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y,float a);
+    monster(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y,float a,float hp);
     ~monster();
     void updatemon(float deltaTime, Bullet bullet1);
     void updatemon2(float deltaTime, Player player);
     void OnCollision(sf::Vector2f direction, float deltaTime);
-
+    float getScore(float attack);
     void Draw(sf::RenderWindow& window);
     Collider GetCollider() { return Collider(body); }
-   
+    
     
     int hit()
     {
@@ -35,6 +35,8 @@ public:
             return 1;
         }
     }
+
+
     sf::RectangleShape body;
 private:
     int row;
@@ -43,6 +45,7 @@ private:
     bool faceR;
     float a;
     float speed;
+    float monHP;
     bool Monsterbu;
     Animation animation;
     sf::Vector2f velocity;

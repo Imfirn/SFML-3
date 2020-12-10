@@ -98,6 +98,15 @@ int main()
     Menu_4.loadFromFile("pic/m/b3.png");
     Menu4.setTexture(&Menu_4);
 
+    ///Menu_highscore////
+    RectangleShape highScore(Vector2f(1080.0f, 720.0f));
+    highScore.setPosition(0.0f, 0.0f);
+    Texture hs;
+    hs.loadFromFile("pic/hs.png");
+    highScore.setTexture(&hs);
+
+
+
     ///score
     RectangleShape Hi(Vector2f(1080.0f, 720.0f));
    // Hi.setPosition(0.0f, 0.0f);
@@ -166,6 +175,8 @@ int main()
     Texture MONSTER;
     MONSTER.loadFromFile("pic/m3.png");
     std::vector<monster> monsterVector;
+    float monsterHP=300;
+   
    
     ///monster2-bat///
     Texture MONSTER2;
@@ -562,15 +573,16 @@ int main()
                 view.setCenter(540, 360);
             }
            
-            sf::Vector2f mouesPosition = sf::Vector2f(0.0f, 0.0f);
-            mouesPosition = window.mapPixelToCoords(sf::Mouse::getPosition(window));
-            cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
+            sf::Vector2f mouesPosition = Vector2f(0.0f, 0.0f);
+            mouesPosition = window.mapPixelToCoords(Mouse::getPosition(window));
+            cout <<Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
 
             window.clear();
-            //window.draw(hh);
-            sf::Text text1("", font);
+            window.draw(highScore);
+
+            Text text1("", font);
             text1.setCharacterSize(30);
-            text1.setFillColor(sf::Color::White);
+            text1.setFillColor(Color::Black);
             Opentext.open("text/high_s.txt");
             do {
                 Opentext >> list;
@@ -598,7 +610,7 @@ int main()
                 }
             }
 
-                if (Keyboard::isKeyPressed(sf::Keyboard::E))
+                if (Keyboard::isKeyPressed(Keyboard::E))
                 {
                     //Soundch.play();
                     SCore_li = false;
@@ -613,7 +625,7 @@ int main()
         clock.restart();
         playerHP = 60000;
         bossHP = 80000;
-       
+        monsterHP = 300;
 
         HP.setSize(Vector2f(playerHP / 200.f,25));
 
@@ -622,33 +634,35 @@ int main()
         Door_1.push_back(Platform(nullptr, Vector2f(300.0f, 900.0f), Vector2f(7430.0f, 500.0f)));
 
 
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f, 140));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 100 + 1500, 300.0f, 130));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 200 + 1700, 300.0f, 130));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f, 80));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3500, 615.0f, 130));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3500, 615.0f, 80));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3300, 380.0f, 80));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 4500, 575.0f, 150));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 5500, 615.0f, 150));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 2500, 615.0f, 80));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6000, 615.0f, 50));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 5000, 615.0f, 50));
-        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6500, 615.0f, 100));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f, 140,200));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 100 + 1500, 300.0f, 130,200));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 200 + 1700, 300.0f, 130,200));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f, 80,200));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3500, 615.0f, 130,200));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3500, 615.0f, 80,200));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 3300, 380.0f, 80,200));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 4500, 575.0f, 150,200));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 5500, 615.0f, 150,200));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 2500, 615.0f, 80,200));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6000, 615.0f, 50,200));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 5000, 615.0f, 50,200));
+        monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 6500, 615.0f, 100,200));
 
+       
+        
 
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f, 250));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f, 250));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 5500, 615.0f, 250));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4000, 545.0f, 150));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 5000, 615.0f, 150));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 545.0f, 150));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 5500, 615.0f, 150));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 615.0f, 200));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6000, 615.0f, 200));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6000, 320.0f, 200));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 320.0f, 200));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 320.0f, 200));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f, 250,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 615.0f, 250,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 5500, 615.0f, 250,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4000, 545.0f, 150,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 5000, 615.0f, 150,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 545.0f, 150,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 5500, 615.0f, 150,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 4500, 615.0f, 200,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6000, 615.0f, 200,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6000, 320.0f, 200,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 320.0f, 200,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 320.0f, 200,400));
 
 
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2000, 600.0f));
@@ -715,22 +729,22 @@ int main()
         Boss  bossVector(&BOSS, Vector2u(3, 2), 0.4f, 23430.0f, 450.0f);
         bullet.push_back(Bullet_boss(b1));
 
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 17500, 530.0f, 200));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 17500, 500.0f, 250));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 17500, 530.0f, 200,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 17500, 500.0f, 250,500));
 
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 19000, 300.0f, 250));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 18000, 300.0f, 200));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 18500, 300.0f, 200));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 200 + 20000, 530.0f, 250));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 200 + 21000, 530.0f, 200));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 200 + 21200, 530.0f, 250));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 21100, 530.0f, 200));
-
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 21000, 300.0f, 200));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 17500, 615.0f, 200));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 17500, 615.0f, 200));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 18500, 615.0f, 200));
-        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 6500, 615.0f, 200));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 19000, 300.0f, 250,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 18000, 300.0f, 200,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 18500, 300.0f, 200,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 200 + 20000, 530.0f, 250,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 200 + 21000, 530.0f, 200,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 200 + 21200, 530.0f, 250,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 21100, 530.0f, 200,500));
+        
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 21000, 300.0f, 200,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 17500, 615.0f, 200,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 17500, 615.0f, 200,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 18500, 615.0f, 200,400));
+        monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 6500, 615.0f, 200,400));
 
 
         
@@ -1101,18 +1115,31 @@ int main()
 
                 for (int i = 0; i < monsterVector2.size(); i++) {
                     if (monsterVector2[i].hit() == 1)
-                    {
-                        scoreup += 200;
+                    {   
+                        
                         bullet1.del();
-                        monsterVector2.erase(monsterVector2.begin() + i);
+
+                        if (monsterVector2[i].getScore(100) == 1) {
+                            scoreup += 200;        
+                            bullet1.del();
+                            monsterVector2.erase(monsterVector2.begin() + i);
+                          //  bullet1.del();
+                        }
                     }
                 }
+
                 for (int i = 0; i < monsterVector.size(); i++) {
                     if (monsterVector[i].hit() == 1)
                     {  
-                        scoreup += 100;
                         bullet1.del();
-                        monsterVector.erase(monsterVector.begin() + i);
+                       
+                        if (monsterVector[i].getScore(100) == 1) {
+                            scoreup += 100; 
+                            bullet1.del();
+                            monsterVector.erase(monsterVector.begin() + i);
+                           // bullet1.del();
+                        }
+                       
                                                 
                     }
 
@@ -1122,9 +1149,14 @@ int main()
                 for (int i = 0; i < monsterVector3.size(); i++) {
                     if (monsterVector3[i].hit() == 1)
                     {
-                        scoreup += 250;
                         bullet1.del();
-                        monsterVector3.erase(monsterVector3.begin() + i);
+                        if (monsterVector3[i].getScore(100) == 1) {
+                            
+                            scoreup += 250;
+                            bullet1.del();
+                            monsterVector3.erase(monsterVector3.begin() + i);
+
+                        }
                     }
                 }
               
@@ -1217,7 +1249,6 @@ int main()
             for (int i = 0; i < monsterVector3.size(); i++) {
                 monsterVector3[i].Draw(window);
             }
-           
           
 
             for (int i = 0; i < platVector_3.size(); i++) {
@@ -1297,6 +1328,7 @@ int main()
                         Menu2.setPosition(view.getCenter().x - 540, 0);
                         Menu3.setPosition(view.getCenter().x - 540, 0);
                         Menu4.setPosition(view.getCenter().x - 540, 0);
+                        highScore.setPosition(view.getCenter().x - 540, 0);
                         addName.setPosition(view.getCenter().x - 540, 0);
                         cursor.setPosition(view.getCenter().x + 5  + text.getGlobalBounds().width + 10, 555.0f);                      
                         last_char = event.text.unicode;
