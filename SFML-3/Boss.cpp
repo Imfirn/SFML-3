@@ -77,6 +77,11 @@ float Boss::getposix() {
     body.getPosition().x;
     return body.getPosition().x;
 }
+float Boss::getposiy()
+{
+    body.getPosition().y;
+    return body.getPosition().y;
+}
 void Boss::delelet() {
      
     body.setPosition(-1000,800);

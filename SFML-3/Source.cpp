@@ -183,16 +183,16 @@ int main()
    
     std::vector<Platform2>platVector2;
     MOVPLAT2.loadFromFile("pic/test-1.png");
-    platVector2.push_back(Platform2(&MOVPLAT2, sf::Vector2u(4, 0), 0.2f, 1000.0f, 400.0f));
-    platVector2.push_back(Platform2(&MOVPLAT2, sf::Vector2u(4, 0), 0.2f, 2000.0f, 400.0f));
+    platVector2.push_back(Platform2(&MOVPLAT2, 0.2f, 1000.0f, 400.0f));
+    platVector2.push_back(Platform2(&MOVPLAT2, 0.2f, 2000.0f, 400.0f));
 
 
     //moving platform - part2//
     std::vector<Platform2>platVector_3;
     Texture MOVPLAT3;
     MOVPLAT3.loadFromFile("pic/pm2.png");
-    platVector_3.push_back(Platform2(&MOVPLAT3, sf::Vector2u(5, 2), 0.2f, 21400.0f, 250.0f));
-    platVector_3.push_back(Platform2(&MOVPLAT3, sf::Vector2u(5, 2), 0.2f, 17810.0f, 250.0f));
+    platVector_3.push_back(Platform2(&MOVPLAT3, 0.2f, 21765.0f, 420.0f));
+    platVector_3.push_back(Platform2(&MOVPLAT3, 0.2f, 18700.0f, 420.0f));
 
 
 
@@ -209,6 +209,7 @@ int main()
     HPb.setPosition(Vector2f(450, 46));
     HPb.setFillColor(Color::Magenta);
     HPb.setSize(Vector2f(bossHP / 23430.f, 15));
+    
 
 
     ///ITEM 1///
@@ -612,6 +613,7 @@ int main()
         clock.restart();
         playerHP = 60000;
         bossHP = 80000;
+       
 
         HP.setSize(Vector2f(playerHP / 200.f,25));
 
@@ -851,12 +853,6 @@ int main()
                     bullet.erase(bullet.begin() + i);
                 }
             }
-                 if (playerHP < 0) {
-                                              
-                         playerHP = 0;                        
-                         end = true;
-                         
-                      }
            
             if (playerHP == 0) {
             
@@ -989,8 +985,17 @@ int main()
                 if (platVector3.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
                 {
                     player.OnCollision(direction);
-                    
+                    playerHP -= 50;
+                    HP.setSize(Vector2f(playerHP / 200.f, 25));
                 }
+
+
+            if (playerHP < 0) {
+
+                playerHP = 0;
+                end = true;
+
+            }
 
             for (Platform& DoorVector : Door_1)
                 if (DoorVector.GetCollider().CheckCollision(playerCollision, direction, 1.0f))
@@ -1099,21 +1104,27 @@ int main()
                     {
                         scoreup += 200;
                         bullet1.del();
+                        monsterVector2.erase(monsterVector2.begin() + i);
                     }
                 }
                 for (int i = 0; i < monsterVector.size(); i++) {
                     if (monsterVector[i].hit() == 1)
-                    {
+                    {  
                         scoreup += 100;
                         bullet1.del();
+                        monsterVector.erase(monsterVector.begin() + i);
+                                                
                     }
-                }
 
+                    
+                }
+               
                 for (int i = 0; i < monsterVector3.size(); i++) {
                     if (monsterVector3[i].hit() == 1)
                     {
                         scoreup += 250;
                         bullet1.del();
+                        monsterVector3.erase(monsterVector3.begin() + i);
                     }
                 }
               
@@ -1146,9 +1157,9 @@ int main()
               HP.setPosition(Vector2f(view.getCenter().x -475, 49));
               hp.setPosition(Vector2f(view.getCenter().x - 520, 26));
               hp1.setPosition(Vector2f(hp.getPosition().x , hp.getPosition().y));
-              HPb.setPosition(Vector2f(bossVector.getposix(), 46));////////----
+              HPb.setPosition(Vector2f(bossVector.getposix()-100, bossVector.getposiy()-300));////////----
               LastScore.setPosition({ view.getCenter().x - 20 ,view.getCenter().y - 170 });
-              Score.setPosition({ view.getCenter().x - 130 ,view.getCenter().y - 300 });
+              Score.setPosition({ view.getCenter().x +200 ,26});
               hpbar.setPosition(Vector2f(view.getCenter().x -460, 20));
 
 
@@ -1169,7 +1180,7 @@ int main()
              if (playSound == true) {
                  for (; checkSound < 1; checkSound++) {
                      part2Sound.play();
-                     std::cout << "............................";
+                    // std::cout << "............................";
                  }
              }
 
@@ -1289,8 +1300,7 @@ int main()
                         addName.setPosition(view.getCenter().x - 540, 0);
                         cursor.setPosition(view.getCenter().x + 5  + text.getGlobalBounds().width + 10, 555.0f);                      
                         last_char = event.text.unicode;
-                        text.setString(playerInput);
-                        cursor.setPosition(view.getCenter().x + 5 + text.getGlobalBounds().width + 10, 555.0f);
+                        text.setString(playerInput);                      
                         Keyname.setPosition(view.getCenter().x - 240, 500);
                         text.setPosition(view.getCenter().x - 15, 535.0f);
                     }

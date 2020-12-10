@@ -1,8 +1,7 @@
 #include "Platform2.h"
-
 #include<iostream>
 
-Platform2::Platform2(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y) 
+Platform2::Platform2(sf::Texture* texture, float switchTime, float x, float y) 
    
 {
     this->posiX = x;
@@ -10,7 +9,7 @@ Platform2::Platform2(sf::Texture* texture, sf::Vector2u imageCount, float switch
     this->speed = speed;
     this->direction = 1;
 
-    row = 1;
+    
     counthit = 0;
     body.setSize(sf::Vector2f(400.0f, 100.0f));
     body.setOrigin(body.getSize() / 2.0f);
@@ -26,11 +25,11 @@ void Platform2::updateX(float deltaTime)
     velocity.y = 0;
     velocity.x = 80;
     if (POSX < this->posiX) {
-        row = 1;
+       
         this->direction = 1;
     }
     else if (POSX > this->posiX + 300) {
-        row = 3;
+        
         this->direction = -1;
     }
     body.move(this->direction * velocity * deltaTime);
@@ -43,11 +42,11 @@ void Platform2::updateY(float deltaTime)
     velocity.y = 80;
     velocity.x = 0;
     if (POSY < this->posiY) {
-        row = 0;
+        
         this->direction = 1;
     }
-    else if (POSY > this->posiY + 300) {
-        row = 2;
+    else if (POSY > this->posiY +120) {
+       
         this->direction = -1;
     }
     body.move(0, this->direction * velocity.y * deltaTime);

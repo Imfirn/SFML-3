@@ -21,6 +21,7 @@ public:
     void updateboss(float deltaTime, Bullet bullet1);
     void updateboss2(float deltaTime, Player player);
     float getposix();
+    float getposiy();
     void Draw(sf::RenderWindow& window);
     void delelet();
     Collider GetCollider() { return Collider(body); }

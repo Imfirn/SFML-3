@@ -7,7 +7,7 @@ class Platform2
 {
 
 public:
-    Platform2(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y );
+    Platform2(sf::Texture* texture, float switchTime, float x, float y );
     ~Platform2();
     void updateX(float deltaTime);
     void updateY(float deltaTime);
@@ -23,7 +23,7 @@ public:
 
 private:
     float posiX, posiY;
-    int row;
+   
     int counthit;
     int count = 100;
     bool hit;
