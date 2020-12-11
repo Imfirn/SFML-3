@@ -58,3 +58,16 @@ dsd,5550
 dsah,5550
 fhdg,0
 jck,1900
+ds,0
+fds,0
+shd,300
+dsd,200
+sdd,200
+dsda,0
+sds,0
+dsd,100
+j,0
+sada,100
+fd,200
+hdsa,0
+pimdy,2800

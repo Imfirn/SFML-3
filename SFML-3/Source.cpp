@@ -420,16 +420,16 @@ int main()
     Keyname.setCharacterSize(40);
     Keyname.setString(" ");
     Keyname.setFont(font);
-    Keyname.setFillColor(sf::Color::White);    
+    Keyname.setFillColor(sf::Color::Black);    
     char last_char = ' ';
     RectangleShape cursor;
     cursor.setSize(Vector2f(5.0f, 30.0f));
     cursor.setOrigin(Vector2f(2.5f, 15.0f));
-    cursor.setFillColor(Color::White);
+    cursor.setFillColor(Color::Black);
     Text text("", font);
 
     Keyname.setPosition(300, 500);
-    text.setFillColor(Color::White);
+    text.setFillColor(Color::Black);
     text.setPosition(545, 535);
     cursor.setPosition(545.0f + text.getGlobalBounds().width + 10, 555.0f);
     float totalTime_cursor = 0;
@@ -578,6 +578,7 @@ int main()
                 state_cursor = !state_cursor;
             }
             if (state_cursor == true) {
+
                 window.draw(cursor);
             }
             window.draw(text);
@@ -798,7 +799,7 @@ int main()
             
            
           
-            if (Keyboard::isKeyPressed(sf::Keyboard::Key::E)) {
+            if (Keyboard::isKeyPressed(sf::Keyboard::Key::X)) {
                 Stop = true;
             }
            
@@ -1431,6 +1432,36 @@ int main()
 
                     }
                 }
+
+                if (Mouse::getPosition(window).x >= 424 &&
+                    Mouse::getPosition(window).y >= 264 &&
+                    Mouse::getPosition(window).x <= 600 &&
+                    Mouse::getPosition(window).y <= 341)
+                {
+                    if (Mouse::isButtonPressed(sf::Mouse::Left)) {
+                        Stop = false;
+                        end = true;
+                        point1.str(" ");
+                        point1 << "  " << scoreup;
+                        LastScore.setString(point1.str());
+                        window.draw(LastScore);
+
+                    }
+                       
+                }
+                if (Mouse::getPosition(window).x >= 424 &&
+                    Mouse::getPosition(window).y >= 443 &&
+                    Mouse::getPosition(window).x <= 600 &&
+                    Mouse::getPosition(window).y <= 500)
+                {
+                    if (Mouse::isButtonPressed(sf::Mouse::Left)) {
+                        window.close();
+                        break;
+                    }
+
+                }
+
+
             }
             if (end == true) {
                 playerShooting.stop();
@@ -1440,7 +1471,10 @@ int main()
                 cout << Mouse::getPosition(window).x << " " <<Mouse::getPosition(window).y << endl;
                 window.draw(Hi);
                 if (bossHP == 0) { window.draw(Hi2); }
+
                 window.draw(LastScore);
+
+
                 //window.draw(Hi);
                 if (Mouse::getPosition(window).x >= 525 &&
                     Mouse::getPosition(window).y >= 475 &&
