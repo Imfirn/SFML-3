@@ -103,7 +103,7 @@ void Player::Update(float deltaTime, std::vector<Item2>& itemslowVector) {
 		body.setPosition(body.getPosition().x,300);
 	}
 	/// change Part///
-	if (7353 <= body.getPosition().x && body.getPosition().x <= 7615) {
+	if (7635 <= body.getPosition().x && body.getPosition().x <= 7700 && body.getPosition().y >= 400) {
 		body.setPosition(17960, body.getPosition().y);
 	}
 	

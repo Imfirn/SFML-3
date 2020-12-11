@@ -159,12 +159,11 @@ int main()
     sts.loadFromFile("pic/pla-2.png");
     st.setTexture(&sts);
 
-    RectangleShape door(Vector2f(300.0f, 500.0f));
-    door.setPosition(7340.0f, 175.0f);
+    
     Texture doors;
-    doors.loadFromFile("pic/d.png");
-    door.setTexture(&doors);
-      
+    doors.loadFromFile("pic/closed.png");
+   
+   
     
    
     srand(time(NULL));
@@ -182,6 +181,12 @@ int main()
     Texture MONSTER2;
     MONSTER2.loadFromFile("pic/mo3-1.png");
     std::vector<monster> monsterVector2;
+
+    Texture FIRE;
+    FIRE.loadFromFile("pic/fire.png");
+    std::vector<monster> fireVector;
+    std::vector<monster> fireVector2;
+    std::vector<monster> fireVector3;
    
     ///monster3-ghost///
     Texture MONSTER3;
@@ -241,20 +246,25 @@ int main()
 
     std::vector<Platform>platforms;
     ////Part 1/////
-    platforms.push_back(Platform(nullptr,Vector2f(50.0f, 50.0f),Vector2f(3057.0f, 500.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(50.0f, 50.0f),Vector2f(3057.0f, 500.0f)));//
     platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(3050.0f, 550.0f)));
-    platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(3815.0f, 550.0f)));
-    platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(3449.0f, 450.0f)));
-    platforms.push_back(Platform(nullptr,Vector2f(274.0f, 80.0f),Vector2f(4415.0f, 630.0f)));
-    platforms.push_back(Platform(nullptr,Vector2f(316.0f, 40.0f),Vector2f(4710.0f, 640.0f)));
-    platforms.push_back(Platform(nullptr,Vector2f(274.0f, 80.0f),Vector2f(5000.0f, 630.0f)));
-    platforms.push_back(Platform(nullptr,Vector2f(296.0f, 50.0f),Vector2f(5800.0f, 510.0f)));
-    platforms.push_back(Platform(nullptr,Vector2f(296.0f, 50.0f),Vector2f(6138.0f, 400.0f)));
+    platforms.push_back(Platform(nullptr, Vector2f(50.0f, 50.0f), Vector2f(4010.0f, 500.0f)));//
+    platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(4010.0f, 550.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(3579.0f, 450.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(274.0f, 80.0f),Vector2f(4570.0f, 630.0f)));
+    platforms.push_back(Platform(nullptr, Vector2f(50.0f, 50.0f), Vector2f(3579.0f, 400.0f)));//
+
+    platforms.push_back(Platform(nullptr,Vector2f(316.0f, 40.0f),Vector2f(4923.0f, 640.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(274.0f, 80.0f),Vector2f(5182.0f, 630.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(296.0f, 50.0f),Vector2f(6021.0f, 510.0f)));
+    platforms.push_back(Platform(nullptr,Vector2f(296.0f, 50.0f),Vector2f(6351.0f, 400.0f)));
     platforms.push_back(Platform(nullptr,Vector2f(592.0f, 50.0f),Vector2f(6859.0f, 400.0f)));
 
     ///Exit part1///
     std::vector<Platform>Door_1;
-   
+    
+
+
     Texture Floor;
     Floor.loadFromFile("pic/f-2.png");
     platforms.push_back(Platform(&Floor, Vector2f(16000.0f, 68.0f), Vector2f(1000.0f, 700.0f)));
@@ -390,9 +400,8 @@ int main()
     bool SCore_li = false;
     bool menu = true;
     bool MemScore = false;
-   
+  
 
-    
     // Adding name///
     String playerInput;
     std::ofstream fileWriter;
@@ -621,7 +630,9 @@ int main()
            
             window.display();
         }
-
+        bool Onfire1 = false;
+        bool Onfire2 = false;
+        bool Onfire3 = false;
         deltaTime = 0;
         clock.restart();
         playerHP = 60000;
@@ -632,8 +643,8 @@ int main()
 
         scoreup = 0;
 
-        Door_1.push_back(Platform(nullptr, Vector2f(300.0f, 900.0f), Vector2f(7430.0f, 500.0f)));
-
+        
+        Door_1.push_back(Platform(&doors, Vector2f(335.0f, 280.0f), Vector2f(7700.0f, 525.0f)));
 
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 500 + 1500, 615.0f, 140,200));
         monsterVector.push_back(monster(&MONSTER, sf::Vector2u(2, 2), 0.2f, rand() % 100 + 1500, 300.0f, 130,200));
@@ -665,18 +676,21 @@ int main()
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 320.0f, 200,400));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 320.0f, 200,400));
 
+        fireVector.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 3055.0f, 445.0f, 0, 200));//
+        fireVector2.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 4015.0f, 445.0f, 0, 200));//
+        fireVector3.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 3580.0f, 345.0f, 0, 200));//
 
         
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2000, 600.0f));
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2200, 300.0f));
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2100, 300.0f));
-        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 3000, 380.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 3000, 300.0f));
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 4000, 600.0f));
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 5500, 600.0f));
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 6500, 600.0f));
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 6000, 600.0f));
-        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 4300, 510.0f));
-        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 6100, 380.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 4300, 600.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 6100, 300.0f));
 
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 5700, 380.0f));
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 5800, 380.0f));
@@ -696,11 +710,11 @@ int main()
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 20200, 300.0f));
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 19500, 550.0f));
 
-        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 17645, 550.0f));
-        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 17745, 550.0f));
-        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 17845, 550.0f));
-        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 17945, 550.0f));
-        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 18045, 550.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 17695, 550.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 17795, 550.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 17895, 550.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 17995, 550.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 18095, 550.0f));
 
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 21000, 550.0f));
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 21300, 550.0f));
@@ -708,10 +722,10 @@ int main()
 
         itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 2000.0f, 600.0f));
         itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 2500.0f, 600.0f));
-        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3400.0f, 600.0f));
-        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3500.0f, 600.0f));
-        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3300.0f, 600.0f));
-        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3600.0f, 600.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3450.0f, 600.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3550.0f, 600.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3350.0f, 600.0f));
+        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3650.0f, 600.0f));
         itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6000.0f, 600.0f));
         itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6300.0f, 600.0f));
         itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6500.0f, 600.0f));
@@ -913,6 +927,23 @@ int main()
 
             }
 
+            for (int i = 0; i <fireVector.size(); i++) {
+
+               fireVector[i].updatemon(deltaTime, bullet1);               
+
+            }
+
+            for (int i = 0; i < fireVector2.size(); i++) {
+
+                fireVector2[i].updatemon(deltaTime, bullet1);
+
+            }
+
+            for (int i = 0; i < fireVector3.size(); i++) {
+
+                fireVector3[i].updatemon(deltaTime, bullet1);
+
+            }
             //bossVector
 
             bossVector.updateboss(deltaTime, bullet1);
@@ -1052,26 +1083,23 @@ int main()
 
             
 
+           
+          
+            window.clear();
+
             for (Platform& platform : platforms)
                 platform.Draw(window);
 
-            window.clear();
             window.draw(background2);
 
-            if (scoreup > 700) {
-
-                for (int i = 0; i < Door_1.size(); i++) {
-                    Door_1.erase(Door_1.begin()+i);
-                }
-               
-            
-            }
            
 
             for (size_t i = 0; i < bullet.size(); i++)
             {
                 window.draw(bullet[i].shape);
             }
+
+            
 
            window.draw(background);
 
@@ -1129,6 +1157,49 @@ int main()
                         }
                     }
                 }
+                for (int i = 0; i < fireVector.size(); i++) {
+                    if (fireVector[i].hit() == 1)
+                    {
+
+                        bullet1.del();
+
+                        if (fireVector[i].getScore(100) == 1) {
+                            
+                            bullet1.del();
+                            Onfire1 = true;
+                            //  bullet1.del();
+                        }
+                    }
+                }
+                for (int i = 0; i < fireVector2.size(); i++) {
+                    if (fireVector2[i].hit() == 1)
+                    {
+
+                        bullet1.del();
+
+                        if (fireVector2[i].getScore(100) == 1) {
+
+                            bullet1.del();
+                            Onfire2 = true;
+                            //  bullet1.del();
+                        }
+                    }
+                }
+
+                for (int i = 0; i < fireVector3.size(); i++) {
+                    if (fireVector3[i].hit() == 1)
+                    {
+
+                        bullet1.del();
+
+                        if (fireVector3[i].getScore(100) == 1) {
+
+                            bullet1.del();
+                            Onfire3 = true;
+                            //  bullet1.del();
+                        }
+                    }
+                }
 
                 for (int j = 0; j < monsterVector.size(); j++) {
                     if (monsterVector[j].hit() == 1)
@@ -1148,7 +1219,32 @@ int main()
 
                     
                 }
+                if (Onfire1 == true) {
+                
+                    for (int i = 0; i < fireVector.size(); i++) {
+
+                        fireVector[i].Draw(window);
+
+                    }
+                }
+
+                if (Onfire2 == true) {
+
+                    for (int i = 0; i < fireVector2.size(); i++) {
+
+                        fireVector2[i].Draw(window);
+
+                    }
+                }
                
+                if (Onfire3 == true) {
+
+                    for (int i = 0; i < fireVector3.size(); i++) {
+
+                        fireVector3[i].Draw(window);
+
+                    }
+                }
                 for (int i = 0; i < monsterVector3.size(); i++) {
                     if (monsterVector3[i].hit() == 1)
                     {
@@ -1165,11 +1261,20 @@ int main()
               
                  }
 
-            
+              
             if (player.getPosition().x - bullet1.GetPosition().x <= -1000.0f)
             {
                 Bul = 0;
                 bullet1.isAvaliable();
+            }
+
+            if (scoreup > 700) {
+                if (Onfire1 == true&& Onfire2 == true && Onfire3 == true) {
+                    for (int i = 0; i < Door_1.size(); i++) {
+                        Door_1.erase(Door_1.begin() + i);
+                    }
+
+                }
             }
 
 
@@ -1218,7 +1323,7 @@ int main()
 
 
             window.setView(view);
-            window.draw(door);
+          //  window.draw(door);
             player.Draw(window);
             window.draw(Score);
             window.draw(hpbar);
@@ -1381,6 +1486,21 @@ int main()
                   itemslowVector.erase(itemslowVector.begin() + i);
               }
             itemslowVector.clear();
+
+            for (int i = 0; i < fireVector.size(); i++) {
+                fireVector.erase(fireVector.begin() + i);
+            }
+               fireVector.clear();
+
+            for (int i = 0; i < fireVector2.size(); i++) {
+                fireVector2.erase(fireVector2.begin() + i);
+            }
+            fireVector2.clear();
+
+            for (int i = 0; i < fireVector3.size(); i++) {
+                fireVector3.erase(fireVector3.begin() + i);
+            }
+            fireVector3.clear();
 
     }
    
