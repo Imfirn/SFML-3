@@ -18,6 +18,7 @@ public:
     void updatemon2(float deltaTime, Player player);
     void OnCollision(sf::Vector2f direction, float deltaTime);
     float getScore(float attack);
+    
     void Draw(sf::RenderWindow& window);
     Collider GetCollider() { return Collider(body); }
     

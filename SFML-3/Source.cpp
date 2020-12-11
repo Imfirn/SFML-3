@@ -380,6 +380,7 @@ int main()
     int Bul = 0;
     int scoreup = 0;
     float counTime=0;
+    float Time = 0;
     float deltaTime = 0.0f;
     int Loop = 0;
     Clock clock;
@@ -665,6 +666,7 @@ int main()
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 320.0f, 200,400));
 
 
+        
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2000, 600.0f));
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2200, 300.0f));
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2100, 300.0f));
@@ -745,15 +747,15 @@ int main()
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 17500, 615.0f, 200,400));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 18500, 615.0f, 200,400));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 6500, 615.0f, 200,400));
-
-
-        
+       
+       
 
 
        while (start == true) {
             
             deltaTime = clock.restart().asSeconds();
             Vector2f pos = player.getPosition();
+            
            std::cout << pos.x << ' ' << pos.y << '\n';
          // cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
            //std::cout << "............................";
@@ -901,7 +903,7 @@ int main()
 
                 monsterVector[i].updatemon(deltaTime, bullet1);
                 monsterVector[i].updatemon2(deltaTime, player);
-
+               
             }
 
             for (int i = 0; i < monsterVector3.size(); i++) {
@@ -917,10 +919,8 @@ int main()
             bossVector.updateboss2(deltaTime, player);
 
 
-
-
-
-
+          
+           
 
             //Boss shoting
 
@@ -969,6 +969,8 @@ int main()
             for (int i = 0; i < itemHPupVector.size(); i++) {
                 itemHPupVector[i].updateitem(deltaTime, player);
             }
+
+            
 
             for (int i = 0; i < itemslowVector.size(); i++) {
                 itemslowVector[i].update(deltaTime);
@@ -1128,16 +1130,17 @@ int main()
                     }
                 }
 
-                for (int i = 0; i < monsterVector.size(); i++) {
-                    if (monsterVector[i].hit() == 1)
+                for (int j = 0; j < monsterVector.size(); j++) {
+                    if (monsterVector[j].hit() == 1)
                     {  
                         bullet1.del();
                        
-                        if (monsterVector[i].getScore(100) == 1) {
+                        if (monsterVector[j].getScore(100) == 1) {
                             scoreup += 100; 
                             bullet1.del();
-                            monsterVector.erase(monsterVector.begin() + i);
-                           // bullet1.del();
+                            monsterVector.erase(monsterVector.begin() + j);
+                           // bullet1.del();                         
+                                                        
                         }
                        
                                                 
@@ -1163,9 +1166,6 @@ int main()
                  }
 
             
-
-
-
             if (player.getPosition().x - bullet1.GetPosition().x <= -1000.0f)
             {
                 Bul = 0;
@@ -1264,6 +1264,7 @@ int main()
             for (int i = 0; i < itemslowVector.size(); i++) {
                 itemslowVector[i].draw(window);
             }
+           
 
 
             for (Platform& platforms_2 : platforms_2)

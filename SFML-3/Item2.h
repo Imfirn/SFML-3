@@ -2,6 +2,7 @@
 #include<SFML/Graphics.hpp>
 #include"Animation.h"
 #include"Collider.h"
+//#include "monster.h"
 using namespace sf;
 class Item2
 {
@@ -10,6 +11,8 @@ class Item2
 	~Item2();
 
 	void update(float deltaTime);
+	//void updateHP(monster Mon);
+
 	void draw(RenderWindow& window);
 	void setPosition(float x, float y);
 	Collider GetCollider() { return Collider(body); }
@@ -17,6 +20,7 @@ private:
 	int row;
 	RectangleShape body;
 	Animation animation;
+	
 
 };
 

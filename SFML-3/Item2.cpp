@@ -22,6 +22,10 @@ void Item2::update(float deltaTime)
 	animation.Update(row, deltaTime);
 	body.setTextureRect(animation.uvRect);
 }
+/*void Item2::updateHP(monster Mon)
+{
+	body.setPosition(Mon.getPo(),Mon.getPoy());
+}*/
 void Item2::draw(RenderWindow& window) 
 {
 	window.draw(body);

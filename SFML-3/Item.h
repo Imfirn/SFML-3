@@ -14,6 +14,7 @@ public:
     Item(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float x, float y);
     ~Item();
     void updateitem(float deltaTime, Player player);
+   
     void Draw(sf::RenderWindow& window);
     Collider GetCollider() { return Collider(body); }
     int check() {
@@ -27,6 +28,7 @@ private:
     int row;
     int hpup;
     float speed;
+    float countTime;
     Animation animation;
     sf::Vector2f velocity;
 };
