@@ -105,6 +105,13 @@ int main()
     hs.loadFromFile("pic/hs.png");
     highScore.setTexture(&hs);
 
+    ///Menu-stop////
+    RectangleShape stopGame(Vector2f(1080.0f, 720.0f));
+    stopGame.setPosition(0.0f, 0.0f);
+    Texture stop_game;
+    stop_game.loadFromFile("pic/stop.png");
+    stopGame.setTexture(&stop_game);
+
 
 
     ///score
@@ -400,6 +407,7 @@ int main()
     bool SCore_li = false;
     bool menu = true;
     bool MemScore = false;
+    bool Stop = false;
   
 
     // Adding name///
@@ -745,16 +753,16 @@ int main()
         Boss  bossVector(&BOSS, Vector2u(3, 2), 0.4f, 23430.0f, 450.0f);
         bullet.push_back(Bullet_boss(b1));
 
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 17500, 530.0f, 200,500));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 17500, 500.0f, 250,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(8, 2), 0.5f, rand() % 500 + 17500, 530.0f, 200,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(8, 2), 0.5f, rand() % 500 + 17500, 500.0f, 250,500));
 
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 19000, 300.0f, 250,500));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 18000, 300.0f, 200,500));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 18500, 300.0f, 200,500));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 200 + 20000, 530.0f, 250,500));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 200 + 21000, 530.0f, 200,500));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 200 + 21200, 530.0f, 250,500));
-        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(4, 2), 0.5f, rand() % 500 + 21100, 530.0f, 200,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(8, 2), 0.5f, rand() % 500 + 19000, 300.0f, 250,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(8, 2), 0.5f, rand() % 500 + 18000, 300.0f, 200,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(8, 2), 0.5f, rand() % 500 + 18500, 300.0f, 200,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(8, 2), 0.5f, rand() % 200 + 20000, 530.0f, 250,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(8, 2), 0.5f, rand() % 200 + 21000, 530.0f, 200,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(8, 2), 0.5f, rand() % 200 + 21200, 530.0f, 250,500));
+        monsterVector3.push_back(monster(&MONSTER3, sf::Vector2u(8, 2), 0.5f, rand() % 500 + 21100, 530.0f, 200,500));
         
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 21000, 300.0f, 200,400));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.5f, rand() % 500 + 17500, 615.0f, 200,400));
@@ -770,7 +778,7 @@ int main()
             deltaTime = clock.restart().asSeconds();
             Vector2f pos = player.getPosition();
             
-           std::cout << pos.x << ' ' << pos.y << '\n';
+        //   std::cout << pos.x << ' ' << pos.y << '\n';
          // cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
            //std::cout << "............................";
             Event event;
@@ -788,12 +796,11 @@ int main()
             }
             ////Boss//
             
-            if (end == false) {
-
-                player.Update(deltaTime, itemslowVector);
-
-            } 
+           
           
+            if (Keyboard::isKeyPressed(sf::Keyboard::Key::E)) {
+                Stop = true;
+            }
            
 
             
@@ -912,6 +919,8 @@ int main()
             blood.str(" ");
             blood << playerHP << " /60000";
             hpbar.setString(blood.str());
+            if (end == false&&Stop ==false) {
+                player.Update(deltaTime, itemslowVector);
 
             for (int i = 0; i < monsterVector.size(); i++) {
 
@@ -950,7 +959,18 @@ int main()
             bossVector.updateboss2(deltaTime, player);
 
 
-          
+            
+            for (int i = 0; i < platVector2.size(); i++) {
+                platVector2[i].updateX(deltaTime);
+            }
+
+            for (int i = 0; i < platVector_3.size(); i++) {
+                platVector_3[i].updateY(deltaTime);
+            }
+
+           
+
+            }
            
 
             //Boss shoting
@@ -988,14 +1008,7 @@ int main()
                 window.draw(bullet[i].shape);
             }                    
             
-            for (int i = 0; i < platVector2.size(); i++) {
-                platVector2[i].updateX(deltaTime);
-            }
-
-            for (int i = 0; i < platVector_3.size(); i++) {
-                platVector_3[i].updateY(deltaTime);
-            }
-
+          
 
             for (int i = 0; i < itemHPupVector.size(); i++) {
                 itemHPupVector[i].updateitem(deltaTime, player);
@@ -1107,176 +1120,188 @@ int main()
 
            
 
-            if (Keyboard::isKeyPressed(sf::Keyboard::Key::G))
-            {   
-                player_di = player.Direction();
+            
 
-                if (player_di == 1) {
+            if(end==false&&Stop==false){
+                if (Keyboard::isKeyPressed(sf::Keyboard::Key::G))
+                {
+                    player_di = player.Direction();
 
-                    bullet1.attackR(pos);
-                    std::cout << "............................";
-                }
-                else if (player_di == -1) {
-                    bullet1.attackL(pos);
-                    std::cout << "--------------------------";
-                }
+                    if (player_di == 1) {
 
-                Bul = 1;
-                playerShooting.play();
-            }
-
-
-            if (Bul == 1)
-            {
-                if (player_di == 1) {
-
-                    bullet1.UpdateR(deltaTime);
-                    bullet1.Draw(window);
-
-                }
-                else if (player_di == -1) {
-
-                    bullet1.UpdateL(deltaTime);
-                    bullet1.Draw(window);
-
-                }
-
-
-
-                for (int i = 0; i < monsterVector2.size(); i++) {
-                    if (monsterVector2[i].hit() == 1)
-                    {   
-                        
-                        bullet1.del();
-
-                        if (monsterVector2[i].getScore(100) == 1) {
-                            scoreup += 200;        
-                            bullet1.del();
-                            monsterVector2.erase(monsterVector2.begin() + i);
-                          //  bullet1.del();
-                        }
+                        bullet1.attackR(pos);
+                        std::cout << "............................";
                     }
-                }
-                for (int i = 0; i < fireVector.size(); i++) {
-                    if (fireVector[i].hit() == 1)
-                    {
-
-                        bullet1.del();
-
-                        if (fireVector[i].getScore(100) == 1) {
-                            
-                            bullet1.del();
-                            Onfire1 = true;
-                            //  bullet1.del();
-                        }
-                    }
-                }
-                for (int i = 0; i < fireVector2.size(); i++) {
-                    if (fireVector2[i].hit() == 1)
-                    {
-
-                        bullet1.del();
-
-                        if (fireVector2[i].getScore(100) == 1) {
-
-                            bullet1.del();
-                            Onfire2 = true;
-                            //  bullet1.del();
-                        }
-                    }
-                }
-
-                for (int i = 0; i < fireVector3.size(); i++) {
-                    if (fireVector3[i].hit() == 1)
-                    {
-
-                        bullet1.del();
-
-                        if (fireVector3[i].getScore(100) == 1) {
-
-                            bullet1.del();
-                            Onfire3 = true;
-                            //  bullet1.del();
-                        }
-                    }
-                }
-
-                for (int j = 0; j < monsterVector.size(); j++) {
-                    if (monsterVector[j].hit() == 1)
-                    {  
-                        bullet1.del();
-                       
-                        if (monsterVector[j].getScore(100) == 1) {
-                            scoreup += 100; 
-                            bullet1.del();
-                            monsterVector.erase(monsterVector.begin() + j);
-                           // bullet1.del();                         
-                                                        
-                        }
-                       
-                                                
+                    else if (player_di == -1) {
+                        bullet1.attackL(pos);
+                        std::cout << "--------------------------";
                     }
 
-                    
+                    Bul = 1;
+                    playerShooting.play();
                 }
-                if (Onfire1 == true) {
-                
+
+                if (Bul == 1)
+                {
+                    if (player_di == 1) {
+
+                        bullet1.UpdateR(deltaTime);
+                        bullet1.Draw(window);
+
+                    }
+                    else if (player_di == -1) {
+
+                        bullet1.UpdateL(deltaTime);
+                        bullet1.Draw(window);
+
+                    }
+
+
+
+                    for (int i = 0; i < monsterVector2.size(); i++) {
+                        if (monsterVector2[i].hit() == 1)
+                        {
+
+                            bullet1.del();
+
+                            if (monsterVector2[i].getScore(100) == 1) {
+                                scoreup += 200;
+                                bullet1.del();
+                                monsterVector2.erase(monsterVector2.begin() + i);
+                                //  bullet1.del();
+                            }
+                        }
+                    }
                     for (int i = 0; i < fireVector.size(); i++) {
+                        if (fireVector[i].hit() == 1)
+                        {
 
-                        fireVector[i].Draw(window);
+                            bullet1.del();
 
+                            if (fireVector[i].getScore(100) == 1) {
+
+                                bullet1.del();
+                                Onfire1 = true;
+                                //  bullet1.del();
+                            }
+                        }
                     }
-                }
-
-                if (Onfire2 == true) {
-
                     for (int i = 0; i < fireVector2.size(); i++) {
+                        if (fireVector2[i].hit() == 1)
+                        {
 
-                        fireVector2[i].Draw(window);
+                            bullet1.del();
 
+                            if (fireVector2[i].getScore(100) == 1) {
+
+                                bullet1.del();
+                                Onfire2 = true;
+                                //  bullet1.del();
+                            }
+                        }
                     }
-                }
-               
-                if (Onfire3 == true) {
 
                     for (int i = 0; i < fireVector3.size(); i++) {
+                        if (fireVector3[i].hit() == 1)
+                        {
 
-                        fireVector3[i].Draw(window);
+                            bullet1.del();
+
+                            if (fireVector3[i].getScore(100) == 1) {
+
+                                bullet1.del();
+                                Onfire3 = true;
+                                //  bullet1.del();
+                            }
+                        }
+                    }
+
+                    for (int j = 0; j < monsterVector.size(); j++) {
+                        if (monsterVector[j].hit() == 1)
+                        {
+                            bullet1.del();
+
+                            if (monsterVector[j].getScore(100) == 1) {
+                                scoreup += 100;
+                                bullet1.del();
+                                monsterVector.erase(monsterVector.begin() + j);
+                                // bullet1.del();                         
+
+                            }
+
+
+                        }
+
 
                     }
-                }
-                for (int i = 0; i < monsterVector3.size(); i++) {
-                    if (monsterVector3[i].hit() == 1)
-                    {
-                        bullet1.del();
-                        if (monsterVector3[i].getScore(100) == 1) {
-                            
-                            scoreup += 250;
-                            bullet1.del();
-                            monsterVector3.erase(monsterVector3.begin() + i);
+
+
+
+
+
+                    if (Onfire1 == true) {
+
+                        for (int i = 0; i < fireVector.size(); i++) {
+
+                            fireVector[i].Draw(window);
 
                         }
                     }
-                }
-              
-                 }
 
-              
-            if (player.getPosition().x - bullet1.GetPosition().x <= -1000.0f)
-            {
-                Bul = 0;
-                bullet1.isAvaliable();
-            }
+                    if (Onfire2 == true) {
 
-            if (scoreup > 700) {
-                if (Onfire1 == true&& Onfire2 == true && Onfire3 == true) {
-                    for (int i = 0; i < Door_1.size(); i++) {
-                        Door_1.erase(Door_1.begin() + i);
+                        for (int i = 0; i < fireVector2.size(); i++) {
+
+                            fireVector2[i].Draw(window);
+
+                        }
+                    }
+
+                    if (Onfire3 == true) {
+
+                        for (int i = 0; i < fireVector3.size(); i++) {
+
+                            fireVector3[i].Draw(window);
+
+                        }
+                    }
+                    for (int i = 0; i < monsterVector3.size(); i++) {
+                        if (monsterVector3[i].hit() == 1)
+                        {
+                            bullet1.del();
+                            if (monsterVector3[i].getScore(100) == 1) {
+
+                                scoreup += 250;
+                                bullet1.del();
+                                monsterVector3.erase(monsterVector3.begin() + i);
+
+                            }
+                        }
+
+
+
+
+
+                        if (player.getPosition().x - bullet1.GetPosition().x <= -1000.0f)
+                        {
+                            Bul = 0;
+                            bullet1.isAvaliable();
+                        }
+
+
                     }
 
                 }
             }
 
+                      if (scoreup > 700) {
+                          if (Onfire1 == true && Onfire2 == true && Onfire3 == true) {
+                              for (int i = 0; i < Door_1.size(); i++) {
+                                  Door_1.erase(Door_1.begin() + i);
+                              }
+
+                          }
+                      }
 
             view.setCenter(player.getPosition().x, 360);
 
@@ -1296,6 +1321,7 @@ int main()
               hp1.setPosition(Vector2f(hp.getPosition().x , hp.getPosition().y));
               HPb.setPosition(Vector2f(bossVector.getposix()-100, bossVector.getposiy()-300));////////----
               LastScore.setPosition({ view.getCenter().x - 20 ,view.getCenter().y - 170 });
+             
               Score.setPosition({ view.getCenter().x +200 ,26});
               hpbar.setPosition(Vector2f(view.getCenter().x -460, 20));
 
@@ -1390,9 +1416,24 @@ int main()
             Hi.setPosition(view.getCenter().x - 540, 0);
             Hi2.setPosition(view.getCenter().x - 540, 0);
 
+            if (Stop == true) {
+                cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
+                window.draw(stopGame);
+                stopGame.setPosition(view.getCenter().x - 540, 0);
+                if (Mouse::getPosition(window).x >= 424 &&
+                    Mouse::getPosition(window).y >= 356 &&
+                    Mouse::getPosition(window).x <= 655 &&
+                    Mouse::getPosition(window).y <= 417)
+                {
+                    if (Mouse::isButtonPressed(sf::Mouse::Left)) {
 
+                        Stop = false;
+
+                    }
+                }
+            }
             if (end == true) {
-                             
+                playerShooting.stop();
                 part1Sound.stop();
                 part2Sound.stop();
                 //std::cout << "............................";
@@ -1434,6 +1475,7 @@ int main()
                         Menu2.setPosition(view.getCenter().x - 540, 0);
                         Menu3.setPosition(view.getCenter().x - 540, 0);
                         Menu4.setPosition(view.getCenter().x - 540, 0);
+                        stopGame.setPosition(view.getCenter().x - 540, 0);
                         highScore.setPosition(view.getCenter().x - 540, 0);
                         addName.setPosition(view.getCenter().x - 540, 0);
                         cursor.setPosition(view.getCenter().x + 5  + text.getGlobalBounds().width + 10, 555.0f);                      
@@ -1447,6 +1489,7 @@ int main()
 
             }
             window.display();
+
             }
             
             Loop++;
