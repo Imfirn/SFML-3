@@ -253,9 +253,9 @@ int main()
 
     std::vector<Platform>platforms;
     ////Part 1/////
-    platforms.push_back(Platform(nullptr,Vector2f(50.0f, 50.0f),Vector2f(3057.0f, 500.0f)));//
+    platforms.push_back(Platform(nullptr,Vector2f(50.0f, 50.0f),Vector2f(4859.0f, 550.0f)));//
     platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(3050.0f, 550.0f)));
-    platforms.push_back(Platform(nullptr, Vector2f(50.0f, 50.0f), Vector2f(4010.0f, 500.0f)));//
+    platforms.push_back(Platform(nullptr, Vector2f(50.0f, 50.0f), Vector2f(6691.0f, 320.0f)));//
     platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(4010.0f, 550.0f)));
     platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(3579.0f, 450.0f)));
     platforms.push_back(Platform(nullptr,Vector2f(274.0f, 80.0f),Vector2f(4570.0f, 630.0f)));
@@ -685,9 +685,9 @@ int main()
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 320.0f, 200,400));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 320.0f, 200,400));
 
-        fireVector.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 3055.0f, 445.0f, 0, 200));//
-        fireVector2.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 4015.0f, 445.0f, 0, 200));//
-        fireVector3.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 3580.0f, 345.0f, 0, 200));//
+        fireVector.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 4865.0f, 500.0f, 0, 200));//
+        fireVector2.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 3577.0f, 315.0f, 0, 200));//
+        fireVector3.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 6691.0f, 300.0f, 0, 200));//
 
         
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2000, 600.0f));
@@ -779,7 +779,7 @@ int main()
             deltaTime = clock.restart().asSeconds();
             Vector2f pos = player.getPosition();
             
-        //   std::cout << pos.x << ' ' << pos.y << '\n';
+         std::cout << pos.x << ' ' << pos.y << '\n';
          // cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
            //std::cout << "............................";
             Event event;
@@ -1418,6 +1418,7 @@ int main()
             Hi2.setPosition(view.getCenter().x - 540, 0);
 
             if (Stop == true) {
+                part1Sound.pause();
                 cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
                 window.draw(stopGame);
                 stopGame.setPosition(view.getCenter().x - 540, 0);
@@ -1429,7 +1430,7 @@ int main()
                     if (Mouse::isButtonPressed(sf::Mouse::Left)) {
 
                         Stop = false;
-
+                        part1Sound.play();
                     }
                 }
 

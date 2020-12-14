@@ -71,3 +71,9 @@ sada,100
 fd,200
 hdsa,0
 pimdy,2800
+tyyg,300
+dade,1700
+dad,300
+dad,300
+dad,300
+dad,300
