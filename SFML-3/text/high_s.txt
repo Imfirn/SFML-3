@@ -77,3 +77,7 @@ dad,300
 dad,300
 dad,300
 dad,300
+fkds,4550
+dad,400
+fsf,4800
+sad,4550

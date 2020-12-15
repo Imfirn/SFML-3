@@ -155,8 +155,8 @@ int main()
     
 
     Texture BULLET;
-    BULLET.loadFromFile("pic/gun-1.png");
-    Bullet bullet1(&BULLET, Vector2u(4, 2), 0.15f, 600.0f, player.getPosition());
+    BULLET.loadFromFile("pic/gun.png");
+    Bullet bullet1(&BULLET, Vector2u(3, 2), 0.15f, 600.0f, player.getPosition());
 
 
     ///stair///
@@ -253,13 +253,13 @@ int main()
 
     std::vector<Platform>platforms;
     ////Part 1/////
-    platforms.push_back(Platform(nullptr,Vector2f(50.0f, 50.0f),Vector2f(4859.0f, 550.0f)));//
+    platforms.push_back(Platform(nullptr,Vector2f(50.0f, 50.0f),Vector2f(4859.0f, 600.0f)));//
     platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(3050.0f, 550.0f)));
-    platforms.push_back(Platform(nullptr, Vector2f(50.0f, 50.0f), Vector2f(6691.0f, 320.0f)));//
+    platforms.push_back(Platform(nullptr, Vector2f(50.0f, 50.0f), Vector2f(6691.0f, 350.0f)));//
     platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(4010.0f, 550.0f)));
     platforms.push_back(Platform(nullptr,Vector2f(342.0f, 32.0f),Vector2f(3579.0f, 450.0f)));
     platforms.push_back(Platform(nullptr,Vector2f(274.0f, 80.0f),Vector2f(4570.0f, 630.0f)));
-    platforms.push_back(Platform(nullptr, Vector2f(50.0f, 50.0f), Vector2f(3579.0f, 400.0f)));//
+    platforms.push_back(Platform(nullptr, Vector2f(50.0f, 50.0f), Vector2f(3579.0f, 395.0f)));//
 
     platforms.push_back(Platform(nullptr,Vector2f(316.0f, 40.0f),Vector2f(4923.0f, 640.0f)));
     platforms.push_back(Platform(nullptr,Vector2f(274.0f, 80.0f),Vector2f(5182.0f, 630.0f)));
@@ -685,9 +685,9 @@ int main()
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 320.0f, 200,400));
         monsterVector2.push_back(monster(&MONSTER2, sf::Vector2u(5, 2), 0.2f, rand() % 500 + 6500, 320.0f, 200,400));
 
-        fireVector.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 4865.0f, 500.0f, 0, 200));//
-        fireVector2.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 3577.0f, 315.0f, 0, 200));//
-        fireVector3.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 6691.0f, 300.0f, 0, 200));//
+        fireVector.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 4880.0f, 530.0f, 0, 200));//
+        fireVector2.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 3577.0f, 320.0f, 0, 200));//
+        fireVector3.push_back(monster(&FIRE, Vector2u(5, 1), 0.2f, 6685.0f, 280.0f, 0, 200));//
 
         
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 2000, 600.0f));
@@ -707,9 +707,9 @@ int main()
 
 
 
-        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 6700, 300.0f));
-        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 6800, 300.0f));
-        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 6900, 300.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 6750, 300.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 6850, 300.0f));
+        itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 6950, 300.0f));
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, 7000, 300.0f));
 
 
@@ -730,14 +730,14 @@ int main()
         itemHPupVector.push_back(Item(&itemHPup, sf::Vector2u(3, 1), 0.2f, rand() % 500 + 22000, 550.0f));
 
         itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 2000.0f, 600.0f));
-        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 2500.0f, 600.0f));
+       // itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 2500.0f, 600.0f));
         itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3450.0f, 600.0f));
-        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3550.0f, 600.0f));
-        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3350.0f, 600.0f));
+     //  itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3550.0f, 600.0f));
+       // itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3350.0f, 600.0f));
         itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3650.0f, 600.0f));
-        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6000.0f, 600.0f));
+       // itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6000.0f, 600.0f));
         itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6300.0f, 600.0f));
-        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6500.0f, 600.0f));
+      //  itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6500.0f, 600.0f));
 
 
         //p2
@@ -745,8 +745,8 @@ int main()
         itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 20200.0f, 305.0f));
         itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 22370.0f, 550.0f));
         itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 21406.0f, 550.0f));
-        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 21606.0f, 550.0f));
-        itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 21806.0f, 550.0f));
+        //itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 21606.0f, 550.0f));
+     //   itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 21806.0f, 550.0f));
         itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 22006.0f, 550.0f));
 
         //part 2//
