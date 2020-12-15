@@ -857,7 +857,7 @@ int main()
             for (int i = 0; i < monsterVector2.size(); i++) {
                 if (monsterVector2[i].check() == 1) {
                     //std::cout << "............................";
-                 //   playerHP -= 100;
+                    playerHP -= 100;
                     HP.setSize(Vector2f(playerHP / 200.f,25));
                    
                 }
@@ -866,7 +866,7 @@ int main()
             for (int i = 0; i < monsterVector3.size(); i++) {
                 if (monsterVector3[i].check() == 1) {
                     //std::cout << "............................";
-                   // playerHP -= 200;
+                    playerHP -= 200;
                     HP.setSize(Vector2f(playerHP / 200.f, 25));
 
                 }

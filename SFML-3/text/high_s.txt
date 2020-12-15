@@ -91,3 +91,5 @@ dsad,2350
 cxzv,3750
 dsa,0
 dad,4100
+mamamoo,0
+haru,800
