@@ -640,7 +640,7 @@ int main()
 
                 if (Keyboard::isKeyPressed(Keyboard::E))
                 {
-                    //Soundch.play();
+                   
                     SCore_li = false;
                     menu = true;
                     scoreSound.stop();
@@ -655,7 +655,7 @@ int main()
         clock.restart();
         playerHP = 60000;
         bossHP = 80000;
-       // monsterHP = 300;
+       
 
         HP.setSize(Vector2f(playerHP / 200.f,25));
 
@@ -738,15 +738,11 @@ int main()
         itemHPupVector.push_back(Item(&itemHPup,Vector2u(3, 1), 0.2f, rand() % 500 + 21300, 550.0f));
         itemHPupVector.push_back(Item(&itemHPup,Vector2u(3, 1), 0.2f, rand() % 500 + 22000, 550.0f));
 
-        itemslowVector.push_back(Item2(&itemslow, Vector2u(3, 1), 0.2f, 2000.0f, 600.0f));
-       // itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 2500.0f, 600.0f));
-        itemslowVector.push_back(Item2(&itemslow,Vector2u(3, 1), 0.2f, 3450.0f, 600.0f));
-     //  itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3550.0f, 600.0f));
-       // itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 3350.0f, 600.0f));
-        itemslowVector.push_back(Item2(&itemslow,Vector2u(3, 1), 0.2f, 3650.0f, 600.0f));
-       // itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6000.0f, 600.0f));
+        itemslowVector.push_back(Item2(&itemslow, Vector2u(3, 1), 0.2f, 2000.0f, 600.0f));     
+        itemslowVector.push_back(Item2(&itemslow,Vector2u(3, 1), 0.2f, 3450.0f, 600.0f));   
+        itemslowVector.push_back(Item2(&itemslow,Vector2u(3, 1), 0.2f, 3650.0f, 600.0f));       
         itemslowVector.push_back(Item2(&itemslow,Vector2u(3, 1), 0.2f, 6300.0f, 600.0f));
-      //  itemslowVector.push_back(Item2(&itemslow, sf::Vector2u(3, 1), 0.2f, 6500.0f, 600.0f));
+     
 
 
         //p2
@@ -789,8 +785,7 @@ int main()
             Vector2f pos = player.getPosition();
             
          std::cout << pos.x << ' ' << pos.y << '\n';
-         // cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << endl;
-           //std::cout << "............................";
+         
             Event event;
             while (window.pollEvent(event))
             {
@@ -987,8 +982,9 @@ int main()
 
             if (player.getPosition().x < 23030 && player.getPosition().x>23000 && bossVector.getposix() == 23430)
             {
+              
                 bossAttack.play();
-                b1.shape.setPosition(23430, 470);
+                b1.shape.setPosition(23430, 480);
                 b1.currVelocity.x = -b1.maxSpeed;
                 bullet.push_back(Bullet_boss(b1));
 
@@ -998,13 +994,15 @@ int main()
 
             if (player.getPosition().x < 23690 && player.getPosition().x>23660 && bossVector.getposix() == 23430)
             {
-
-                b1.shape.setPosition(23430, 470);
+               
+                bossAttack.play();
+                b1.shape.setPosition(23430, 480);
                 b1.currVelocity.x = b1.maxSpeed;
                 bullet.push_back(Bullet_boss(b1));
                 
 
             }
+
             for (size_t i = 0; i < bullet.size(); i++)
             {
                 bullet[i].shape.move(bullet[i].currVelocity);
@@ -1178,7 +1176,7 @@ int main()
                                 scoreup += 200;
                                 bullet1.del();
                                 monsterVector2.erase(monsterVector2.begin() + i);
-                                //  bullet1.del();
+                               
                             }
                         }
                     }
@@ -1192,7 +1190,7 @@ int main()
 
                                 bullet1.del();
                                 Onfire1 = true;
-                                //  bullet1.del();
+                                
                             }
                         }
                     }
@@ -1221,7 +1219,7 @@ int main()
 
                                 bullet1.del();
                                 Onfire3 = true;
-                                //  bullet1.del();
+                               
                             }
                         }
                     }
@@ -1303,8 +1301,7 @@ int main()
 
                 }
             }
-
-                      if (scoreup > 700) {
+                      if (scoreup > 2000) {
                           if (Onfire1 == true && Onfire2 == true && Onfire3 == true) {
                               for (int i = 0; i < Door_1.size(); i++) {
                                   Door_1.erase(Door_1.begin() + i);
@@ -1354,13 +1351,12 @@ int main()
              if (playSound == true) {
                  for (; checkSound < 1; checkSound++) {
                      part2Sound.play();
-                    // std::cout << "............................";
+                    
                  }
              }
 
 
-            window.setView(view);
-          //  window.draw(door);
+            window.setView(view);         
             player.Draw(window);
             window.draw(Score);
             window.draw(hpbar);
@@ -1424,8 +1420,7 @@ int main()
             window.draw(hpb);
             window.draw(HPb);
             
-            window.draw(st);
-            //window.draw(Menu);
+            window.draw(st);           
             Hi.setPosition(view.getCenter().x - 540, 0);
             Hi2.setPosition(view.getCenter().x - 540, 0);
 
@@ -1545,6 +1540,8 @@ int main()
             end = false;
             player.setPosition(700.0f, 360.0f);
             player.Reset();
+
+            
             
             for (int i = 0; i < monsterVector.size(); i++) {
                 monsterVector.erase(monsterVector.begin() + i);

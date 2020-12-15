@@ -89,3 +89,5 @@ dsad,2350
 dsad,2350
 dsad,2350
 cxzv,3750
+dsa,0
+dad,4100
