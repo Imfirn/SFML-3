@@ -763,16 +763,16 @@ int main()
         monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 500 + 17500, 500.0f, 250,500));
 
         monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 500 + 19000, 500.0f, 250,500));
-        monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 500 + 18000, 500.0f, 200,500));
-        monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 500 + 18500, 500.0f, 200,500));
+        monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 500 + 21000, 500.0f, 200,500));
+        monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 500 + 21500, 500.0f, 200,500));
         monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 200 + 20000, 530.0f, 250,500));
         monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 200 + 21000, 530.0f, 200,500));
         monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 200 + 21200, 530.0f, 250,500));
         monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 500 + 21100, 530.0f, 200,500));
         
         monsterVector2.push_back(monster(&MONSTER2,Vector2u(5, 2), 0.5f, rand() % 500 + 21000, 300.0f, 200,400));
-        monsterVector2.push_back(monster(&MONSTER2,Vector2u(5, 2), 0.5f, rand() % 500 + 17500, 615.0f, 200,400));
-        monsterVector2.push_back(monster(&MONSTER2,Vector2u(5, 2), 0.5f, rand() % 500 + 17500, 615.0f, 200,400));
+        monsterVector2.push_back(monster(&MONSTER2,Vector2u(5, 2), 0.5f, rand() % 500 + 22000, 615.0f, 200,400));
+        monsterVector2.push_back(monster(&MONSTER2,Vector2u(5, 2), 0.5f, rand() % 500 + 21000, 615.0f, 200,400));
         monsterVector2.push_back(monster(&MONSTER2,Vector2u(5, 2), 0.5f, rand() % 500 + 18500, 615.0f, 200,400));
         monsterVector2.push_back(monster(&MONSTER2,Vector2u(5, 2), 0.5f, rand() % 500 + 6500, 615.0f, 200,400));
        
@@ -840,6 +840,7 @@ int main()
                 bossHP = 0;
                 HPb.setSize(Vector2f(bossHP / 320.f, 15));
                 bossVector.delelet();
+                bossAttack.stop();
                 end = true;
 
             }
@@ -866,7 +867,7 @@ int main()
             for (int i = 0; i < monsterVector3.size(); i++) {
                 if (monsterVector3[i].check() == 1) {
                     //std::cout << "............................";
-                    playerHP -= 200;
+                    playerHP -= 150;
                     HP.setSize(Vector2f(playerHP / 200.f, 25));
 
                 }
@@ -984,7 +985,7 @@ int main()
             {
               
                 bossAttack.play();
-                b1.shape.setPosition(23430, 480);
+                b1.shape.setPosition(23430, 500);
                 b1.currVelocity.x = -b1.maxSpeed;
                 bullet.push_back(Bullet_boss(b1));
 
@@ -996,7 +997,7 @@ int main()
             {
                
                 bossAttack.play();
-                b1.shape.setPosition(23430, 480);
+                b1.shape.setPosition(23430, 500);
                 b1.currVelocity.x = b1.maxSpeed;
                 bullet.push_back(Bullet_boss(b1));
                 

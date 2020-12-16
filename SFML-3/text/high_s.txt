@@ -93,3 +93,11 @@ dsa,0
 dad,4100
 mamamoo,0
 haru,800
+INWZA55,900
+da,1000
+ada,2200
+dda,2700
+DS,0
+dsa,0
+nf,200
+eu,3050
