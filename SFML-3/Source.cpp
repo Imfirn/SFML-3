@@ -767,10 +767,10 @@ int main()
         monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 500 + 21500, 500.0f, 200,500));
         monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 200 + 20000, 530.0f, 250,500));
         monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 200 + 21000, 530.0f, 200,500));
-        monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 200 + 21200, 530.0f, 250,500));
+        monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 200 + 20000, 530.0f, 250,500));
         monsterVector3.push_back(monster(&MONSTER3,Vector2u(8, 2), 0.5f, rand() % 500 + 21100, 530.0f, 200,500));
         
-        monsterVector2.push_back(monster(&MONSTER2,Vector2u(5, 2), 0.5f, rand() % 500 + 21000, 300.0f, 200,400));
+        monsterVector2.push_back(monster(&MONSTER2,Vector2u(5, 2), 0.5f, rand() % 500 + 000, 300.0f, 200,400));
         monsterVector2.push_back(monster(&MONSTER2,Vector2u(5, 2), 0.5f, rand() % 500 + 22000, 615.0f, 200,400));
         monsterVector2.push_back(monster(&MONSTER2,Vector2u(5, 2), 0.5f, rand() % 500 + 21000, 615.0f, 200,400));
         monsterVector2.push_back(monster(&MONSTER2,Vector2u(5, 2), 0.5f, rand() % 500 + 18500, 615.0f, 200,400));
@@ -867,8 +867,8 @@ int main()
             for (int i = 0; i < monsterVector3.size(); i++) {
                 if (monsterVector3[i].check() == 1) {
                     //std::cout << "............................";
-                    playerHP -= 150;
-                    HP.setSize(Vector2f(playerHP / 200.f, 25));
+                  /*  playerHP -= 150;
+                    HP.setSize(Vector2f(playerHP / 200.f, 25));*/
 
                 }
             }
@@ -924,6 +924,7 @@ int main()
 
             blood.str(" ");
             blood << playerHP << " /60000";
+            
             hpbar.setString(blood.str());
             if (end == false&&Stop ==false) {
                 player.Update(deltaTime, itemslowVector);
@@ -1481,6 +1482,7 @@ int main()
                 //std::cout << "............................";
                 cout << Mouse::getPosition(window).x << " " <<Mouse::getPosition(window).y << endl;
                 window.draw(Hi);
+
                 if (bossHP == 0) { window.draw(Hi2); }
 
                 window.draw(LastScore);
